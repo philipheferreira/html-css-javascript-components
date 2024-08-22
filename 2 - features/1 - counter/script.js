@@ -6,12 +6,16 @@ let contador = 0;
 
 let soma = () => {
 	contador++;
-	tela.innerHTML = contador;
+	passarValorTela(contador);
 }
 
 let sub = () => {
 	contador--;
-	tela.innerHTML = contador;
+	passarValorTela(contador);
+}
+
+let passarValorTela = (valor) => {
+	tela.innerHTML = valor;
 }
 
 botaoSoma.addEventListener("click", soma);
