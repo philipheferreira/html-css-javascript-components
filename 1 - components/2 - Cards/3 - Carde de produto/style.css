@@ -10,14 +10,26 @@
 	width: 100%; /* Imagem preenche largura maxima do card */
 }
 
+.texto{
+	margin: 0px 2%;
+}
+
 .preco{
+	color: #4d4d4d;
 	font-size: 22px;
 }
 
 .card .botao{
-
+	border: none; /* Elimina as bordas */
+	padding: 12px; /* Aumenta  tamanh do botao */
+	color: #ffffff;
+	background-color: #0d0d0d;
+	width: 100%; /* Botao preenche todo  card */
+	font-size: 18px;
+	transition: 0.8s;
 }
 
-.card .botao{
-
+.card .botao:hover{
+	opacity: 0.7;
+	cursor: pointer;
 }
