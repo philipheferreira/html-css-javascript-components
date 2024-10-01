@@ -1,3 +1,17 @@
-.teste{
-	color: red;
+.card{
+	max-width: 300px; /* tamanho maximo largura */
+}
+
+.Titulo{
+	font-size: 18px; /* Define tamanho do texto */
+}
+
+a {
+	font-size: 22px;
+	color: black;
+}
+
+button:hover, a:hover{
+	opacity: 0.7;
+	cursor: pointer;
 }
