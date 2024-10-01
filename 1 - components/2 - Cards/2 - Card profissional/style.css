@@ -1,6 +1,8 @@
 .card{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Destaca o ard geranddo uma ssombra atrás */
 	max-width: 300px; /* tamanho maximo largura */
 	margin: auto; /* de alguma forma centraliza no centro da pagina*/
+	text-align: center; /* centraliza todos os textos no card */
 }
 
 .imgPhil{
@@ -14,6 +16,7 @@
 }
 
 a {
+	text-decoration: none;
 	font-size: 22px;
 	color: #000000;
 }
