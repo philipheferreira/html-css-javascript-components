@@ -1,3 +1,23 @@
-.teste{
-	color: red;
+.card{ 
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px; /* Define largura maxima */
+	margin: auto; /* De alguma forma centraliza o card */
+	text-align: center;
+	font-family: arial;
+}
+
+.imgConsole{
+	width: 100%; /* Imagem preenche largura maxima do card */
+}
+
+.preco{
+	font-size: 22px;
+}
+
+.card .botao{
+
+}
+
+.card .botao{
+
 }
