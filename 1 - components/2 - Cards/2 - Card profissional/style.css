@@ -1,17 +1,24 @@
 .card{
 	max-width: 300px; /* tamanho maximo largura */
+	margin: auto; /* de alguma forma centraliza no centro da pagina*/
+}
+
+.imgPhil{
+	width: 100%; /* Preenche todo o espaço definido no card, que é a largura maxima de 300px */
+	max-height: 380px;
 }
 
 .Titulo{
 	font-size: 18px; /* Define tamanho do texto */
+	color: #4d4d4d;
 }
 
 a {
 	font-size: 22px;
-	color: black;
+	color: #000000;
 }
 
-button:hover, a:hover{
+.botao:hover, a:hover{
 	opacity: 0.7;
 	cursor: pointer;
 }

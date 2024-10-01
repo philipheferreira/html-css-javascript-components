@@ -1,7 +1,7 @@
 let botao = document.querySelector(".botao");
 
 let apertarBotao = () => {
-	alert("Conexão funcionando");
+	alert("Ajeitando funcionalidade");
 }
 
 botao.addEventListener("click", apertarBotao);
