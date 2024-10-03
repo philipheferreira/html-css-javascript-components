@@ -8,7 +8,7 @@ caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
 .card-que-vira{
 	background-color: transparent;
 	width: 300px;
-	height: 200px;
+	height: 300px;
 	border: 1px solid #f1f1f1;
 	perspective: 1000px; /* Remover isso caso não querer o efeto 3D */
 }
@@ -27,22 +27,24 @@ caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
 	transform-style: preserve-3d; /* pesquisar sobre => faz girar */
 }
 
-.card-que-vira:hover .card-que-vira-interno{
+.card-que-vira:hover .card-que-vira-interno{ /* Realiza a rotação quando o mouse está sobre */
 transform: rotateY(180deg); /* pesquisar sobre => faz girar */
 }
 
 .Parte-da-frente-card, .parte-de-tras-card{
-
 }
 
 
 /* style da parte da frente do card */
 .Parte-da-frente-card{
-
+ 	background-color: #bbb;
+	color: black;
 }
 
 
 /* style da parte de tras do card */
 .parte-de-tras-card{
-
+	background-color: dodgerblue;
+	color: white;
+	transform: rotateY(180deg); /* Deixa informações já invertidas na posição normal do card */
 }
