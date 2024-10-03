@@ -1,13 +1,41 @@
 
+/*
+Projeto do cartão flip - defina a largura e a altura como desejar. 
+Adicionei a propriedade border para demonstrar que o flip sai da 
+caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
+*/
 
 .card-que-vira{
 	background-color: transparent;
 	width: 300px;
 	height: 200px;
 	border: 1px solid #f1f1f1;
+	perspective: 1000px; /* Remover isso caso não querer o efeto 3D */
 }
 
 .fotoPhiliphe{
 	width: 300px;
 	height: 300px;
+}
+
+.card-que-vira-interno{
+
+}
+
+.card-que-vira:hover .card-que-vira-interno{
+
+}
+
+.Parte-da-frente-card, .parte-de-tras-card{
+
+}
+
+
+.Parte-da-frente-card{
+
+}
+
+
+.parte-de-tras-card{
+
 }
