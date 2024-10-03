@@ -32,6 +32,12 @@ transform: rotateY(180deg); /* pesquisar sobre => faz girar */
 }
 
 .Parte-da-frente-card, .parte-de-tras-card{
+	position: absolute; /* Deixa uma sobre a outra */
+	width: 100%; /* Realiza o preenchimento mas só aparece a parte da frente e inverte ela na rotação */
+  	height: 100%; /* Realiza o preenchimento mas só aparece a parte da frente e inverte ela na rotação*/
+  	-webkit-backface-visibility: hidden; /* Safari */
+  	backface-visibility: hidden; /* Faz a parte de trás ser  visivel, mostrando a imagem no estado 
+  	normal dela. Quando rotaciona mostra a frente que é as letras invertidas*/
 }
 
 
