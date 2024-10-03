@@ -19,11 +19,16 @@ caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
 }
 
 .card-que-vira-interno{
-
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s; /* pesquisar sobre => faz girar */ 
+	transform-style: preserve-3d; /* pesquisar sobre => faz girar */
 }
 
 .card-que-vira:hover .card-que-vira-interno{
-
+transform: rotateY(180deg); /* pesquisar sobre => faz girar */
 }
 
 .Parte-da-frente-card, .parte-de-tras-card{
@@ -31,11 +36,13 @@ caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
 }
 
 
+/* style da parte da frente do card */
 .Parte-da-frente-card{
 
 }
 
 
+/* style da parte de tras do card */
 .parte-de-tras-card{
 
 }
