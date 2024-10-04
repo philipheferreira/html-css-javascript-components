@@ -1,0 +1,7 @@
+.botao {
+	border: none; /* Tira a borda */
+	color: white;
+	padding: 14px 28px;
+	cursor: pointer;
+}
+
