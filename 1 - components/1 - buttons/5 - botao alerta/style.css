@@ -5,3 +5,43 @@
 	cursor: pointer;
 }
 
+.sucesso{
+	background-color: #04AA6D;
+}
+
+.sucesso:hover{
+	background-color: #46A049;
+}
+
+.informacao{
+	background-color: #2196F3;
+}
+
+.informacao:hover{
+	background-color: #0B7DDA;
+}
+
+.aviso{
+	background-color: #FF9800;
+}
+
+.aviso:hover{
+	background-color: #E68A00;
+}
+
+.perigo {
+	background-color: #F44336;
+}
+
+.perigo:hover{
+	background-color: #DA190B;
+}
+
+.zerado{
+	background-color: #E7E7E7;
+	color: black;
+}
+
+.zerado:hover{
+	background-color: #DDD;
+}
