@@ -1,0 +1,20 @@
+.barra-de-icone {
+	width: 90px;
+	background-color: #555;
+}
+
+.barra-de-icone a {
+	display: block; /* Faz os icones aparecerem um em baixo do outro */
+	text-align: center; /* Centraliza o texto */
+	padding: 16px; /* Aumenta o espaço iterno dos icones */
+	color: white; /* Define cor branca para os icones */
+	font-size: 36px; /* define um tamanho para os icones */
+}
+
+.barra-de-icone a:hover {
+	background-color: #000; /* Adiciona uma cor diferente quando esta em cima */
+}
+
+.ativar{
+	background-color: #04AA6D; /* Define uma cor de fundo principal e estatica para o icone casa */
+}
