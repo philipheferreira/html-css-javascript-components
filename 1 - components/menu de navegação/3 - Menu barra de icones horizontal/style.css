@@ -1,0 +1,23 @@
+.barra-de-icone{
+	width: 100%;
+	background-color: #555;
+	overflow: auto; /* atua com o float */
+}
+
+.barra-de-icone a{
+	float: left;
+	text-align: center;
+	width: 20%; /* tamanho igual de largura ( 5 icones com 20%) */
+	padding: 12px 0; /* cria um espaço de altura */
+	transition: all 0.3s ease; /* Adiciona transição para o efeito hover */
+	color: white;
+	font-size: 36px;
+}
+
+.barra-de-icone a:hover{
+	background-color: #000;
+}
+
+.ativar{
+	background-color: #04AA6D;
+}
