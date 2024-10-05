@@ -5,3 +5,28 @@
 	font-size: 16px;
 	border: none;
 }
+
+.menus-suspensos{
+
+}
+
+.menus-suspensos-conteudo{
+	
+}
+
+.menus-suspensos-conteudo a{
+	
+}
+
+.menus-suspensos-conteudo a:hover{
+	background-color: #DDD;
+}
+
+/*
+	Muda a cor do fundo dos menus suspensos quando 
+	os menus suspensos aparecem
+*/
+
+.botao:hover, .menus-suspensos:hover, .botao{ 
+	background-color: #0B7DDA;
+}
