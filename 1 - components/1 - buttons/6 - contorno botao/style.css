@@ -4,6 +4,7 @@
   	padding: 14px 28px;
   	font-size: 16px;
   	cursor: pointer;
+  	margin: 10px;
 }
 
 .sucesso{
@@ -18,8 +19,54 @@
 
 .informacao{
 
+	border-color: #2196F3;
+	color: dodgerblue;
+
 }
 
 .informacao:hover{
-	
+
+	background: #2196F3;
+	color: white;
+
+}
+
+.alerta{
+
+	border-color: #FF9800;
+	color: orange;
+
+}
+
+.alerta:hover{
+
+	background: #FF9800;
+	color: white;
+
+}
+
+.perigo{
+
+	border-color: #F44336;
+	color: red;
+}
+
+.perigo:hover{
+
+	background: #F44336;
+	color: white;
+
+}
+
+.default{
+
+	border-color: #E7E7E7;
+	color: black;
+
+}
+
+.default:hover{
+
+	background: #E7E7E7;
+
 }
