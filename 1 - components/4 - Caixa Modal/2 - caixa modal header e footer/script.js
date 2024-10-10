@@ -16,3 +16,9 @@ let fecharModal = () => {
 btnModal.addEventListener("click", abrirModal);
 
 btnFechar.addEventListener("click", fecharModal);
+
+window.addEventListener("click", function(){
+	if(event.target == modal){
+		modal.style.display = "none";
+	}
+})
