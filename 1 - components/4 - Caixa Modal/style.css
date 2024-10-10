@@ -1,4 +1,8 @@
 
+.modal{ 
+	display: none; /* Deixa a aplicação escondida */
+}
+
 .fechar{
 	float: right;
 	font-size: 28px;

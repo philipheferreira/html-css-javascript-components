@@ -5,9 +5,6 @@ let modal = document.querySelector(".modal");
 let btnModal = document.querySelector(".meuBotao");
 
 
-
-
-
 let abrirModal = () => {
 	modal.style.display = "block";
 }
