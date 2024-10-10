@@ -3,6 +3,14 @@
 	display: none; /* Deixa a aplicação escondida */
 }
 
+.conteudoModal{
+	background-color: #fefefe;
+	margin: 15% auto; /* centraliza: define uma altura de 15% e a largura varia */
+	padding: 20px;
+	border: 1px solid #888; /* Define bordas para o modal */
+	width: 80%; /* Define o tamanho da borda */
+}
+
 .fechar{
 	float: right;
 	font-size: 28px;
