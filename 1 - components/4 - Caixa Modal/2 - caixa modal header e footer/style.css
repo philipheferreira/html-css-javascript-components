@@ -1,15 +1,35 @@
-.modalHeader{
 
-}
-
-.modalBody{
-
-}
-
-.modalFooter{
+.modal{
 
 }
 
 .conteudoModal{
-	
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+}
+
+.modalHeader{
+	padding: 2px 16px;
+}
+
+.modalBody{
+	padding: 2px 16px;
+}
+
+.modalFooter{
+	padding: 2px 16px;
+}
+
+
+.fechar {
+	font-size: 28px;
+	font-weight: bold; /* Engrossa as letras */
+}
+
+.close:hover,
+.close:focus{
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
 }
