@@ -1,6 +1,16 @@
 
 .modal{ 
 	display: none; /* Deixa a aplicação escondida */
+	position: fixed;
+	z-index: 1; /* Define no top da pagina. Se tiver algo ela fica em cima dessa coisa */
+	left: 0;
+	top: 0;
+	overflow: auto; /* impede a opção de rolagem */
+	width: 100%; /* largura completa */
+	height: 100%; /* Altura completa */
+	background-color: rgb(0,0,0); /* define uma cor de fundo */
+	background-color: rgba(0,0,0,0.4); /* preto com opacidade */
+
 }
 
 .conteudoModal{
