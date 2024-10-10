@@ -5,8 +5,11 @@ let modal = document.querySelector(".modal");
 let btnModal = document.querySelector(".meuBotao");
 
 
-let fazer = () => {
-	alert("Botão está funcionando");
+
+
+
+let abrirModal = () => {
+	modal.style.display = "block";
 }
 
-btnModal.addEventListener("click", fazer);
+btnModal.addEventListener("click", abrirModal);
