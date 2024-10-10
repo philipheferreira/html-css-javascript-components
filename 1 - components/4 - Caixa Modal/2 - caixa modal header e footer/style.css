@@ -1,16 +1,26 @@
 
 .modal{
-
+	position: fixed;
+	z-index: 1; /* Define o modal no topo */
+	left: 0;
+	top: 0;
+	
 }
 
 .conteudoModal{
-	margin: 15% auto;
-	padding: 20px;
+	position: relative;
+	background-color: #fefefe;
+	margin: auto; /* Permite variar o espaço interno*/
+	padding: px; /* Reduz o espaço interno */
 	border: 1px solid #888;
+	width: 80%; /* reduz o espaço lateral */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .modalHeader{
 	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
 }
 
 .modalBody{
@@ -19,6 +29,8 @@
 
 .modalFooter{
 	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
 }
 
 
