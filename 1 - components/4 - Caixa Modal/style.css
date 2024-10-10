@@ -1,0 +1,13 @@
+
+
+.fechar{
+	float: right;
+	font-size: 28px;
+	font-weight: bold; /* Engrossa a letra */
+}
+
+.fechar:hover, .fechar:focus{
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
