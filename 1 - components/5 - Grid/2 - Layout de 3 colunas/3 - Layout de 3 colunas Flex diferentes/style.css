@@ -14,6 +14,16 @@
 	width: 25%;
 }
 
-.segunda{
-	width: 50%;
+.primeiro{
+	background-color: #aaa;
 }
+
+.segundo{
+	width: 50%;
+	background-color: #bbb;
+}
+
+.terceiro{
+	background-color: #ccc;
+}
+
