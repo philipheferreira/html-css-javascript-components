@@ -1,0 +1,19 @@
+.row{
+	display: flex; /* Utilizar flex box */
+}
+
+.column{
+	flex: 33.33%; /* Dividir tamanho dos espaços */
+}
+
+.primeiro{
+	background-color: #aaa;
+}
+
+.segundo{
+	background-color: #bbb;
+}
+
+.terceiro{
+	background-color: #ccc;
+}
