@@ -1,6 +1,9 @@
 
+.row{
+	display: flex; /* Utilizar flex box */
+}
+
 .column {
-	float: left;
 	width: 25%;
 	height: 300px;
 }
