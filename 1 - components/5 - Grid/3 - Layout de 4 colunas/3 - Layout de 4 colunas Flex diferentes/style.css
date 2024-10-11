@@ -1,0 +1,22 @@
+
+.column {
+	float: left;
+	width: 25%;
+	height: 300px;
+}
+
+.primeiro{
+	background-color: #aaa;
+}
+
+.segundo{
+	background-color: #bbb;;
+}
+
+.terceiro{
+	background-color: #ccc;;
+}
+
+.quarto{
+	background-color: #ddd;
+}
