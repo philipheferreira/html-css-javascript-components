@@ -1,3 +1,11 @@
-.teste{ 
-	color: red;
+.column{
+	float: left;
+	width: 50%;
+}
+
+/* Limpar floats após as colunas */
+.row:after{
+	content: "";
+	display: table;
+	clear: both;
 }
