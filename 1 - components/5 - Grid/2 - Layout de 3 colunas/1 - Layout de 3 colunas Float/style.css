@@ -4,6 +4,12 @@
 	height: 300px;
 }
 
+.row:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
 
 .primeiro{
 	background-color: #aaa;
