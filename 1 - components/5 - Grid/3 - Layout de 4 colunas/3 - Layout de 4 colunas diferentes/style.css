@@ -1,22 +1,26 @@
 
 .column {
 	float: left;
-	width: 25%;
 	height: 300px;
 }
 
 .primeiro{
 	background-color: #aaa;
+	width: 30%;
+
 }
 
 .segundo{
-	background-color: #bbb;;
+	background-color: #bbb;
+	width: 20%;
 }
 
 .terceiro{
-	background-color: #ccc;;
+	background-color: #ccc;
+	width: 30%;
 }
 
 .quarto{
 	background-color: #ddd;
+	width: 20%;
 }
