@@ -1,0 +1,19 @@
+.column{
+	float: left;
+	height: 300px;
+}
+
+/* Limpar floats após as colunas */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.primeiro, .terceiro{
+	width: 25%;
+}
+
+.segunda{
+	width: 50%;
+}
