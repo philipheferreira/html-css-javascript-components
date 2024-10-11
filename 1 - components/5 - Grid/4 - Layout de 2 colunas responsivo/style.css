@@ -1,0 +1,20 @@
+
+.column{
+	float: left;
+	width: 50%;
+	height: 300px;
+}
+
+.left{
+	background-color: #aaa;
+}
+
+.right{
+	background-color: #bbb;
+}
+
+@media screen and (max-width:600px) {
+	.column{
+		width: 100%;
+	}
+}
