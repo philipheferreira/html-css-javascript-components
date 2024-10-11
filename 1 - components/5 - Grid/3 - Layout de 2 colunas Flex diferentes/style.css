@@ -1,0 +1,23 @@
+.column{
+	float: left;
+	height: 300px; /* Precisa ser removido, apenas para demonstrar */
+}
+
+.left{
+	background-color:#aaa;
+	width: 25%;
+
+}
+
+.right{
+	background-color:#bbb;
+	width: 75%;
+
+}
+
+/* Limpar floats após as colunas */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
