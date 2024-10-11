@@ -1,3 +1,7 @@
-.teste{
-	color: red;
+.row{
+	display: flex; /* Utilizar flex box */
+}
+
+.column{
+	flex: 50%; /* Dividir tamanho dos espaços */
 }
