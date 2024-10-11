@@ -5,3 +5,11 @@
 .column{
 	flex: 50%; /* Dividir tamanho dos espaços */
 }
+
+.primeiro{
+	background-color: #aaa;
+}
+
+.segundo{
+	background-color: #bbb;
+}
