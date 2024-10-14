@@ -2,13 +2,13 @@
   box-sizing: border-box;
 }
 
-/* Style the body */
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
 
-/* Começo da estilização do cabeçalho e titulo no cabeçalho */
+/* Começo da estilização do cabeçalho*/
+
 .cabecalho {
   padding: 80px;
   text-align: center;
@@ -16,20 +16,20 @@ body {
   color: white;
 }
 
-/* Increase the font size of the heading */
 .cabecalho h1 {
   font-size: 40px;
 }
 
-/* Fim da estilização do cabeçalho e titulo no cabeçalho */
+/* Fim da estilização do cabeçalho*/
 
 /* Inicio da estilização da barra de navegação */
+
 .barraDeNavegacao {
   overflow: hidden;
   background-color: #333;
 }
 
-/* Style the navigation bar links */
+/* estilização barra de navegação */
 .barraDeNavegacao a {
   float: left;
   display: block;
@@ -39,8 +39,7 @@ body {
   text-decoration: none;
 }
 
-/* Right-aligned link */
-.barraDeNavegacao a.right {
+.barraDeNavegacao a.direita {
   float: right;
 }
 
@@ -52,7 +51,7 @@ body {
 
 /* Fim da estilização da barra de navegação */
 
-/* Column container */
+/* container das colinas */
 .row {  
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -60,8 +59,8 @@ body {
   flex-wrap: wrap;
 }
 
-/* Create two unequal columns that sits next to each other */
-/* Sidebar/left column */
+/* Começo da criação das duas colunas */
+/* Sidebar/coluna da esquerda */
 .side {
   -ms-flex: 30%; /* IE10 */
   flex: 30%;
@@ -69,22 +68,25 @@ body {
   padding: 20px;
 }
 
-/* Main column */
-.main {   
+/* Coluna principal */
+.principal {   
   -ms-flex: 70%; /* IE10 */
   flex: 70%;
   background-color: white;
   padding: 20px;
 }
 
-/* Fake image, just for this example */
+/* Dimensionado apenas para o site exemplo */
 .fakeimg {
   background-color: #aaa;
   width: 100%;
   padding: 20px;
 }
 
+/* Fim da criação das duas colunas */
+
 /* Inicio do footer Footer */
+
 .footer {
   padding: 20px;
   text-align: center;
