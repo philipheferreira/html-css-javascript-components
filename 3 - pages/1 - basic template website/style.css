@@ -53,16 +53,16 @@ body {
 
 /* container das colinas */
 .row {  
-  display: -ms-flexbox; /* IE10 */
+  display: flexbox; /* IE10 */
   display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
 }
 
 /* Começo da criação das duas colunas */
 /* Sidebar/coluna da esquerda */
 .side {
-  -ms-flex: 30%; /* IE10 */
+  flex: 30%; /* IE10 */
   flex: 30%;
   background-color: #f1f1f1;
   padding: 20px;
@@ -70,7 +70,7 @@ body {
 
 /* Coluna principal */
 .principal {   
-  -ms-flex: 70%; /* IE10 */
+  flex: 70%; /* IE10 */
   flex: 70%;
   background-color: white;
   padding: 20px;
