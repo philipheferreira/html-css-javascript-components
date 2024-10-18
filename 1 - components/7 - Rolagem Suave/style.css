@@ -1,0 +1,14 @@
+
+html {
+	scroll-behavior: smooth;
+}
+
+.primeiraSessao{
+	height: 600px;
+	background-color: yellow;
+}
+
+.segundaSessao{
+	height: 600px;
+	background-color: pink;
+}
