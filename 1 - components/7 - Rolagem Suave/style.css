@@ -3,12 +3,12 @@ html {
 	scroll-behavior: smooth;
 }
 
-.primeiraSessao{
+#primeiraSessao{
 	height: 600px;
 	background-color: yellow;
 }
 
-.segundaSessao{
+#segundaSessao{
 	height: 600px;
 	background-color: pink;
 }
