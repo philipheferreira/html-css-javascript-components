@@ -1,0 +1,56 @@
+
+/*
+Projeto do cartão flip - defina a largura e a altura como desejar. 
+Adicionei a propriedade border para demonstrar que o flip sai da 
+caixa ao pairar (remova a perspectiva se não quiser o efeito 3D)
+*/
+
+.card-que-vira{
+	background-color: transparent;
+	width: 191.7px;
+	height: 325.89px;
+	border: 1px solid #f1f1f1;
+	perspective: 1000px; /* Remover isso caso não querer o efeto 3D */
+}
+
+.tamanhoCarta{
+	width: 191.7px;
+	height: 325.89px;
+}
+
+.card-que-vira-interno{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transition: transform 0.8s; /* pesquisar sobre => faz girar */ 
+	transform-style: preserve-3d; /* pesquisar sobre => faz girar */
+}
+
+.card-que-vira:hover .card-que-vira-interno{ /* Realiza a rotação quando o mouse está sobre */
+transform: rotateY(180deg); /* pesquisar sobre => faz girar */
+}
+
+.Parte-da-frente-card, .parte-de-tras-card{
+	position: absolute; /* Deixa uma sobre a outra */
+	width: 100%; /* Realiza o preenchimento mas só aparece a parte da frente e inverte ela na rotação */
+  	height: 100%; /* Realiza o preenchimento mas só aparece a parte da frente e inverte ela na rotação*/
+  	-webkit-backface-visibility: hidden; /* Safari */
+  	backface-visibility: hidden; /* Faz a parte de trás ser  visivel, mostrando a imagem no estado 
+  	normal dela. Quando rotaciona mostra a frente que é as letras invertidas*/
+}
+
+
+/* style da parte da frente do card */
+.Parte-da-frente-card{
+ 	background-color: #bbb;
+	color: black;
+}
+
+
+/* style da parte de tras do card */
+.parte-de-tras-card{
+	background-color: dodgerblue;
+	color: white;
+	transform: rotateY(180deg); /* Deixa informações já invertidas na posição normal do card */
+}
