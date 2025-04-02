@@ -13,6 +13,7 @@ body{
 
 .imgConsole{
 	width: 100%; /* Imagem preenche largura maxima do card */
+	max-height: 300px;
 }
 
 .texto{
