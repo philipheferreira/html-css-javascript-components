@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Persona 5 - Os Ladrões Fantasmas</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #d90429;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    .center-image {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .center-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    
+    .hero {
+      background: url('https://upload.wikimedia.org/wikipedia/en/8/88/Persona_5_cover_art.jpg') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .hero h2 {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      font-size: 2rem;
+    }
+
+    .content {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .content h3 {
+      color: #d90429;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .characters, .bosses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .character, .boss {
+      background: #222;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 250px;
+      text-align: center;
+    }
+
+    .character img, .boss img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .cta {
+      background: #d90429;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .cta a {
+      background: white;
+      color: #d90429;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #000;
+      color: #777;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .characters, .bosses {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Persona 5</h1>
+    <p>Junte-se aos Ladrões Fantasmas e desafie o mundo corrompido!</p>
+  </header>
+
+  <section class="hero">
+    <h2>Descubra seu verdadeiro eu e liberte os corações corrompidos!</h2>
+  </section>
+
+  <div class="center-image">
+    <img src="https://c4.wallpaperflare.com/wallpaper/456/92/895/phantom-thieves-persona-series-persona-5-protagonist-persona-5-wallpaper-preview.jpg" alt="Persona 5 Wallpaper">
+  </div>
+
+  <section class="content">
+    <h3>Sobre o Jogo</h3>
+    <p>
+      Persona 5 é um RPG japonês desenvolvido pela Atlus que mistura simulação social com batalhas táticas em turnos. O jogador assume o papel de um jovem estudante que, após uma injusta condenação, descobre a habilidade de explorar o Metaverso — uma realidade paralela onde os desejos distorcidos das pessoas tomam forma física.
+    </p>
+
+    <h3>Personagens Principais</h3>
+    <div class="characters">
+      <div class="character">
+        <img src="https://static.wikia.nocookie.net/animeverso/images/a/a0/Persona_5_Hero.webp/revision/latest?cb=20230201200430&path-prefix=pt-br" alt="Joker">
+        <p><strong>Joker (Protagonista)</strong><br>Silencioso, mas inteligente e determinado. Lidera os Ladrões Fantasmas.</p>
+      </div>
+      <div class="character">
+        <img src="https://megatenwiki.com/images/thumb/d/d6/P5R_Morgana_Artwork.png/300px-P5R_Morgana_Artwork.png" alt="Morgana">
+        <p><strong>Morgana</strong><br>Uma criatura felina do Metaverso com vasto conhecimento e senso de humor peculiar.</p>
+      </div>
+      <div class="character">
+        <img src="https://static.wikia.nocookie.net/megamitensei/images/b/be/An_takamaki.png/revision/latest?cb=20170426203909" alt="Ann">
+        <p><strong>Ann Takamaki</strong><br>Estudante meio americana, enfrenta o preconceito e busca justiça pelos fracos.</p>
+      </div>
+      <div class="character">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/bc/Ryuji_Sakamoto.png" alt="Ryuji">
+        <p><strong>Ryuji Sakamoto</strong><br>Rebelde e explosivo, é o braço direito do protagonista e possui um grande coração.</p>
+      </div>
+      <div class="character">
+        <img src="https://static.wikia.nocookie.net/megamitensei/images/6/60/P5R_Makoto.png/revision/latest?cb=20190816155833" alt="Makoto">
+        <p><strong>Makoto Niijima</strong><br>Presidente do conselho estudantil. Inteligente e estrategista, com forte senso de justiça.</p>
+      </div>
+      <div class="character">
+        <img src="https://static.wikia.nocookie.net/megamitensei/images/6/62/Futaba_Sakura.png/revision/latest?cb=20230219085927" alt="Futaba">
+        <p><strong>Futaba Sakura</strong><br>Gênio hacker e estrategista dos Ladrões Fantasmas. Introvertida, mas essencial ao time.</p>
+      </div>
+      </div>
+
+
+    <h3>Fases e Chefões Memoráveis</h3>
+    <p>
+      O jogo é dividido em Palácios, versões distorcidas da realidade que representam os desejos corruptos de figuras poderosas. Cada Palácio é um desafio único com ambientações e mecânicas distintas.
+    </p>
+    <div class="bosses">
+      <div class="boss">
+        <img src="https://megatenwiki.com/images/thumb/5/57/P5_Shadow_Kamoshida_Portrait_Graphic.png/300px-P5_Shadow_Kamoshida_Portrait_Graphic.png" alt="Kamoshida">
+        <p><strong>Kamoshida</strong><br>Professor abusivo cujo Palácio é um castelo de tirania. É o primeiro alvo dos Ladrões.</p>
+      </div>
+      <div class="boss">
+        <img src="https://static.wikia.nocookie.net/megamitensei/images/8/87/Madarame_Shadow.png/revision/latest?cb=20170227015857" alt="Madarame">
+        <p><strong>Madarame</strong><br>Artista corrupto que explora seus aprendizes. Seu Palácio é um museu labiríntico.</p>
+      </div>
+      <div class="boss">
+        <img src="https://static.wikia.nocookie.net/megamitensei/images/4/43/Sae_Shadow.png/revision/latest?cb=20170227015447" alt="Sae Niijima">
+        <p><strong>Sae Niijima</strong><br>Promotora distorcida pelo senso de justiça extrema. Seu Palácio é um cassino cheio de armadilhas.</p>
+      </div>
+    </div>
+
+    <h3>Design e Processo de Criação</h3>
+    <p>
+      Persona 5 se destaca pelo estilo visual ousado: menus animados, trilha sonora jazz-funk e uma paleta de cores vermelha e preta marcante. O designer Shigenori Soejima liderou o visual dos personagens, enquanto Shoji Meguro compôs a trilha sonora icônica do jogo.
+    </p>
+    <p>
+      O processo de criação durou quase 8 anos e envolveu a recriação da cidade de Tóquio em escala estilizada. A equipe buscou retratar temas como rebeldia juvenil, crítica à autoridade e a busca pela identidade.
+    </p>
+  </section>
+
+  <section class="cta">
+    <h2>Prepare-se para mudar o mundo.</h2>
+    <a href="#">Junte-se aos Ladrões Fantasmas</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Persona 5 Fan Page. Todos os direitos reservados. Desenvolvido por fãs.</p>
+  </footer>
+</body>
+</html>
