@@ -1,6 +1,6 @@
 async function buscarPokemon() {
-  const input = document.getElementById("pokemonInput").value.toLowerCase();
-  const resultado = document.getElementById("resultado");
+  const input = document.querySelector(".pokemonInput").value.toLowerCase();
+  const resultado = document.querySelector(".resultado");
 
   try {
     const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${input}`);
