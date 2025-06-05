@@ -1,4 +1,7 @@
 const pokemonList = document.getElementById('pokemon-list');
+const searchInput = document.getElementById('search-input');
+
+let allPokemon = []; // Armazenar todos os pokémons carregados
 
 const getPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
@@ -10,6 +13,34 @@ const formatType = (types) => {
   return types.map(typeInfo => typeInfo.type.name).join(', ');
 };
 
+const createPokemonCard = (pokemon) => {
+  const card = document.createElement('div');
+  card.classList.add('pokemon-card');
+
+  const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+  const types = formatType(pokemon.types);
+  const height = (pokemon.height / 10).toFixed(1);
+  const weight = (pokemon.weight / 10).toFixed(1);
+
+  card.innerHTML = `
+    <img src="${pokemon.sprites.front_default}" alt="${name}" />
+    <h3>#${pokemon.id} ${name}</h3>
+    <p><strong>Tipo:</strong> ${types}</p>
+    <p><strong>Altura:</strong> ${height} m</p>
+    <p><strong>Peso:</strong> ${weight} kg</p>
+  `;
+
+  return card;
+};
+
+const displayPokemon = (pokemonArray) => {
+  pokemonList.innerHTML = '';
+  pokemonArray.forEach(pokemon => {
+    const card = createPokemonCard(pokemon);
+    pokemonList.appendChild(card);
+  });
+};
+
 const loadAllPokemon = async () => {
   const pokemonPromises = [];
 
@@ -17,26 +48,22 @@ const loadAllPokemon = async () => {
     pokemonPromises.push(getPokemon(i));
   }
 
-  const allPokemon = await Promise.all(pokemonPromises);
-
-  allPokemon.forEach(pokemon => {
-    const card = document.createElement('div');
-    card.classList.add('pokemon-card');
-
-    const name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-    const types = formatType(pokemon.types);
-    const height = (pokemon.height / 10).toFixed(1); // metros
-    const weight = (pokemon.weight / 10).toFixed(1); // kg
-
-    card.innerHTML = `
-      <img src="${pokemon.sprites.front_default}" alt="${name}" />
-      <h3>#${pokemon.id} ${name}</h3>
-      <p><strong>Tipo:</strong> ${types}</p>
-      <p><strong>Altura:</strong> ${height} m</p>
-      <p><strong>Peso:</strong> ${weight} kg</p>
-    `;
-    pokemonList.appendChild(card);
-  });
+  allPokemon = await Promise.all(pokemonPromises);
+  displayPokemon(allPokemon);
 };
+
+// Evento de busca
+searchInput.addEventListener('keyup', (e) => {
+  const search = e.target.value.toLowerCase().trim();
+
+  const filtered = allPokemon.filter(pokemon => {
+    return (
+      pokemon.name.includes(search) ||
+      pokemon.id.toString() === search
+    );
+  });
+
+  displayPokemon(filtered);
+});
 
 loadAllPokemon();
