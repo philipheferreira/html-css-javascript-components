@@ -112,4 +112,54 @@ p{
 	padding-right: 25px;
 }
 
+.col-4{
+	flex-basis: 25%;
+	padding: 10px;
+	min-width: 200px;
+	margin-bottom: 50px;
+	transition: transform 0.5s; /* permite que o card seja alterado da sua posição original no tempo de 0.5s como é definido em .col-4:hover*/
+}
+
+.col-4 img{
+	width: 100%;
+}
+
 /* FIM CSS do feature categorias */
+
+/* INICIO CSS de features produtos */
+
+.title{
+	text-align: center;
+	margin: 0 auto 80px;
+	position: relative;
+	line-height: 60px;
+	color: #555;
+}
+
+.title::after{ /* criação da linha laranga */
+	content: '';
+	background: #ff523b;
+	width: 80px;
+	height: 5px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50);
+}
+
+h4{
+	color: #555;
+	font-weight: normal;
+}
+.col-4 p{
+	font-size: 14px;
+}
+.rating .fa{
+	color: #ff523b;
+}
+
+.col-4:hover{ /* cria a funcionalidade de que quando o mouse está sobre eles eles flutuam um pouco. O card é mudado para -5px da sua posição original */
+	transform: translateY(-5px);
+}
+/* FIM CSS de features produtos */
