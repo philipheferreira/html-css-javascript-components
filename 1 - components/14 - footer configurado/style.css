@@ -1,0 +1,136 @@
+/* Base styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.site-footer {
+  background-color: #26272b;
+  padding: 45px 20px 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+}
+
+.site-footer hr {
+  border: none;
+  border-top: 1px solid #bbb;
+  opacity: 0.5;
+  margin: 20px 0;
+}
+
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+
+.site-footer a {
+  color: #737373;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: #3366cc;
+}
+
+.footer-links {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.social-icons {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.social-icons li {
+  display: inline-block;
+}
+
+.social-icons a {
+  background-color: #eceeef;
+  color: #818a91;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+  transition: all 0.2s linear;
+}
+
+.social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe;
+}
+
+.social-icons a.facebook:hover { background-color: #3b5998; }
+.social-icons a.twitter:hover { background-color: #00aced; }
+.social-icons a.linkedin:hover { background-color: #007bb6; }
+.social-icons a.dribbble:hover { background-color: #ea4c89; }
+
+.copyright-text {
+  margin: 0;
+  color: #737373;
+}
+
+/* Grid layout (replaces Bootstrap) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col {
+  padding: 0 15px;
+  flex: 1 1 100%;
+  box-sizing: border-box;
+}
+
+.col-50 {
+  flex: 1 1 40%;
+}
+
+.col-33 {
+  flex: 1 1 30%;
+}
+
+/* Responsive behavior */
+@media (max-width: 991px) {
+  .col-50,
+  .col-33 {
+    flex: 1 1 100%;
+  }
+  .social-icons {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .copyright-text {
+    text-align: center;
+  }
+}
