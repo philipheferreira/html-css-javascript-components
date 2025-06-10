@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	font-family: "Poppins", sans-serif; /* Adicionando font no body para uso geral */
+}
+
 .navbar{
 	display: flex;
 	align-items: center;
@@ -70,8 +74,42 @@ p{
 	padding: 8px 30px;
 	margin: 30px 0;
 	border-radius: 30px;
+	transition: background 0.5s; /* estabelece um periodo de transição para a mudança de cor */
+}
+
+.btn:hover{
+	background: #563434; /* Muda a cor do botão quando estiver sobre(hover) */
 }
 
 .header{
 	background: radial-gradient(#fff, #ffd6d6);
 }
+
+.header .row{
+	margin-top: 70px;
+}
+
+/* Inicio CSS do feature categorias */
+
+.categorias{
+	margin: 70px 0;
+}
+
+.col-3{
+	flex-basis: 30%;
+	min-width: 250px;
+	margin-bottom: 30px;
+}
+
+.col-3 img{
+	width: 100%;
+}
+
+.small-container{
+	max-width: 1080px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+/* FIM CSS do feature categorias */
