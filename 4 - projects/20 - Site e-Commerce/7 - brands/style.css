@@ -224,3 +224,26 @@ small{
 }
 
 /* FIM CSS de Testimonial */
+
+
+/* Inicio CSS das Brands */
+
+.brands{
+	margin: 100px auto;
+}
+
+.col-5{
+	width: 160px;
+}
+
+.col-5 img{
+	width: 100%;
+	cursor: pointer;
+	filter: grayscale(100%); /* Fica completamente cinsa */
+}
+
+.col-5 img:hover{
+	filter: grayscale(0); /* ganha cor */
+}
+
+/* FIM CSS das Brands */
