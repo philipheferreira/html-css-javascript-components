@@ -41,6 +41,7 @@
 	--site-max-width: 1300px;
 }
 
+/* INICIO STYLE MENU COFFE */
 /* Stylings for whole site */
 ul { /* Chamada da lista no nome coffe */
 	list-style: none;
@@ -102,3 +103,5 @@ header .navbar{
 	color: var(--primary-color);
 	background: var(--secondary-color);
 }
+
+/* FIM STYLE MENU COFFE */
