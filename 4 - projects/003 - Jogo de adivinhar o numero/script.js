@@ -1,3 +1,1 @@
-.teste{ 
-	color: blue;
- }
+document.querySelector(".teste").innerHTML = 'testando';

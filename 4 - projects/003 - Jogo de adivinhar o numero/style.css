@@ -1,1 +1,3 @@
-document.querySelector(".teste").innerHTML = 'testando';
+.teste{ 
+	color: blue;
+ }
