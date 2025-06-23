@@ -3,21 +3,29 @@
 	padding: 0;
 }
 
-.main{
+.container{
     width: 100%;
+    min-height: 100vh;
     background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(1.jpg);
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 .navbar{
-	width: 1200px;
-	height: 75px;
-	margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.icon{ 
+.icone{ 
 	width: 200px;
 	float: left;
 	height: 70px;
@@ -29,33 +37,32 @@
 	font-size: Arial;
 	padding-left: 20px;
 	float: left;
-	padding-top: 10px;
-	margin-top: 5px;
+	margin-top: 15px;
 }
 
 /* INICIO DO MENU */
 
 .menu{ /* ajusta os itens no menu */
-	width: 400px;
+	max-width: 400px;
 	float: left;
 	height: 70px;
 }
 
-ul{
+.menu ul{
 	float: left;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-ul li {
+.menu ul li {
 	list-style: none; /* Tira as bolinhas */
-	margin-left: 62px; /* cria o espaçamento entre os itens */
+	margin-left: 20px; /* cria o espaçamento entre os itens */
 	margin-top: 27px; /* Afasta o menu do topo */
 	font-size: 14px; /* Diminui o tamanho do menu */
 }
 
-ul li a{
+.menu ul li a{
 	text-align: none;
 	color: #fff;
 	font-family: Arial;
@@ -63,20 +70,18 @@ ul li a{
 	transition: 0.4s ease-in-out;
 }
 
-ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
+.menu ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
 	color: #ff7200;
 }
 
-/* FIM DO MENU */
-
-.search{
-	width: 330px;
-    float: left;
-    margin-left: 270px;
+.pesquisar{
+    width: 330px;
+    float: right;
+    margin-left: 40px;
 }
 
 
-.srch{
+.pesq{
     font-family: 'Times New Roman';
     width: 200px;
     height: 40px;
@@ -118,25 +123,36 @@ ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
     outline: none;
 }
 
+/* FIM DO MENU */
+
+
 /* INICIO LOGIN FORM */
 
-.content{
-    width: 1200px;
+.conteudo{
+    max-width: 1200px;
+    width: 100%;
     height: auto;
     margin: auto;
     color: #fff;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+
 }
 
-.content .par{
+.conteudo .infos .par{
+    max-width: 550px;
     padding-left: 20px;
     padding-bottom: 25px;
     font-family: Arial;
-    letter-spacing: 1.2px;
-    line-height: 30px;
+    letter-spacing: 1.2px; /* espaçamento entre as letras */
+    line-height: 30px; /* distancia de uma linha para outra */
 }
 
-.content h1{
+.conteudo .infos h1{
     font-family: 'Times New Roman';
     font-size: 50px;
     padding-left: 20px;
@@ -144,7 +160,7 @@ ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
     letter-spacing: 2px;
 }
 
-.content .cn{
+.conteudo .infos .cn{
     width: 160px;
     height: 40px;
     background: #ff7200;
@@ -158,7 +174,7 @@ ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
     
 }
 
-.content .cn a{
+.conteudo .infos .cn a{
     text-decoration: none;
     color: #000;
     transition: .3s ease;
@@ -168,18 +184,19 @@ ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
     background-color: #fff;
 }
 
-.content span{
+.conteudo span{
     color: #ff7200;
     font-size: 65px
+}
+
+.conteudo .infos{
+    flex-direction: column;
 }
 
 .form{
     width: 250px;
     height: 380px;
     background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
-    position: absolute;
-    top: -20px;
-    left: 870px;
     transform: translate(0%,-5%);
     border-radius: 10px;
     padding: 25px;
@@ -273,4 +290,88 @@ ul li a:hover{ /* Quando o mouse estiver sobre os itens do menu */
 }
 .icons ion-icon:hover{
     color: #ff7200;
+}
+
+
+
+/* Centraliza menu e pesquisa em telas menores */
+@media screen and (max-width: 768px) {
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pesquisar {
+        width: 100%;
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .conteudo {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .conteudo h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .conteudo .par {
+        font-size: 14px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .form {
+        position: static;
+        transform: none;
+        margin-top: 30px;
+        width: 90%;
+    }
+}
+
+/* Melhor visual em telas muito pequenas (ex: celulares) */
+@media screen and (max-width: 480px) {
+    .menu ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .menu ul li {
+        margin: 10px 0;
+    }
+
+    .conteudo .par {
+        font-size: 13px;
+    }
+
+    .btn,
+    .pesq {
+        font-size: 14px;
+        height: 36px;
+    }
+
+    .btnn {
+        height: 40px;
+    }
+
+    .form h2 {
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    .conteudo h1 {
+        font-size: 24px;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .conteudo span {
+        font-size: 30px;
+    }
 }
