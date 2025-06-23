@@ -64,6 +64,7 @@
 
 .menu ul li a{
 	text-align: none;
+    float: left;
 	color: #fff;
 	font-family: Arial;
 	font-weight: bold;
@@ -75,9 +76,7 @@
 }
 
 .pesquisar{
-    width: 330px;
     float: right;
-    margin-left: 40px;
 }
 
 
@@ -87,7 +86,6 @@
     height: 40px;
     background: transparent;
     border: 1px solid #ff7200;
-    margin-top: 13px;
     color: #fff;
     border-right: none;
     font-size: 16px;
@@ -97,12 +95,11 @@
     border-top-left-radius: 5px;
 }
 
-.btn{
+.pesquisar .btn{
     width: 100px;
     height: 40px;
     background: #ff7200;
     border: 2px solid #ff7200;
-    margin-top: 13px;
     color: #fff;
     font-size: 15px;
     border-bottom-right-radius: 5px;
