@@ -1,38 +1,51 @@
-
-
-/* INICIO DO HEADER */
-
-.cabecalho {
-	padding: 3.2rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: #fcc419;
+.secaoHeroi {
+  padding: 6rem 3.2rem; /* Cria o espaçamento */
+  background-color: #fcc419;
 }
 
-.cabecalhoLogo ion-icon {
-	width: 9rem;
-  	height: 6rem;
+.heroi-content {
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
-.listaDeNavegacao {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 4.8rem; /* define uma distancia para cada item do menu */
-	list-style: none; /* Tira a bolinha */
+.paragrafoHeroi{ 
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: 4.4rem;
 }
 
-.listaDeNavegacao:link, .listaDeNavegacao:visited {
-	text-decoration: none;
-	font-size: 2rem;
-	font-weight: 700;
-	color: #191402;
+.heroiClientesImagens{
+  display: flex;
+  align-items: center;
 }
 
-.btn-cabecalho:link, .btn-cabecalho:visited {
-	
+.heroiClienteImagens{
+  width: 9%;
+  border-radius: 50%; /* Transforma em circulo */
+  border: 3px solid #fff;
+  margin-left: -1.7rem; /* Deixa eles mais coladinhos */
 }
 
+.clientesSpan{
+  font-weight: 900;
+  color: #191402;
+}
 
-/* FIM DO HEADER */
+.heroiClienteImgPara{
+  margin-left: 3.2rem;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.hetoiImg{
+  width: 75%;
+  border-radius: 7px;
+  justify-self: center;
+  box-shadow: 0 1rem 1rem #191402;
+
+}
+
+.heroiGrid {
+
+}
