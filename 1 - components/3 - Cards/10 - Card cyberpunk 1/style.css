@@ -4,3 +4,8 @@
   margin: auto;
   text-align: center;
 }
+
+.titulo {
+  color: Grey;
+  font-size: 1.1em;
+}
