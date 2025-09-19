@@ -298,6 +298,40 @@ header .navbar{
 
 /* FIM MENU SECTION */
 
+/* INICIO DA SEÇÃO DE TERMINAIS */
+
+.testimonials-section {
+	padding: 50px 0 100px;
+	background: var(--light-pink-color);
+}
+
+.testimonials-section .testimonial {
+	display: flex;
+	padding: 35px;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.testimonials-section .testimonial .user-image {
+	width: 180px;
+	height: 180px;
+	object-fit: cover;
+	margin-bottom: 50px;
+	border-radius: var(--border-radius-circle);
+}
+
+.testimonials-section .testimonial .name {
+	margin-bottom: 16px;
+	font-size: var(--font-size-m);
+}
+
+.testimonials-section .testimonial .feedback {
+	line-height: 25px;
+}
+
+/* FIM DA SEÇÃO DE TERMINAIS */
+
 @media screen and (max-width: 1024px) {
 
 	/* INICIO DA MENU SECTION */
@@ -430,14 +464,6 @@ header .navbar{
 	}
 
 	/* FIM DA MENU SECTION */
-
-	/* INICIO DA SEÇÃO DE TERMINAIS */
-
-	.testimonials-section {
-		
-	}
-
-	/* FIM DA SEÇÃO DE TERMINAIS */
 
 }
 
