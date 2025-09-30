@@ -158,7 +158,6 @@ header .navbar{
 	border: 2px solid transparent;
 	color: var(--primary-color);
 	border-radius: var(--border-radius-m);
-	background: var(--secondary-color);
 	font-weight: var(--font-weight-medium);
 	transition: 0.3s ease;
 }
@@ -497,6 +496,14 @@ header .navbar{
 
 	.menu-section .menu-list .menu-item {
 		width: 100%;
+	}
+
+	.testimonials-section .slider-wrapper {
+		margin: 0 0 30px;
+	}
+
+	.testimonials-section .swiper-slide-button {
+		display: none;
 	}
 
 	/* FIM DA MENU SECTION */
