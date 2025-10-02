@@ -384,13 +384,28 @@ header .navbar{
 /* FIM DA GALERIA SECTION STYLING */
 
 
-/* INICIO CONTACT SECTION */
+/* INICIO CONTACT US SECTION */
 
 .contact-section {
-	
+	padding: 50px 0 100px;
+	background: var(--light-pink-color);
 }
 
-/* FIM CONTACT SECTION */
+.contact-section .section-content {
+	display: flex;
+	gap: 48px;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.contact-section .contact-info-list .contact-info {
+	display: flex;
+	gap: 20px;
+	margin: 20px 0;
+	align-items: center;
+}
+
+/* FIM CONTACT US SECTION */
 
 
 @media screen and (max-width: 1024px) {
