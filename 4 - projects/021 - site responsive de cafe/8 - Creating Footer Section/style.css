@@ -41,6 +41,10 @@
 	--site-max-width: 1300px;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 /* INICIO STYLE MENU COFFE */
 /* Stylings for whole site */
 ul { /* Chamada da lista no nome coffe */
@@ -97,7 +101,6 @@ header .navbar{
 	padding: 10px 18px; 
 	color: var(--white-color);
 	font-size: var(--font-size-m);
-	background: var(--secondary-color);
 	border-radius: var(--border-radius-m);
 	transition: 0.3s ease; /* Define o tempo de transição entre as cores dos botões */
 }
@@ -318,6 +321,7 @@ header .navbar{
 }
 
 .testimonials-section .testimonial .user-image {
+	user-select: none;
 	width: 180px;
 	height: 180px;
 	object-fit: cover;
@@ -456,6 +460,51 @@ header .navbar{
 /* FIM CONTACT US SECTION */
 
 
+/* INICIO FOOTER SECTION */
+
+.footer-section{
+	padding: 20px 0;
+	background: var(--dark-color);
+}
+
+.footer-section .section-content{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.footer-section :where(.copyright-text, .social-link, .policy-link) {
+	color: var(--white-color);
+	transition: 0.2s ease;
+}
+
+.footer-section .social-link-list {
+	display: flex;
+	gap: 25px;
+}
+
+.footer-section .social-link-list .social-link{
+	font-size: var(--font-size-l);
+}
+
+.footer-section .social-link-list .social-link:hover{
+	font-size: var(--font-size-l);
+}
+
+.footer-section .social-link-list .social-link:hover, 
+.footer-section .policy-text .policy-link:hover{
+	color: var(--secondary-color);
+}
+
+.footer-section .policy-text .separator {
+	margin: 0 5px;
+	color: var(--white-color);
+}
+
+
+/* FIM FOOTER SECTION */
+
+
 @media screen and (max-width: 1024px) {
 
 	/* INICIO DA MENU SECTION */
@@ -561,7 +610,7 @@ header .navbar{
 
 	.about-section .section-content {
 		gap: 70px;
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
 
 	.about-section.about-image-wrapper .about-image{ 
@@ -645,4 +694,14 @@ header .navbar{
 	}
 
 	/* FIM DA GALLERY SECTION STYLING */
+
+	/* INICIO FOOTER SECTION */
+
+	.footer-section .section-content {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	/* FIM FOOTER SECTION */
+
 }
