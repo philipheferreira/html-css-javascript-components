@@ -1,8 +1,16 @@
-let botao = document.querySelector(".botao");
+let logarBotao = document.querySelector(".logar");
 
-function fazer(){
-	console.log("Fazendo");
-	alert("O seu botao foi ativado");
+function funcaoLogar(){
+	let login = document.querySelector('.login').value
+	let senha = document.querySelector('.senha').value
+
+	if(login == "admin" && senha == "admin"){
+		alert('Bem vindo usuario admin, voce logou com sucesso.');
+		
+	}else{
+		alert("Usuario ou senha incorretos.");
+	}
+
 }
 
-botao.addEventListener("click", fazer);
+logarBotao.addEventListener("click", funcaoLogar);
