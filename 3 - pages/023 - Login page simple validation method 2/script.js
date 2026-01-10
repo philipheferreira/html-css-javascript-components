@@ -6,6 +6,7 @@ function funcaoLogar(){
 
 	if(login == "admin" && senha == "admin"){
 		alert('Bem vindo usuario admin, voce logou com sucesso.');
+		location.href = "pages/home.html";
 		
 	}else{
 		alert("Usuario ou senha incorretos.");
