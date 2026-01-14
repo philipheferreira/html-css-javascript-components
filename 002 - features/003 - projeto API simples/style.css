@@ -1,0 +1,31 @@
+
+.container{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+body{
+	background-color:  #cccccc;
+}
+
+.card{ 
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+	font-family: arial;
+	background-color: #FFF;
+}
+
+.imgConsole{
+	width: 100%; /* Imagem preenche largura maxima do card */
+}
+
+.texto{
+	margin: 0px 2%;
+}
+
+.preco{
+	color: #4d4d4d;
+	font-size: 22px;
+}
