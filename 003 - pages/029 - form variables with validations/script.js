@@ -1,5 +1,5 @@
-let infosFormulario = document.querySelector('.meuFormulario')
-let submitBotao = document.querySelector(".botaoSubmit")
+let infosFormulario = document.querySelector('.meuFormulario');
+let submitBotao = document.querySelector(".botaoSubmit");
 
 let clickarAtivarSubmitDoFormulario = () => {
 
