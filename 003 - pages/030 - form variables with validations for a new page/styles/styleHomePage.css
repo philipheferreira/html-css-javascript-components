@@ -1,0 +1,24 @@
+body{
+	font-family: sans-serif;
+	padding: 20px;
+}
+
+.dadosUsuario {
+	border: 1px solid #ccc;
+	padding: 15px;
+	border-radius: 8px;
+	background-color: #f9f9f9;
+}
+
+.dadosUsuario h1 {
+	margin-top: 0;
+}
+
+.dadosUsuario p {
+	margin: 5px 0;
+}
+
+.dadosUsuario .resumo {
+	font-style: italic;
+	color: #555;
+}
