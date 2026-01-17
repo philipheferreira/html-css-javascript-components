@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="styles/stylePageForm.css">
+	<title>Form de validacao</title>
+</head>
+<body>
+
+	<div class="container">
+		<form class="meuFormulario">
+			<label>Primeiro Nome</label>
+			<input class="pnome" type="text" name="primeiroNome" placeholder="Seu Primeiro Nome...">
+
+			<label>Ultimo Nome</label>
+			<input class="unome" type="text" name="ultimoNome" placeholder="Seu Ultimo Nome...">
+
+			<label>Pais de Origem</label>
+			<select class="paisNascimento" name="paisNascimento">
+				<option value="australia">Australia</option>
+				<option value="canada">Canada</option>
+				<option value="usa">USA</option>
+			</select>
+
+			<label>Sua Idade</label>
+			<input class="idade" type="number" name="idade" placeholder="Sua Idade...">
+
+			<label>Resumo sobre Voce</label>
+			<textarea class="texto" type="text" name="primeiroNome" placeholder="Uma Informacao Sobre voce..." style="height: 200px;"></textarea>
+			
+			<input class="botaoSubmit" type="submit" value="Submit">
+
+		</form>
+		<script type="text/javascript" src="scripts/scriptPageForm.js"></script>
+	</div>
+
+</body>
+</html>
