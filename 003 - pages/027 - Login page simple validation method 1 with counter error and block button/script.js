@@ -22,6 +22,8 @@ Requer uma pequena mudança no HTML e no JavaScript.
 let contador = 0;
 
 let logarBotao = document.querySelector(".logar");
+let campoLogin = document.querySelector(".login");
+let campoSenha = document.querySelector(".senha");
 
 function funcaoLogar(){
 
@@ -38,7 +40,12 @@ function funcaoLogar(){
 		alert(`Voce atingiu o limite de erros permitos da conta. foram ${contador}. Seu acesso foi bloqueado ` )
 
 		logarBotao.disabled = true;
+		campoLogin.value = "";
+		campoSenha.value = "";
+		campoLogin.disabled = true;
+		campoSenha.disabled = true;
 		logarBotao.value = "Bloqueado"
+
 	}
 
 	else{
