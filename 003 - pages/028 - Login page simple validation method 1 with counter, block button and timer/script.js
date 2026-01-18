@@ -39,13 +39,7 @@ function funcaoLogar(){
 	}else if(login != "admin" && senha != "admin" && contador >= 3){
 		alert(`Voce atingiu o limite de erros permitos da conta. foram ${contador}. Seu acesso foi bloqueado ` )
 
-		logarBotao.disabled = true;
-		campoLogin.value = "";
-		campoSenha.value = "";
-		campoLogin.disabled = true;
-		campoSenha.disabled = true;
-		logarBotao.value = "Bloqueado"
-
+		bloquearFormularioTemporariamente(10); // chama a funcao de bloqueio
 	}
 
 	else{
@@ -55,5 +49,50 @@ function funcaoLogar(){
 	}
 
 }
+
+/**
+ * Funcoes criaradas para utilizar bloqueio e desbloqueio de funcoes */
+
+let bloquearFormularioTemporariamente = (segundos) => {
+	// desabilita campos e o botao
+	campoLogin.disabled = true;
+	campoSenha.disabled = true;
+	logarBotao.disabled = true;
+
+	// Limpar os campos e mudar nome no botao
+	campoLogin.value = "";
+	campoSenha.value = "";
+	logarBotao.value = "Bloqueado";
+
+	let tempoRestante = segundos; /* repassa o valor de tempo para uma variavel local, para poder utilizar */
+
+	// usa o setInterval para atualizar o texto do botao a cada segundo
+
+	intervaloDeTempo = setInterval(() => {
+		tempoRestante--;
+		console.log(tempoRestante)
+		if (tempoRestante < 0) {
+			clearInterval(intervaloDeTempo); // Para a funcao de contagem regressiva
+			desbloquearFormulario(); //Aciona a funcao de desbloqueo do formulario
+		}
+	}, 1000);
+}
+
+
+let desbloquearFormulario = () => {
+
+	campoLogin.disabled = false;
+	campoSenha.disabled = false;
+	logarBotao.disabled = false;
+
+	logarBotao.value = "Logar";
+
+	// Reseta o contador para as 3 tentativas do zero novamente
+	contador = 0;
+
+	alert("Tempo do bloqueio passou, voce pode tentar novamente.");
+	campoLogin.focus(); // coloca o cursor no campo login para facilitar
+}
+
 
 logarBotao.addEventListener("click", funcaoLogar);
