@@ -35,10 +35,14 @@ function funcaoLogar(){
 		location.href = "pages/home.html";
 		
 	}else if(login != "admin" && senha != "admin" && contador >= 3){
-		alert(`Voce atingiu o limite de erros permitos da conta. foram ${contador} ` )
+		alert(`Voce atingiu o limite de erros permitos da conta. foram ${contador}. Seu acesso foi bloqueado ` )
+
+		logarBotao.disabled = true;
+		logarBotao.value = "Bloqueado"
 	}
 
 	else{
+		contador++;
 		alert(`Usuario ou senha incorretos. voce errou ${contador} vezes, so tem mais ` + (3 - contador) + ' tentativas');
 		console.log(`Tentativa ${contador} de 3.`);
 	}
