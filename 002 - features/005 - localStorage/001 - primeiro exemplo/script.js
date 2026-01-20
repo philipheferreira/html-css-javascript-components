@@ -30,7 +30,7 @@ console.log(Number(idadeSalva) + 1); // precisa converter para numeros se for fa
 // recuperando o objeto (precisa usar JSON.parse)
 const usuarioSalvo = localStorage.getItem('usuario');
 const objetoUsuario = JSON.parse(usuarioSalvo); // Converte a string de volta para objeto
-console.log(objetoUsuario); // Retorna 'Carlos'
+console.log(objetoUsuario);
 console.log(objetoUsuario.nome)
 
 
