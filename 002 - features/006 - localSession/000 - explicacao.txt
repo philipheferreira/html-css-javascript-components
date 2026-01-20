@@ -1,0 +1,36 @@
+* A Explicação Simples (A Analogia)
+Se o localStorage é um caderno de anotações permanente que fica na sua gaveta, o sessionStorage é como um bloco de rascunho 
+ou um post-it que você usa apenas enquanto está trabalhando em uma única tarefa.
+
+- Você anota coisas nele enquanto navega em uma aba do seu site.
+- Se você recarregar a página (apertar F5), suas anotações ainda estão lá.
+- Mas, no momento em que você fecha essa aba ou janela do navegador, o bloco de rascunho é jogado fora e tudo se perde.
+
+* A Explicação Técnica
+ O sessionStorage é outra forma de armazenamento de dados do lado do cliente (client-side), assim como o localStorage. Ele também 
+armazena dados em pares de "chave" e "valor" (key-value) e tem a mesma capacidade (~5 MB).
+A grande e mais importante distinção é o ciclo de vida dos dados.
+
+* A Grande Diferença: A Sessão
+Os dados armazenados no sessionStorage são limpos automaticamente quando a sessão da página do navegador termina. 
+Uma sessão de página termina quando:
+
+1 - A aba ou janela do navegador é fechada.
+2 - O navegador é totalmente fechado.
+Importante: Recarregar a página, restaurar uma aba ou usar os botões "voltar" e "avançar não apaga os dados do sessionStorage. 
+A sessão continua ativa.
+
+* Características Principais do sessionStorage
+1. Persistência Temporária: Os dados duram apenas enquanto a aba/janela que os criou estiver aberta.
+
+2. Escopo (Origem e Aba): Este é outro ponto crucial. O sessionStorage é específico para cada origem (como o localStorage) E 
+também para cada aba/janela.
+
+- Isso significa que, se você abrir o seu site em duas abas diferentes, cada aba terá seu próprio sessionStorage independente. 
+Um dado salvo na Aba 1 não será visível na Aba 2.
+- Se você abrir um link em uma nova aba, o sessionStorage é copiado para a nova aba (pois ela "herda" a sessão da aba de origem).
+
+3. Armazena Apenas Strings: Exatamente como o localStorage, você precisa usar JSON.stringify() para objetos e JSON.parse() para 
+lê-los de volta.
+
+4. Capacidade e Síncrono: A capacidade (~5 MB) e o comportamento síncrono são os mesmos do localStorage.
