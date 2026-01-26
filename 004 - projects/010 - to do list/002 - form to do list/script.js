@@ -1,10 +1,10 @@
-let acaoBnt = document.querySelector('.teste');
+let btnTarefa = document.querySelector('.botaoAdicionarTarefa');
 
 let clickarBotao = () => {
 
-	let mensagem = "botao foi clicado";
+	let tarefa = document.querySelector(".inputTarefa").value
 
-	alert(mensagem);
+	alert("Sua tarefa: " + tarefa);
 }
 
-acaoBnt.addEventListener("click", clickarBotao);
+btnTarefa.addEventListener("click", clickarBotao);
