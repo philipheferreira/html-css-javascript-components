@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	/* Link projeto: https://codepen.io/franklynroth/pen/ZYeaBd */
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>To do App</title>
@@ -9,19 +10,19 @@
 <body>
 	<div class="container">
 		<p>
-			<label></label>
+			<label for="novaTarefa">Add Item</label><input type="text" class="novaTarefa"><button>Add</button>
 		</p>
 	
 
 		<h3>Todo</h3>
-		<ul class="incomplete-tasks">
-			<li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
-			<li class="editMode"><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+		<ul class="tarefasIncompletas">
+			<li><input type="checkbox"><label>PagarContas</label><input type="text"><button class="edit">Editar</button><button class="delete">Deletar</button></li>
+			<li class="editMode"><input type="checkbox"><label>Ir ao Shopping</label><input type="text" value="Ir ao shopping"><button class="edit">Editar</button><button class="delete">Deletar</button></li>
 		</ul>
 
-		<h3>Completed</h3>
-		<ul class="complete-tasks">
-			<li><input type="checkbox"><label>See the Doctor</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+		<h3>Tarefas Finalizadas</h3>
+		<ul class="tarefaCompleta">
+			<li><input type="checkbox"><label>Ir ao medico</label><input type="text"><button class="edit">Editar</button><button class="delete">Deletar</button></li>
 		</ul>
 	</div>
 
