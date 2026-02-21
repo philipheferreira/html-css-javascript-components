@@ -1,0 +1,79 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 40px;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+}
+
+/* Estilo da barra de pesquisa */
+#searchInput {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não afete a largura total */
+    transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Estilo da lista de itens */
+#itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+    transition: all 0.3s ease;
+}
+
+.item h3 {
+    margin: 0 0 5px 0;
+    color: #007bff;
+}
+
+.item p {
+    margin: 0;
+    color: #666;
+}
+
+/* Classe para esconder os itens */
+.item.hide {
+    display: none;
+}
+
+/* Destaque para o texto encontrado */
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
