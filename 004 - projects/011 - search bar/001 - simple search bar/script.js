@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Seleciona o campo de entrada e a lista de itens
-    const searchInput = document.getElementById('searchInput');
-    const itemList = document.getElementById('itemList');
+    const searchInput = document.querySelector('.searchInput');
+    const itemList = document.querySelector('.itemList');
     const items = itemList.querySelectorAll('.item');
 
     // Adiciona um 'ouvinte de evento' para o campo de entrada

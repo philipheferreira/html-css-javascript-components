@@ -26,7 +26,7 @@ h1 {
 }
 
 /* Estilo da barra de pesquisa */
-#searchInput {
+.searchInput {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -37,13 +37,13 @@ h1 {
     transition: border-color 0.3s;
 }
 
-#searchInput:focus {
+.searchInput:focus {
     outline: none;
     border-color: #007bff;
 }
 
 /* Estilo da lista de itens */
-#itemList {
+.itemList {
     display: flex;
     flex-direction: column;
     gap: 15px;
