@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de innerHTML - Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Minha Lista de Tarefas</h1>
+        <p>Adicione itens à sua lista usando o innerHTML.</p>
+
+        <div class="input-area">
+            <input type="text" class="novaTarefa" placeholder="Digite uma nova tarefa...">
+            <button class="adicionarBtn">Adicionar</button>
+        </div>
+
+        <div class="controls">
+            <button class="limparBtn">Limpar Lista</button>
+        </div>
+
+        <!-- Aqui é onde o JavaScript vai inserir os novos elementos -->
+        <ul class="listaDeTarefas">
+            <!-- A lista começará vazia -->
+        </ul>
+    </div>
+
+    <!-- Link para o nosso arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
