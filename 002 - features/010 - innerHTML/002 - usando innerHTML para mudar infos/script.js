@@ -1,5 +1,5 @@
 function mudarConteudo() {
-  const elemento = document.getElementById('minhaCaixa');
+  const elemento = document.querySelector('.minhaCaixa');
   
   // Substituímos todo o conteúdo HTML interno
   elemento.innerHTML = `

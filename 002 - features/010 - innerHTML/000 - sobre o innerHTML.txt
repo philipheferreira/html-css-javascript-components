@@ -24,6 +24,7 @@ de um elemento por uma nova string de HTML. O navegador irá interpretar essa
 string e a renderizar como elementos HTML reais na página.
 
 
+
  O Grande Alerta: Risco de Segurança (XSS)
 Esta é a parte mais importante sobre innerHTML. Usá-lo de forma 
 imprudente pode abrir uma brecha de segurança grave chamada 
