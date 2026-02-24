@@ -1,0 +1,10 @@
+O que é innerText?
+Pense no innerText como uma fotografia apenas do texto que é visível para o usuário em um elemento HTML.
+
+Ele faz duas coisas principais:
+
+1. Ler: Pega todo o texto dentro de um elemento, mas ignora as tags HTML (como <strong>, <span>, etc.) e 
+também ignora qualquer texto que esteja oculto (por exemplo, com CSS display: none;).
+
+2. Escrever/Substituir: Substitui todo o conteúdo de um elemento por um novo texto puro. Se você tentar
+ inserir tags HTML usando innerText, o navegador as tratará como texto literal, não como código.
