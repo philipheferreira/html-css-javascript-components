@@ -1,0 +1,12 @@
+Vamos esclarecer um ponto importante desde o início: o textContent é, 
+na verdade, uma propriedade do JavaScript. Ele não é um atributo do 
+HTML nem uma propriedade do CSS.
+
+O textContent é uma ferramenta do JavaScript (especificamente, do DOM - Document Object Model) 
+para interagir com o texto dentro de um elemento HTML. Ele tem duas funções principais: 
+ler e escrever.
+
+
+
+
+
