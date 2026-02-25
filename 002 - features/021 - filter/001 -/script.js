@@ -13,5 +13,7 @@ let filtroListaDeItens = itens.filter((item) => {
 	return item.preco <= 100;
 })
 
+console.log("Lista de itens gerais: ");
 console.log(itens);
+console.log("Lista de itens apos o filtro: ");
 console.log(filtroListaDeItens);
