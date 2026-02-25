@@ -9,7 +9,7 @@ const itens = [
 ]
 
 let total = itens.reduce((currentTotal, item) => {
-	return item
+
 })
 
 
