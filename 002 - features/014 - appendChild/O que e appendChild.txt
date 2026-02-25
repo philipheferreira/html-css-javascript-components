@@ -1,0 +1,11 @@
+O que é o appendChild?
+Pense no seu HTML como uma árvore genealógica. Cada tag (como <div>, <p>, <ul>) é um "pai" ou um "filho" de outra tag.
+
+Um <div> que contém um <p> é o elemento pai.
+O <p> que está dentro do <div> é o elemento filho.
+
+O appendChild é um método (uma função que pertence a um objeto) em JavaScript que serve 
+para adicionar um novo elemento filho ao final de um elemento pai já existente.
+
+Em outras palavras: ele pega um elemento HTML que você criou (ou que já existe) e o 
+"coloca" dentro de outro, como o último filho dele.
