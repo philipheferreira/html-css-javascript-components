@@ -1,0 +1,14 @@
+Imagine que você tem um elemento HTML na sua página (um <div>, um <p>, etc.). 
+O método insertAdjacentHTML é uma ferramenta do JavaScript que permite você 
+inserir um novo trecho de código HTML em uma posição muito específica em 
+relação a esse elemento.
+
+Pense nele como se fosse colocar um novo bloco de Lego ao lado de um que 
+você já montou. Você pode decidir se quer colocar o novo bloco:
+
+Antes do bloco antigo.
+Dentro do bloco antigo, mas no começo.
+Dentro do bloco antigo, mas no final.
+Depois do bloco antigo.
+
+É exatamente isso que o insertAdjacentHTML faz, mas com elementos HTML.

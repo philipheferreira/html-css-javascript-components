@@ -8,3 +8,20 @@ também ignora qualquer texto que esteja oculto (por exemplo, com CSS display: n
 
 2. Escrever/Substituir: Substitui todo o conteúdo de um elemento por um novo texto puro. Se você tentar
  inserir tags HTML usando innerText, o navegador as tratará como texto literal, não como código.
+
+
+
+
+Resumo e Quando Usar
+
+* Use innerText quando:
+
+- Você quer apenas o texto de um elemento, sem formatação.
+- Você está exibindo dados para o usuário (especialmente se esses dados vieram de uma fonte externa ou do próprio usuário). É a opção mais segura.
+- Exemplo: atualizar uma mensagem de status, pegar o valor de um rótulo.
+
+* Use innerHTML quando:
+
+- Você precisa inserir ou manipular tags HTML diretamente no seu elemento.
+- Você tem controle total sobre o conteúdo que está sendo inserido e sabe que é seguro.
+- Exemplo: adicionar um novo item a uma lista (<li>...</li>), criar uma tabela dinamicamente.
