@@ -11,6 +11,9 @@ const itens = [
 	{nome: 'teclado', preco: 25 }
 ]
 
+
+
+// forma que eu uso com arrow function
 let encontrarItem = itens.find((item) => {
 	return item.nome === 'Livro'
 })

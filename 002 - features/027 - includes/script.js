@@ -1,17 +1,7 @@
-const itens = [ 
-	{nome: 'Bicicleta', preco: 100 },
-	{nome: 'TV', preco: 200 },
-	{nome: 'Album', preco: 10 },
-	{nome: 'Livro', preco: 5 },
-	{nome: 'telefone', preco: 500 },
-	{nome: 'Computador', preco: 1000 },
-	{nome: 'teclado', preco: 25 }
-]
+// verifica se um dos numeros esta incluso na operacao atual de uma forma menos complexa
 
-let total = itens.reduce((currentTotal, item) => {
+const itens = [ 1, 2, 3, 5, 7, 8]
 
-})
+let includesTwo = itens.includes(2)
 
-
-
-
+console.log(includesTwo)

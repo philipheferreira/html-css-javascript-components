@@ -8,10 +8,10 @@ const itens = [
 	{nome: 'teclado', preco: 25 }
 ]
 
-let total = itens.reduce((currentTotal, item) => {
-	return item
-})
+let total = itens.reduce((somaTotal, item) => {
+	return item.preco + somaTotal
+}, 0)
 
-
+console.log(total)
 
 
