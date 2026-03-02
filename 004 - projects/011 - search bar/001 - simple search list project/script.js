@@ -1,8 +1,18 @@
-var nomes = [ "Harry", "Ross", "Bruce", "Cook", "Carolyn", "Morgan", "Albert", "Walker", "Randy", "Reed", "Larry", "Barnes", "Lois", "Wilson", "Jesse", "Campbell", "Ernest", "Rogers", "Theresa", "Partterson", "Henry", "Simmons", "Michelle", "Perry", "Frank", "Butler", "Shirley" ];
+var nomes = [ "Harry", "Ross", "Bruce", 
+			  "Cook", "Carolyn", "Morgan", 
+			  "Albert", "Walker", "Randy", 
+			  "Reed", "Larry", "Barnes", 
+			  "Lois", "Wilson", "Jesse", 
+			  "Campbell", "Ernest", "Rogers", 
+			  "Theresa", "Partterson", "Henry", 
+			  "Simmons", "Michelle", "Perry", 
+			  "Frank", "Butler", "Shirley" ];
 
-// INICIO PARA REPASSAR A LISTA DE NOMES PARA O CAMPO HTML
 
 let outputdiv = document.querySelector(".output");
+
+let campoDeBusca = document.querySelector(".barraDeBuscador");
+
 
 let htmlstring = nomes.map(item => {
 	return `<h3> ${item}</h3>`
@@ -10,11 +20,7 @@ let htmlstring = nomes.map(item => {
 
 outputdiv.innerHTML = htmlstring
 
-// FIM PARA REPASSAR A LISTA DE NOMES PARA O CAMPO HTML
-
-let buscar = document.querySelector(".barraDeBuscador");
-
-buscar.addEventListener('keyup', (e) => {
+let buscarNome = (e) => {
 
 	var item = e.target.value;
 	var listaDeNomesPossiveisPelaBuscaAposDigitarLetras = [];
@@ -35,4 +41,6 @@ buscar.addEventListener('keyup', (e) => {
 
 	outputdiv.innerHTML = htmlstring;
 
-})
+}
+
+campoDeBusca.addEventListener('keyup', buscarNome)
