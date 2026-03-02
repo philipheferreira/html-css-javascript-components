@@ -1,4 +1,5 @@
-let botaoTeste = document.querySelector('.teste');
+let infosFormulario = document.querySelector('.meuFormulario');
+let submitBotao = document.querySelector(".botaoSubmit");
 
 let pressionarBotaoAtivar = () => {
 	alert("Botao pressionado");
