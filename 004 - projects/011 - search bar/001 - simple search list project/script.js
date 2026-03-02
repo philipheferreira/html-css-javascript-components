@@ -1,5 +1,6 @@
-var nomes = [ "Harry", "Ross", "Bruce", "Cook", "Carolyn", "Morgan", "Albert", "WAlker", "Randy", "Reed", "Larry", "Barnes", "Lois", "Wilson", "Jesse", "Campbell", "Ernest", "Rogers", "Theresa", "Partterson", "Henry", "Simmons", "Michelle", "Perry", "Frank", "Butler", "Shirley" ];
+var nomes = [ "Harry", "Ross", "Bruce", "Cook", "Carolyn", "Morgan", "Albert", "Walker", "Randy", "Reed", "Larry", "Barnes", "Lois", "Wilson", "Jesse", "Campbell", "Ernest", "Rogers", "Theresa", "Partterson", "Henry", "Simmons", "Michelle", "Perry", "Frank", "Butler", "Shirley" ];
 
+// INICIO PARA REPASSAR A LISTA DE NOMES PARA O CAMPO HTML
 
 let outputdiv = document.querySelector(".output");
 
@@ -8,6 +9,8 @@ let htmlstring = nomes.map(item => {
 }).join('')
 
 outputdiv.innerHTML = htmlstring
+
+// FIM PARA REPASSAR A LISTA DE NOMES PARA O CAMPO HTML
 
 let buscar = document.querySelector(".barraDeBuscador");
 
@@ -23,6 +26,8 @@ buscar.addEventListener('keyup', (e) => {
 		} // toda letra sera minuscula
 	})
 	console.log(listaDeNomesPossiveisPelaBuscaAposDigitarLetras)
+
+
 
 	let htmlstring = listaDeNomesPossiveisPelaBuscaAposDigitarLetras.map(item => {
 		return `<h3> ${item}</h3>`
