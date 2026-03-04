@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+Funcionalidade				Descrição
+Cliente HTTP				Faz requisições (GET, POST, etc.) para servidores.
+Baseado em Promises			Permite o uso de async/await para código assíncrono limpo.
+Cross-Platform				Funciona tanto no navegador quanto no Node.js.
+JSON Automático				Converte objetos para JSON ao enviar e de JSON ao receber.
+Tratamento de Erros			Facilita a identificação de erros de rede ou de servidor.
+Interceptadores				Permite modificar requisições e respostas de forma centralizada.
