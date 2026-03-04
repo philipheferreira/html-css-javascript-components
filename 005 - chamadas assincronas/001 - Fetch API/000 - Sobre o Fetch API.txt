@@ -1,0 +1,30 @@
+
+1. O que é o fetch?
+
+Em poucas palavras, fetch é a forma moderna e nativa do JavaScript (nos navegadores) para fazer requisições de rede.
+
+Pense nisso como um "mensageiro" muito eficiente que o seu código pode enviar para pedir 
+ou enviar informações para outro computador (um servidor) na internet. Isso é o que permite 
+que aplicativos web sejam dinâmicos, carregando novos dados sem precisar recarregar a 
+página inteira (como em um feed de redes sociais, resultados de busca, etc.).
+
+Antes do fetch, a maneira principal de fazer isso era com o objeto XMLHttpRequest, que era 
+mais verboso e complexo de usar. O fetch foi criado para simplificar esse processo, utilizando 
+um conceito fundamental do JavaScript moderno: as Promises.
+
+2. O Conceito Principal: Promises
+
+A característica mais importante do fetch é que ele sempre retorna uma Promise.
+
+Uma Promise é um objeto que representa uma operação que ainda não foi concluída, 
+mas que se espera que termine no futuro. Ela pode ter três estados:
+
+- Pending (Pendente): A operação ainda está em andamento.
+- Fulfilled (Resolvida): A operação foi concluída com sucesso.
+- Rejected (Rejeitada): A operação falhou.
+
+O fetch funciona da seguinte forma:
+
+- Você chama fetch() com uma URL.
+- Ele retorna uma Promise que, em algum momento, será resolvida com um objeto Response 
+(a resposta do servidor) ou rejeitada com um erro.
