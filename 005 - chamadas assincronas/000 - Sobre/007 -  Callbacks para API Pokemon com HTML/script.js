@@ -6,8 +6,6 @@ const btnCallback = document.getElementById('btn-callback');
 // Isso evita que o usuário clique várias vezes enquanto uma busca está em andamento
 function toggleButtons(disabled) {
     btnCallback.disabled = disabled;
-    btnPromise.disabled = disabled;
-    btnAsync.disabled = disabled;
 }
 
 // --- 1. LÓGICA COM CALLBACKS ---
