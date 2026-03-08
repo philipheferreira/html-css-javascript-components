@@ -1,0 +1,38 @@
+1. A Ideia Central (A Analogia da Fábrica)
+
+Imagine que você tem uma linha de montagem em uma fábrica.
+
+O Array Original: É a sua esteira com matéria-prima (ex: uma caixa com peças de madeira brutas).
+
+O Método map(): É a própria linha de montagem, a esteira em movimento.
+
+A Função que você passa para o map(): É o operário ao lado da esteira. Para cada peça de 
+madeira que passa, ele faz uma ação (ex: lixa e pinta a peça).
+
+O Novo Array: É a caixa no final da linha, contendo as peças já lixadas e pintadas (o produto final).
+
+A chave aqui é: a matéria-prima original (o array inicial) não é alterada. Você cria um novo conjunto de itens a partir dela.
+
+Em resumo: map() serve para transformar cada item de um array em outra coisa e criar um novo array com esses itens transformados.
+
+2. A Definição Técnica (de forma simples)
+O método map() cria um novo array chamando uma função específica (que você define) para cada 
+elemento do array original.
+
+Ele não altera o array original. Isso é um conceito muito importante em programação chamado imutabilidade.
+
+3. Como Usar (A Sintaxe)
+
+A sintaxe básica é esta:
+	const novoArray = arrayOriginal.map(funcaoCallback);
+
+Vamos detalhar a funcaoCallback. É uma função que o map executa para cada item. Ela pode receber até 3 argumentos, mas geralmente usamos só o primeiro:
+
+1. elemento: O valor do item atual (a peça de madeira que o operário está pegando).
+
+2. indice (opcional): A posição do item no array (0, 1, 2...).
+
+3. array (opcional): O array original completo.
+
+A forma mais comum e moderna de escrever essa função é com uma arrow function (=>).
+
