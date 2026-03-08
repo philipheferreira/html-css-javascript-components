@@ -1,0 +1,54 @@
+A Analogia: Separando a Roupa Suja
+
+Imagine que você tem uma cesta de roupas sujas com todas as peças 
+misturadas: camisetas, calças, meias, etc.
+
+Sua tarefa é pegar apenas as camisetas e colocá-las em uma nova pilha.
+
+O que você faz?
+
+1. Você pega a primeira peça da cesta.
+2. Você pergunta: "Isso é uma camiseta?".
+	- Se a resposta for SIM, você a coloca na pilha de camisetas.
+	- Se a resposta for NÃO, você a ignora e deixa na cesta original.
+3. Você repete isso para cada peça de roupa até a cesta ficar vazia.
+
+No final, você tem duas coisas:
+
+	- A cesta original (com as calças, meias, etc.).
+	- Uma nova pilha contendo apenas as camisetas.
+
+O método filter() do JavaScript faz exatamente isso, mas com arrays (listas) de dados.
+
+* O que é o método filter()?
+O filter() é um método dos arrays em JavaScript que cria um NOVO array com todos 
+os elementos do array original que passaram em um determinado teste (uma condição).
+
+Pontos-chave:
+
+	- Não altera o array original. Ele sempre retorna um novo array.
+	- O "teste" é uma função que você fornece. Essa função precisa retornar 
+	  true (o elemento passa no teste) ou false (o elemento não passa).
+
+A Sintaxe (Como se escreve)
+A sintaxe básica é esta:
+	const novoArray = arrayOriginal.filter(funcaoDeTeste);
+
+Vamos detalhar a funcaoDeTeste. É a parte mais importante. Essa função 
+é executada para cada item do arrayOriginal e geralmente recebe o item 
+como um argumento. A gente chama essa função de função de callback.
+
+// A função de callback pode ser escrita de algumas formas.
+// Vamos ver a mais comum hoje em dia: Arrow Function.
+
+	const novoArray = arrayOriginal.filter((elemento) => {
+  		// Aqui dentro vai a sua condição.
+  		// Se a condição for verdadeira, retorna true.
+  		// Se for falsa, retorna false.
+  		return condicao; // Ex: elemento > 10
+	});
+
+
+
+
+
