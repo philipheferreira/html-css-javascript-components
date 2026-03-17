@@ -1,6 +1,6 @@
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const numerosPares = numeros.filter((numero) => {
+let numerosPares = numeros.filter((numero) => {
   // Para cada 'numero' da lista, vamos testar se ele é par.
   return numero % 2 === 0;
 });
@@ -22,7 +22,7 @@ pode encurtar o código. O return fica implícito.
 */
 
 // Esta linha faz a mesma coisa que o exemplo acima!
-const numerosParesDois = numeros.filter(numero => numero % 2 === 0);
+let numerosParesDois = numeros.filter(numero => numero % 2 === 0);
 
 console.log("Segundo exemplo usando metodo arrow function: ");
 

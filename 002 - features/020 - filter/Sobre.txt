@@ -49,6 +49,12 @@ como um argumento. A gente chama essa função de função de callback.
 	});
 
 
-
+Resumo e Quando Usar
+Característica
+Descrição
+O que faz?	Cria um novo array com elementos que atendem a uma condição.
+Altera o original?	Não! O array original permanece intacto.
+A função de callback	Deve retornar true (para incluir o elemento) ou false (para excluí-lo).
+Sintaxe comum	array.filter(item => item.propriedade === 'valor');
 
 
