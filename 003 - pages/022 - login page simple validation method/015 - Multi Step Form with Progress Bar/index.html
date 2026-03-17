@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Multi-Passos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form id="regForm">
+        <h1>Cadastro de Usuário</h1>
+        
+        <!-- BARRA DE PROGRESSO -->
+        <ul id="progressbar">
+            <li class="active">Dados Pessoais</li>
+            <li>Contato</li>
+            <li>Confirmação</li>
+        </ul>
+        
+        <!-- PASSOS DO FORMULÁRIO -->
+        
+        <!-- PASSO 1 -->
+        <div class="step">
+            <p><label for="fname">Nome Completo:</label></p>
+            <p><input type="text" placeholder="Seu nome..." id="fname" name="fname" required></p>
+            <p><label for="lname">Data de Nascimento:</label></p>
+            <p><input type="date" id="lname" name="lname" required></p>
+            <p><label for="gender">Gênero:</label></p>
+            <p><input type="radio" name="gender" value="masculino" required> Masculino</p>
+            <p><input type="radio" name="gender" value="feminino" required> Feminino</p>
+        </div>
+        
+        <!-- PASSO 2 -->
+        <div class="step">
+            <p><label for="email">E-mail:</label></p>
+            <p><input type="email" placeholder="seuemail@exemplo.com" id="email" name="email" required></p>
+            <p><label for="phone">Telefone:</label></p>
+            <p><input type="tel" placeholder="(XX) XXXXX-XXXX" id="phone" name="phone" required></p>
+            <p><label for="address">Endereço:</label></p>
+            <p><input type="text" placeholder="Rua, número, bairro..." id="address" name="address" required></p>
+        </div>
+        
+        <!-- PASSO 3 (Confirmação) -->
+        <div class="step">
+            <h2>Revise seus dados</h2>
+            <p>Por favor, confirme se todas as informações estão corretas antes de finalizar.</p>
+            <div id="summary-content">
+                <!-- O conteúdo do resumo será inserido aqui pelo JavaScript -->
+            </div>
+        </div>
+        
+        <!-- BOTÕES DE NAVEGAÇÃO -->
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Próximo</button>
+            </div>
+        </div>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
