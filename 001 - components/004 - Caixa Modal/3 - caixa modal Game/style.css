@@ -67,6 +67,7 @@
 	float: right;
 	font-size: 28px;
 	font-weight: bold; /* Engrossa as letras */
+	cursor: pointer;
 }
 
 .close:hover,
