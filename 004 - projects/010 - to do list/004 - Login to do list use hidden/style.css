@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif; /* Adicionei uma fonte padrão */
+}
+
+#formLogin{
+    display: block; /* Mostra naturalmente a parte que precisa ser vista */
+    width: 300px; /* estabelece um limite de tamanho */
+    margin: 200px auto; /* estabelece uma margem criando uma centralizacao */
+}
+
+input{
+    display: block;
+    margin: 10px auto;
+    width: 250px;
+    padding: 8px; /* Adicionei um pouco de padding para melhorar a aparência */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.avisoTempoBloqueio {
+    text-align: center;
+    color: #d9534f; /* Vermelho */
+    font-weight: bold;
+    margin-top: 15px;
+    transition: opacity 0.3s ease; /* Transição suave ao aparecer/desaparecer */
+}
+
+.avisoTempoBloqueio.escondido {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Inicio To do list */
+
+.todoListPagina {
+    display: none;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputTarefa {
+    width: calc(100% - 80px); /* Calcula a largura para o botão caber ao lado */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.botaoAdicionarTarefa {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botaoAdicionarTarefa:hover {
+    background-color: #218838;
+}
+
+.lista-tarefas {
+    list-style: none; /* Remove os marcadores (bolinhas) da lista */
+    padding: 0;
+    margin-top: 20px;
+}
+
+.lista-tarefas li {
+    background-color: #e9ecef;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-apagar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botao-apagar:hover {
+    background-color: #c82333;
+}
+
+.concluida {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
