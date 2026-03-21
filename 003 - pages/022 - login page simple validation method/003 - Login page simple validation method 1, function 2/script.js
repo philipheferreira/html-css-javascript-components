@@ -49,7 +49,7 @@ logarBotao.addEventListener("click", function(event) {
 		campoLogin.classList.remove('erro-validacao');
 		campoSenha.classList.add('erro-validacao');
 	}else
-	if(Valorlogin == "admin" && Valorsenha == "admin"){
+	if(Valorlogin === "admin" && Valorsenha === "admin"){
 		alert('Bem vindo usuario admin, voce logou com sucesso.');
 		campoLogin.classList.remove('erro-validacao');
 		campoSenha.classList.remove('erro-validacao');

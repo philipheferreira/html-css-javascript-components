@@ -30,11 +30,11 @@ function funcaoLogar(){
 	let login = document.querySelector('.login').value
 	let senha = document.querySelector('.senha').value
 
-	if(login == "admin" && senha == "admin"){
+	if(login === "admin" && senha === "admin"){
 		alert('Bem vindo usuario admin, voce logou com sucesso.');
 		location.href = "pages/home.html";
 		
-	}else if(login != "admin" && senha != "admin" && contador >= 3){
+	}else if(login !== "admin" && senha !== "admin" && contador >= 3){
 		alert(`Voce atingiu o limite de erros permitos da conta. foram ${contador} ` )
 	}
 

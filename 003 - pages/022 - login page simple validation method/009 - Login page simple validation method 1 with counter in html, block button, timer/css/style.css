@@ -34,3 +34,7 @@ input{
     opacity: 0;
     visibility: hidden;
 }
+
+.erro-validacao {
+    border: 1px solid red !important;
+}
