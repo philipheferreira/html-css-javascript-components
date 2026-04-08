@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Dashboard de Vendas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Dashboard de Vendas</h1>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- Seção de KPIs -->
+        <section class="kpi-section">
+            <div class="kpi-card">
+                <h3>Vendas Totais</h3>
+                <p id="total-vendas">R$ 0,00</p>
+            </div>
+            <div class="kpi-card">
+                <h3>Total de Pedidos</h3>
+                <p id="total-pedidos">0</p>
+            </div>
+            <div class="kpi-card">
+                <h3>Ticket Médio</h3>
+                <p id="ticket-medio">R$ 0,00</p>
+            </div>
+        </section>
+
+        <!-- Seção de Gráficos -->
+        <section class="chart-section">
+            <div class="chart-container">
+                <h2>Vendas por Mês</h2>
+                <canvas id="vendasPorMesChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- Importando a biblioteca Chart.js para criar os gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Nosso script principal -->
+    <script src="script.js"></script>
+
+</body>
+</html>
