@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Seu Portal de Jogos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">GameHub</a>
+            <nav class="nav">
+                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#highlights">Destaques</a></li>
+                    <li><a href="#news">Notícias</a></li>
+                    <li><a href="#reviews">Análises</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Descubra os Melhores Jogos do Ano</h2>
+                <p>Notícias, análises e tudo sobre o universo dos games em um só lugar.</p>
+                <a href="#highlights" class="cta-button">Explorar Jogos</a>
+            </div>
+        </section>
+
+        <section id="highlights" class="highlights-section">
+            <div class="container">
+                <h2 class="section-title">Destaques da Semana</h2>
+                <div class="cards-container">
+                    <article class="game-card">
+                        <img src="https://picsum.photos/seed/game1/400/250.jpg" alt="Capa do Jogo 1">
+                        <div class="card-content">
+                            <h3>Aventuras Espaciais</h3>
+                            <p>Explore galáxias distantes em uma jornada épica.</p>
+                            <a href="#" class="read-more">Leia Mais</a>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <img src="https://picsum.photos/seed/game2/400/250.jpg" alt="Capa do Jogo 2">
+                        <div class="card-content">
+                            <h3>Corrida Radical</h3>
+                            <p>Velocidade e adrenalina nas pistas mais perigosas.</p>
+                            <a href="#" class="read-more">Leia Mais</a>
+                        </div>
+                    </article>
+                    <article class="game-card">
+                        <img src="https://picsum.photos/seed/game3/400/250.jpg" alt="Capa do Jogo 3">
+                        <div class="card-content">
+                            <h3>Quebra-Cabeça Místico</h3>
+                            <p>Desvende enigmas antigos em um mundo encantado.</p>
+                            <a href="#" class="read-more">Leia Mais</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="news-section">
+            <div class="container">
+                <h2 class="section-title">Últimas Notícias</h2>
+                <div class="news-container">
+                    <article class="news-item">
+                        <img src="https://picsum.photos/seed/news1/150/150.jpg" alt="Imagem da Notícia 1">
+                        <div class="news-content">
+                            <h3>Novo DLC Anunciado para Jogo do Ano</h3>
+                            <p class="meta">Por Admin | 15 de Outubro, 2023</p>
+                            <p>Os desenvolvedores confirmaram uma expansão massiva chegando no próximo trimestre...</p>
+                        </div>
+                    </article>
+                    <article class="news-item">
+                        <img src="https://picsum.photos/seed/news2/150/150.jpg" alt="Imagem da Notícia 2">
+                        <div class="news-content">
+                            <h3>Campeonato Mundial de eSports Acontece Esta Semana</h3>
+                            <p class="meta">Por Redação | 14 de Outubro, 2023</p>
+                            <p>Os melhores jogadores do mundo se enfrentam por um prêmio milionário...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>&copy; 2023 GameHub. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
