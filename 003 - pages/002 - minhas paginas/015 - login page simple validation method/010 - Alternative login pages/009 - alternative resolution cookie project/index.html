@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Livro de Receitas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- ÁREA DE LOGIN -->
+        <div id="login-area">
+            <h1>Acesso Pessoal</h1>
+            <p>Entre para ver suas receitas</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Acessar</button>
+                <p id="message"></p>
+            </form>
+        </div>
+
+        <!-- ÁREA DE CONTEÚDO (RECEITAS) - COMEÇA ESCONDIDA -->
+        <div id="content-area" style="display: none;">
+            <h2>🎉 Bem-vindo(a) ao seu repositório de receitas!</h2>
+            <button id="logout-btn">Sair</button>
+            
+            <div class="receitas">
+                <h3>Minhas Receitas</h3>
+                <ul>
+                    <li><strong>Strogonoff de Frango:</strong> Um clássico que nunca falha.</li>
+                    <li><strong>Brigadeiro de Colher:</strong> Perfeito para sobremesa rápida.</li>
+                    <li><strong>Moqueca de Peixe:</strong> O sabor do mar em casa.</li>
+                    <li><strong>Pão de Queijo:</strong> O melhor lanche da tarde.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

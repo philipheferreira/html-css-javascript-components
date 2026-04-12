@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif; /* Adicionei uma fonte padrão */
+}
+
+form{
+    width: 300px; /* estabelece um limite de tamanho */
+    margin: 200px auto; /* estabelece uma margem criando uma centralizacao */
+}
+
+input{
+    display: block;
+    margin: 10px auto;
+    width: 250px;
+    padding: 8px; /* Adicionei um pouco de padding para melhorar a aparência */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.avisoTempoBloqueio {
+    text-align: center;
+    color: #d9534f; /* Vermelho */
+    font-weight: bold;
+    margin-top: 15px;
+    transition: opacity 0.3s ease; /* Transição suave ao aparecer/desaparecer */
+}
+
+.avisoTempoBloqueio.escondido {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.erro-validacao {
+    border: 1px solid red !important;
+}
