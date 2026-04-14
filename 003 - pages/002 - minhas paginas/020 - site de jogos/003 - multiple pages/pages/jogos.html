@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="../style.css">
+	<link rel="stylesheet" type="text/css" href="../styles/indexStyle.css">
+	<link rel="stylesheet" type="text/css" href="../styles/footerStyle.css">
 	<title></title>
 </head>
 <body>
@@ -21,6 +22,81 @@
 	</div>
 
 	Eu sou a pagina Sobre jogos
+
+	<!-- INÍCIO DO FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                
+                <!-- Coluna 1: Sobre a Empresa -->
+                <div class="col-xs-6 col-md-3">
+                    <h6>Sobre Nós</h6>
+                    <p class="text-justify">
+                        Somos uma empresa dedicada a fornecer as melhores soluções para o seu negócio. 
+                        Nosso compromisso é com a qualidade e a inovação.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Links Úteis -->
+                <div class="col-xs-6 col-md-3">
+                    <h6>Links Rápidos</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Serviços</a></li>
+                        <li><a href="#">Portfólio</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Contato -->
+                <div class="col-xs-6 col-md-3">
+                    <h6>Contato</h6>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - SP</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@empresa.com</li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Newsletter -->
+                <div class="col-xs-6 col-md-3">
+                    <h6>Newsletter</h6>
+                    <p>Receba novidades e promoções:</p>
+                    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <button type="submit">Ok</button>
+                    </form>
+                </div>
+
+            </div>
+            <hr>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                
+                <!-- Direitos Autorais -->
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; <span id="year"></span> Todos os direitos reservados por 
+                        <a href="#">Sua Empresa</a>.
+                    </p>
+                </div>
+
+                <!-- Redes Sociais -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fab fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- FIM DO FOOTER -->
 
 	<script src="script.js"></script>
 </body>
