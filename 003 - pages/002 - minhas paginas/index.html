@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Pessoas</title>
+    <style>
+        /* --- CSS: Estilização da Página --- */
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f5f5;
+            --text-color: #333;
+            --border-color: #ddd;
+            --danger-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* Estilo do Formulário */
+        .form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box; /* Garante que o padding não estoure o tamanho */
+        }
+
+        button#adicionar {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 24px; /* Alinhar com os inputs */
+            transition: background 0.3s;
+        }
+
+        button#adicionar:hover {
+            background-color: #357abd;
+        }
+
+        /* Estilo da Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista de Pessoas</h1>
+
+        <!-- Formulário -->
+        <form id="pessoaForm">
+            <div class="form-group">
+                <div class="input-wrapper">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="input-wrapper">
+                    <label for="idade">Idade</label>
+                    <input type="number" id="idade" placeholder="Ex: 30" min="0" required>
+                </div>
+                <div class="input-wrapper">
+                    <label for="cargo">Cargo</label>
+                    <input type="text" id="cargo" placeholder="Ex: Desenvolvedor" required>
+                </div>
+            </div>
+            <button type="submit" id="adicionar">Adicionar Pessoa</button>
+        </form>
+
+        <!-- Tabela -->
+        <table id="tabelaPessoas">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Cargo</th>
+                    <th style="width: 80px;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas serão adicionadas aqui via JavaScript -->
+            </tbody>
+        </table>
+        <div id="mensagemVazia" class="empty-message">Nenhuma pessoa cadastrada ainda.</div>
+    </div>
+
+    <script>
+        /* --- JavaScript: Lógica de Funcionamento --- */
+        
+        // 1. Selecionar os elementos do DOM
+        const form = document.getElementById('pessoaForm');
+        const tabelaBody = document.querySelector('#tabelaPessoas tbody');
+        const mensagemVazia = document.getElementById('mensagemVazia');
+
+        // 2. Adicionar um "ouvinte de evento" para o envio do formulário
+        form.addEventListener('submit', function(event) {
+            // Impede o recarregamento da página (comportamento padrão do form)
+            event.preventDefault();
+
+            // 3. Capturar os valores dos campos
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const cargo = document.getElementById('cargo').value;
+
+            // 4. Criar uma nova linha na tabela
+            adicionarLinhaTabela(nome, idade, cargo);
+
+            // 5. Limpar o formulário após adicionar
+            form.reset();
+            
+            // 6. Colocar o foco de volta no primeiro campo para facilitar o próximo cadastro
+            document.getElementById('nome').focus();
+        });
+
+        // Função para criar e adicionar a linha
+        function adicionarLinhaTabela(nome, idade, cargo) {
+            // Criar o elemento <tr>
+            const novaLinha = document.createElement('tr');
+
+            // Inserir o HTML interno das células (<td>)
+            novaLinha.innerHTML = `
+                <td>${nome}</td>
+                <td>${idade}</td>
+                <td>${cargo}</td>
+                <td>
+                    <button class="btn-delete" onclick="removerLinha(this)">Excluir</button>
+                </td>
+            `;
+
+            // Adicionar a linha ao corpo da tabela
+            tabelaBody.appendChild(novaLinha);
+
+            // Esconder a mensagem de "vazio" se ela estiver visível
+            mensagemVazia.style.display = 'none';
+        }
+
+        // Função para remover uma linha
+        function removerLinha(botao) {
+            // Encontra o elemento <tr> pai do botão clicado e o remove
+            const linha = botao.closest('tr');
+            linha.remove();
+
+            // Se a tabela ficar vazia, mostrar a mensagem novamente
+            if (tabelaBody.children.length === 0) {
+                mensagemVazia.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
