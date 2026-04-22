@@ -8,39 +8,44 @@
 </head>
 <body>
 
-	<form class="formularioAdicionarNovaPessoa">
-		<div class="grupoFormulario">
-			<div class="input-wrapper">
-				<label for="nome">Nome Completo</label>
-				<input type="text" class="nome" placeholder="Ex: Joao Pessoa" required />
-			</div>
-			<div class="input-wrapper">
-				<label for="idade">Idade</label>
-				<input type="number" class="idade" placeholder="Ex: 30" min="0" required />
-			</div>
-			<div class="input-wrapper">
-				<label for="cargo">Cargo</label>
-				<input type="text" class="cargo" placeholder="Ex: Desenvolvedor" required />
-			</div>
-		</div>
-		<button type="submit" class="adicionar">Adicionar pessoa</button>
-	</form>
+	<div class="container">
+		<h1>Lista de Pessoas</h1>
 
-	<!-- Tabela -->
-	<table class="tabelaPessoas">
-		<thead>
-			<tr>
-				<th>Nome</th>
-				<th>Idade</th>
-				<th>Cargo</th>
-				<th style="width80px">Acoes</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Novas pessoas cadastradas serao adicionadas aqui -->
-		</tbody>
-	</table>
-	<div class="mensagemTabelaVazia">Nenhuma pessoa cadastrada aqui</div>
+		<!-- Fomulario -->
+		<form class="formularioAdicionarNovaPessoa">
+			<div class="grupoFormulario">
+				<div class="input-wrapper">
+					<label for="novoNome">Nome Completo</label>
+					<input type="text" class="novoNomeInput" placeholder="Ex: Joao Pessoa" required />
+				</div>
+				<div class="input-wrapper">
+					<label for="novaIdade">Idade</label>
+					<input type="number" class="novaIdadeInput" placeholder="Ex: 30" min="0" required />
+				</div>
+				<div class="input-wrapper">
+					<label for="novoCargo">Cargo</label>
+					<input type="text" class="novoCargoInput" placeholder="Ex: Desenvolvedor" required />
+				</div>
+			</div>
+			<button type="submit" class="adicionar">Adicionar pessoa</button>
+		</form>
+
+		<!-- Tabela -->
+		<table class="tabelaPessoas">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Idade</th>
+					<th>Cargo</th>
+					<th style="width80px">Acoes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Novas pessoas cadastradas serao adicionadas aqui -->
+			</tbody>
+		</table>
+		<div class="mensagemTabelaVazia">Nenhuma pessoa cadastrada aqui</div>
+	</div>
 
 	<script src="script.js"></script>
 </body>
