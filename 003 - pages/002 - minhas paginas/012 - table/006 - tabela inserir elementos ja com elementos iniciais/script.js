@@ -2,6 +2,20 @@ let formularioAdicionarNovaPessoa = document.querySelector('.formularioAdicionar
 let tabelaPessoasCorpo = document.querySelector('.tabelaPessoas tbody');
 let mensagemVazia = document.querySelector('.mensagemTabelaVazia');
 
+let dadosIniciais = [
+	{nome: "Ana Silva Galvao", idade: 28, cargo: "Designer UI/UX"},
+	{nome: "Ze Pereira da Silva", idade: 35, cargo: "Gerente de Projetos"},
+	{nome: "Felipe Costa", idade: 41, cargo: "Desenvolvedor Frontend"}
+]
+
+window.onload = () => {
+	dadosIniciais.forEach(pessoa => {
+		adicionarNovaPessoaTabela(pessoa.nome, pessoa.idade, pessoa.cargo);
+	})
+}
+
+
+
 let criarNovaPessoaTabela = (evento) => {
 	// Impede o recarregamento da página (comportamento padrão do form)
     evento.preventDefault();
@@ -33,7 +47,7 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 		<td>${idade}</td>
 		<td>${cargo}</td>
 		<td>
-			<button class= "btn-delete" onclick="BotaoremoverPessoaDaTabela(this)">Excluir</button>
+			<button class= "botaoDeletar" onclick="BotaoRemoverPessoaDaTabela(this)">Excluir</button>
 		</td>
 	`
 
@@ -41,19 +55,27 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 	tabelaPessoasCorpo.appendChild(novaLinha);
 
 	// esconder a mensagem de "vazio" se ela estiver invisivel
-	mensagemVazia.style.display = 'none';
+	verificarTabelaSeVaziaOuPreenchida();
 
 }
 
-let BotaoremoverPessoaDaTabela = (botao) => {
+let BotaoRemoverPessoaDaTabela = (botao) => {
 
 	// Encontra o elemento <tr> pai do botão clicado e o remove
     let linha = botao.closest('tr');
     linha.remove();
 
     // Se a tabela ficar vazia, mostrar a mensagem novamente
-	if (tabelaPessoasCorpo.children.length === 0) {
+	verificarTabelaSeVaziaOuPreenchida();
+}
+
+// funcao verificar se a tabela esta vazia ou preenchida para mostrar mensagem vazia
+
+let verificarTabelaSeVaziaOuPreenchida = () => {
+	if(tabelaPessoasCorpo.children.length === 0) {
 		mensagemVazia.style.display = 'block';
+	} else {
+		mensagemVazia.style.display = 'none'
 	}
 }
 

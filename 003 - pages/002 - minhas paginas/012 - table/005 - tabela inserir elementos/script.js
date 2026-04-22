@@ -33,7 +33,7 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 		<td>${idade}</td>
 		<td>${cargo}</td>
 		<td>
-			<button class= "btn-delete" onclick="BotaoremoverPessoaDaTabela(this)">Excluir</button>
+			<button class= "botaoDeletar" onclick="BotaoremoverPessoaDaTabela(this)">Excluir</button>
 		</td>
 	`
 

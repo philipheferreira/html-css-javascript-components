@@ -78,7 +78,7 @@ th {
 tr:hover {
     background-color: #f1f1f1;
 }
-.btn-delete {
+.botaoDeletar {
     background-color: #e74c3c;
     color: white;
     border: none;
@@ -87,7 +87,7 @@ tr:hover {
     cursor: pointer;
     font-size: 0.8rem;
 }
-.btn-delete:hover {
+.botaoDeletar:hover {
     background-color: #c0392b;
 }
 
