@@ -46,6 +46,33 @@ input {
     border-radius: 4px;
     box-sizing: border-box; /* Garante que o padding não estoure o tamanho */
 }
+
+/* Botões do Formulário */
+.formularioAcoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.botaoDeletar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.botaoDeletar:hover {
+    background-color: #c0392b;
+}
+
+.botaoCancelar {
+    background-color: #7f8c8d; 
+    color: white; 
+    display: none;
+} /* Escondido inicialmente */
+
 button.adicionar {
     background-color: #4a90e2;
     color: white;
@@ -77,18 +104,6 @@ th {
 }
 tr:hover {
     background-color: #f1f1f1;
-}
-.botaoDeletar {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-.botaoDeletar:hover {
-    background-color: #c0392b;
 }
 
 .mensagemTabelaVazia {

@@ -14,8 +14,6 @@ window.onload = () => {
 	})
 }
 
-
-
 let criarNovaPessoaTabela = (evento) => {
 	// Impede o recarregamento da página (comportamento padrão do form)
     evento.preventDefault();
@@ -47,7 +45,7 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 		<td>${idade}</td>
 		<td>${cargo}</td>
 		<td>
-			<button class= "botaoDeletar" onclick="BotaoRemoverPessoaDaTabela(this)">Excluir</button>
+			<button class= "botaoDeletar" onclick="RemoverPessoaDaTabela(this)">Excluir</button>
 		</td>
 	`
 
@@ -59,7 +57,7 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 
 }
 
-let BotaoRemoverPessoaDaTabela = (botao) => {
+let RemoverPessoaDaTabela = (botao) => {
 
 	// Encontra o elemento <tr> pai do botão clicado e o remove
     let linha = botao.closest('tr');
