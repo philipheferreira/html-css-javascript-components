@@ -2,9 +2,12 @@ let formularioAdicionarNovaPessoa = document.querySelector('.formularioAdicionar
 let tabelaPessoasCorpo = document.querySelector('.tabelaPessoas tbody');
 let mensagemVazia = document.querySelector('.mensagemTabelaVazia');
 
-// Inicio dos dados dos campos necessarios para realizar a edicao
+// Seletores dos botões para mudar o texto/aparência
+let botaoAdicionar = document.querySelector('.adicionar');
+let botaoCancelar = document.querySelector('.botaoCancelar');
 
-// Fim dos dados dos campos necessarios para realizar a edicao
+// Variável para guardar a referência da linha que estamos editando
+let linhaEditando = null;
 
 let dadosIniciais = [
 	{nome: "Ana Silva Galvao", idade: 28, cargo: "Designer UI/UX"},
@@ -27,6 +30,13 @@ let criarNovaPessoaTabelaOuEditar = (evento) => {
     let idadeNovaPessoa = document.querySelector('.novaIdadeInput').value;
     let cargoNovaPessoa = document.querySelector('.novoCargoInput').value;
 
+    if(linhaEditando) {
+    // --- MODO EDICAO --
+
+    } else {
+
+    // --- MODO CRIACAO ---
+
     // criar uma nova linha na tabela chamando funcao
     adicionarNovaPessoaTabela(nomeNovaPessoa, idadeNovaPessoa, cargoNovaPessoa);
 
@@ -35,6 +45,8 @@ let criarNovaPessoaTabelaOuEditar = (evento) => {
 
     // Colocar o foco de volta no primeiro campo para facilitar o próximo cadastro
     document.querySelector('.novoNomeInput').focus();
+    }
+    
 }
 
 
@@ -58,6 +70,23 @@ let adicionarNovaPessoaTabela = (nome, idade, cargo) => {
 
 	// esconder a mensagem de "vazio" se ela estiver invisivel
 	verificarTabelaSeVaziaOuPreenchida();
+}
+
+let prepararEdicao = (botao) => {
+	// dentro da tabela pega qual a informacao pelo botao que a linha pertence na tabela
+	let linhaNaTabela = botao.closest('tr'); 
+
+	linhaEditando = linhaNaTabela;
+
+	// Pega os dados da linha e joga no formulario
+
+	// muda a aparencia do botao principal
+	botaoAdicionar.innerText = "Salvar Alteracoes";
+	botaoAdicio
+}
+
+let cancelarEdicao = () => {
+
 }
 
 let removerPessoaDaTabela = (botao) => {
