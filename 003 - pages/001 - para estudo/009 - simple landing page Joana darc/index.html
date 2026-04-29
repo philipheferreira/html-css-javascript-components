@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joana d'Arc - A Donzela de Orléans</title>
+    
+    <!-- Importando fontes para um visual histórico e moderno -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (FontAwesome via CDN para performance) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           VARIÁVEIS E RESET
+           ========================================= */
+        :root {
+            --primary-color: #002395; /* Azul Bandeira Francesa / Real */
+            --accent-color: #D4AF37;  /* Dourado */
+            --text-dark: #2c2c2c;
+            --text-light: #f4f4f4;
+            --bg-light: #f9f9f9;
+            --bg-paper: #fffdf5; /* Tom de pergaminho */
+            --transition: all 0.3s ease;
+            --spacing-section: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-paper);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* =========================================
+           COMPONENTES UI
+           ========================================= */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* =========================================
+           HEADER & NAVEGAÇÃO
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 253, 245, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 35, 149, 0.6), rgba(0, 0, 0, 0.4)), url('https://picsum.photos/seed/joana-hero/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* =========================================
+           SEÇÃO: A HISTÓRIA (Biografia)
+           ========================================= */
+        .biography {
+            padding: var(--spacing-section) 0;
+            background-color: var(--bg-paper);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .bio-image {
+            position: relative;
+        }
+
+        .bio-image img {
+            box-shadow: 10px 10px 0 var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .bio-image:hover img {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0 var(--primary-color);
+        }
+
+        .bio-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* =========================================
+           SEÇÃO: LINHA DO TEMPO (Timeline)
+           ========================================= */
+        .timeline-section {
+            padding: var(--spacing-section) 0;
+            background-color: var(--bg-light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Linha central */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0; /* Para animação JS */
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* Círculos na timeline */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--primary-color);
+            border: 3px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .content-box {
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .content-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .year {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* =========================================
+           SEÇÃO: CITAÇÃO
+           ========================================= */
+        .quote-section {
+            padding: 100px 0;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quote-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* =========================================
+           SEÇÃO: LEGADO
+           ========================================= */
+        .legacy {
+            padding: var(--spacing-section) 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* =========================================
+           BOTÃO TO-TOP
+           ========================================= */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 900;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #backToTop:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* =========================================
+           RESPONSIVIDADE
+           ========================================= */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .bio-grid { grid-template-columns: 1fr; }
+            .bio-image { order: -1; margin-bottom: 20px; }
+
+            .timeline::after { left: 31px; }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left !important;
+            }
+            
+            .timeline-item.left, .timeline-item.right { left: 0; }
+            
+            .timeline-item::after { left: 21px; } /* Ajuste do círculo */
+        }
+
+        /* Animação Keyframes para o Hero */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fa-solid fa-fleur-de-lis"></i> Joana d'Arc
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#biografia">Biografia</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#legado">Legado</a></li>
+                    <li><a href="#contato" class="btn">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>A Donzela de Orléans</h1>
+            <p>Heroína francesa, santa católica e figura militar que mudou o curso da Guerra dos Cem Anos.</p>
+            <a href="#biografia" class="btn btn-outline">Descubra sua História</a>
+        </div>
+    </section>
+
+    <!-- Biografia -->
+    <section id="biografia" class="biography">
+        <div class="container">
+            <h2 class="section-title">Quem foi Joana d'Arc?</h2>
+            <p class="section-subtitle">Uma camponesa que se tornou um símbolo eterno de coragem e fé.</p>
+            
+            <div class="bio-grid">
+                <div class="bio-text">
+                    <h3>O Chamado Divino</h3>
+                    <p>Nascida em Domrémy, na França, em 1412, Joana cresceu durante a fase mais sombria da Guerra dos Cem Anos. Ainda jovem, ela afirmou ter recebido visões divinas dos arcanjos Miguel, Santa Catarina e Santa Margarida, instruindo-a a apoiar Carlos VII e expulsar os ingleses da França.</p>
+                    <p>Com determinação inabalável, ela convenceu a nobreza local a levá-la à corte. Após ser interrogada por teólogos em Poitiers, seu caráter e fé foram considerados genuínos, recebendo armadura e o comando de tropas.</p>
+                    <h3>A Vitória e o Martírio</h3>
+                    <p>Sua presença na guerra revitalizou o exército francês. Em apenas alguns dias, ela levantou o cerco de Orléans, uma vitória crucial que levou à coroação de Carlos VII em Reims. No entanto, foi capturada pelos borguinhões, vendida aos ingleses e condenada por heresia em um tribunal religioso politicizado, sendo queimada na fogueira em 1431, aos apenas 19 anos.</p>
+                </div>
+                <div class="bio-image">
+                    <!-- Imagem estilo retrato artístico -->
+                    <img src="https://picsum.photos/seed/joana-portrait/600/800.jpg" alt="Representação artística de Joana d'Arc">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citação -->
+    <section class="quote-section">
+        <div class="container quote-container">
+            <p class="quote-text">"Eu não tenho medo; nasci para fazer isso."</p>
+            <p class="quote-author">— Joana d'Arc</p>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Jornada Histórica</h2>
+            <p class="section-subtitle">Os momentos cruciais que definiram seu destino.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left js-scroll">
+                    <div class="content-box">
+                        <span class="year">1412</span>
+                        <h3>Nascimento</h3>
+                        <p>Joana nasce em Domrémy-la-Pucelle, uma pequena aldeia na fronteira com Lorena.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right js-scroll">
+                    <div class="content-box">
+                        <span class="year">1429</span>
+                        <h3>Sitio de Orléans</h3>
+                        <p>Joana lidera o exército francês e quebra o cerco inglês em apenas nove dias, mudando o curso da guerra.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left js-scroll">
+                    <div class="content-box">
+                        <span class="year">Julho de 1429</span>
+                        <h3>Coroação em Reims</h3>
+                        <p>Carlos VII é coroado Rei da França na Catedral de Reims, com Joana presente segurando seu estandarte.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right js-scroll">
+                    <div class="content-box">
+                        <span class="year">Maio de 1430</span>
+                        <h3>Captura</h3>
+                        <p>Joana é capturada em Compiègne pelos borguinhões, aliados dos ingleses.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left js-scroll">
+                    <div class="content-box">
+                        <span class="year">30 de Maio de 1431</span>
+                        <h3>Martírio</h3>
+                        <p>Condenada por um tribunal eclesiástico controlado pelos ingleses, é queimada viva na Praça do Mercado Velho em Rouen.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right js-scroll">
+                    <div class="content-box">
+                        <span class="year">1920</span>
+                        <h3>Canonização</h3>
+                        <p>O Papa Bento XV canoniza Joana d'Arc como santa da Igreja Católica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legado -->
+    <section id="legado" class="legacy">
+        <div class="container">
+            <h2 class="section-title">Legado Eterno</h2>
+            <p class="section-subtitle">Seu impacto vai além das batalhas, influenciando cultura, política e fé até hoje.</p>
+
+            <div class="cards-grid">
+                <div class="card js-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-chess-queen"></i></div>
+                    <h4>Símbolo Nacional</h4>
+                    <p>Joana é um dos maiores ícones da França, representando resistência e patriotismo. Sua imagem aparece em moedas, selos e monumentos.</p>
+                </div>
+                <div class="card js-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-book-bible"></i></div>
+                    <h4>Santa Patrona</h4>
+                    <p>Padroeira da França e também de soldados, presos e daqueles que sofrem ridicularização por sua fé.</p>
+                </div>
+                <div class="card js-scroll">
+                    <div class="card-icon"><i class="fa-solid fa-masks-theater"></i></div>
+                    <h4>Inspiração Cultural</h4>
+                    <p>Musou countless obras de arte, livros, filmes e peças de teatro, servindo de musa para artistas como Mark Twain e George Bernard Shaw.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section" style="flex: 2; min-width: 300px;">
+                    <div class="logo" style="margin-bottom: 20px; color: var(--accent-color);">
+                        <i class="fa-solid fa-fleur-de-lis"></i> Joana d'Arc
+                    </div>
+                    <p>Uma página dedicada a preservar a memória da heroína que, com apenas 19 anos, desafiou reis e impérios.</p>
+                </div>
+                <div class="footer-section" style="flex: 1; min-width: 200px;">
+                    <h4>Links Rápidos</h4>
+                    <a href="#inicio">Início</a>
+                    <a href="#biografia">História</a>
+                    <a href="#timeline">Timeline</a>
+                    <a href="#legado">Legado</a>
+                </div>
+                <div class="footer-section" style="flex: 1; min-width: 200px;">
+                    <h4>Contato</h4>
+                    <p><i class="fa-solid fa-envelope"></i> historia@exemplo.com</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Paris, França</p>
+                    <div style="margin-top: 10px;">
+                        <a href="#" style="display:inline; margin-right:15px;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="display:inline; margin-right:15px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="display:inline;"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Tribute Page. Todos os direitos reservados. Design demonstrativo.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="backToTop" title="Voltar ao topo">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Puro -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Menu Mobile Toggle
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const links = navLinks.querySelectorAll('a');
+
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Alterna ícone entre barras e X
+                const icon = mobileBtn.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Fechar menu ao clicar em um link (UX Mobile)
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = mobileBtn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // 2. Animação de Scroll (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Opcional: parar de observar após animar uma vez
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const scrollElements = document.querySelectorAll('.js-scroll');
+            scrollElements.forEach(el => observer.observe(el));
+
+            // 3. Botão Back to Top
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
