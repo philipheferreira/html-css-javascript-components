@@ -1,6 +1,6 @@
 Iniciar o Projeto Node.js:
-Dentro da pasta, execute o comando para criar um arquivo package.json. 
-Este arquivo gerencia as dependências do seu projeto.
+Dentro da pasta do projeto, e nao a do teste, execute o comando para criar 
+um arquivo package.json. Este arquivo gerencia as dependências do seu projeto.
 
 npm init -y
 
