@@ -1,0 +1,20 @@
+Iniciar o Projeto Node.js:
+Dentro da pasta, execute o comando para criar um arquivo package.json. 
+Este arquivo gerencia as dependências do seu projeto.
+
+npm init -y
+
+Caso ja tenha instalado no computador o pacote npm e o node, necessario instalar
+em seguida o pacote selenium com o comando a baixo. o pacote selenium precisa estar 
+na mesma parte que o codigo que sera testado precisa rodar e nao do codigo do teste.
+O codigo do teste pode estar localizado em uma pasta a parte:
+
+* npm install selenium-webdriver
+
+depois de instalar o selenium na pasta onde se encontra os arquivos pra teste, 
+necessario selecionalo utilizando o comando a baixo:
+
+* node testeLocalTabelaSelenium.js
+
+Nesse teste o cenario de teste vai ser local, logo a operacao necessita 
+dentro do codigo rodar as operacoes para o funcionamento
