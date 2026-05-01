@@ -23,19 +23,23 @@ async function testePaginaTabela() {
         await driver.get(url);
 
         // --- CENÁRIO 1: ADICIONAR (CRIAR) ---
-        console.log("\n--- INICIANDO TESTE: CRIAR ---");
+        console.log("\n--- INICIANDO TESTE: FUNCIONALIDADE CRIAR ---");
         
         // Encontrar os campos e preencher
         const inputNome = await driver.findElement(By.css('.novoNomeInput'));
         await typeSlowly(driver, inputNome, 'Joao Selenium');
 
+        await sleep(1000)
+
         const inputIdade = await driver.findElement(By.css('.novaIdadeInput'));
         await typeSlowly( driver ,inputIdade ,"30");
+
+        await sleep(1000)
 
         const inputCargo = await driver.findElement(By.css('.novoCargoInput'));
         await typeSlowly( driver, inputCargo, "QA Automatizador");
 
-        await sleep(500)
+        await sleep(2000)
         // Clicar no botão Adicionar
         await driver.findElement(By.css('.adicionar')).click();
         
@@ -55,7 +59,7 @@ async function testePaginaTabela() {
         }
 
         // --- CENÁRIO 2: EDITAR ---
-        console.log("\n--- INICIANDO TESTE: EDITAR ---");
+        console.log("\n--- INICIANDO TESTE: FUNCIONALIDADE EDITAR ---");
 
         // Encontrar o botão Editar na última linha que criamos
         const btnEditar = await ultimaLinha.findElement(By.css('.botaoEditar'));
@@ -96,15 +100,13 @@ async function testePaginaTabela() {
         }
 
         // --- CENÁRIO 3: DELETAR ---
-        console.log("\n--- INICIANDO TESTE: DELETAR ---");
+        console.log("\n--- INICIANDO TESTE: FUNCIONALIDADE DELETAR ---");
 
         const qtdLinhasAntesDeletar = linhasAposEdicao.length;
 
         // Encontrar botão excluir
         const btnExcluir = await linhaEditada.findElement(By.css('.botaoDeletar'));
         await btnExcluir.click();
-
-        await sleep(2000);
 
         // Verificar se o número de linhas diminuiu
         const linhasAposDeletar = await driver.findElements(By.css('.tabelaPessoas tbody tr'));
@@ -115,6 +117,8 @@ async function testePaginaTabela() {
         } else {
             console.log("❌ FALHA: Linha não foi removida.");
         }
+
+         await sleep(2000);
 
     } catch (error) {
         console.error('❌ Ocorreu um erro fatal durante o teste:', error);

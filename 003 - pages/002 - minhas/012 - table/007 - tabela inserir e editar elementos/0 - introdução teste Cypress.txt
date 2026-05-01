@@ -1,0 +1,21 @@
+Caso não tenha o cypress instalado na maquina basta apenas digitar o 
+código a baixo no CMD do windos caso você utilize o pacote NPM: 
+
+ npm install cypress --save-dev
+
+use o comando para rodar um servidor local na pasta onde estiver o arquivo 
+index.html Rode o seguinte comando: 
+
+ npx http-server .
+
+dentro da pasta onde localizasse o arquivo index se cria uma pasta com o 
+seguinte caminho cypress/e2e/cypressTesteTabela.cy.js criando esse arquivo e usando 
+o comando a baixo o cypress identifica o arquivo com os comandos específicos 
+rapidamente no seu repositório
+
+
+Com o servidor local ainda rodando use o comando a baixo na pasta onde está 
+localizado o arquivo index. 
+
+ npx cypress open
+
