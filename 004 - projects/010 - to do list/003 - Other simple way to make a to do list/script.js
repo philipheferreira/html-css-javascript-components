@@ -1,12 +1,12 @@
-const inputtdl = document.querySelector('.textarea');
-const buttontdl = document.querySelector('.buttoninput');
-const listtdl = document.querySelector('.todolist');
+const inputtdl = document.querySelector('.inputTarefa');
+const botaoAdicionarTarefa = document.querySelector('.botaoAdicionarTarefa');
+const listtdl = document.querySelector('.listaDeTarefas');
 
 // Load todos from localStorage when the page loads
 document.addEventListener('DOMContentLoaded', loadTodoLists);
 
 // Event Listeners
-buttontdl.addEventListener('click', clickButton);
+botaoAdicionarTarefa.addEventListener('click', clickButton);
 listtdl.addEventListener('click', okdel);
 
 // Function to handle button click

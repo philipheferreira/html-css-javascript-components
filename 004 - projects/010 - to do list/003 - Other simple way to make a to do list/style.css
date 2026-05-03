@@ -28,7 +28,7 @@ body {
     margin-top: 10px;
 }
 
-.textarea {
+.inputTarefa {
     min-height: 50px;
     height: 50px;
     max-width: 100%;
@@ -41,40 +41,40 @@ body {
     overflow-x: hidden;
 }
 
-.textarea::-webkit-scrollbar-track {
+.inputTarefa::-webkit-scrollbar-track {
     border-radius: 10px;
     background-color: #333;
 }
 
-.textarea::-webkit-scrollbar {
+.inputTarefa::-webkit-scrollbar {
     width: 10px;
     cursor: pointer;
 }
 
-.textarea::-webkit-scrollbar-thumb {
+.inputTarefa::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: #8f8acc;
     cursor: pointer;
 }
 
-.textarea:focus {
+.inputTarefa:focus {
     outline: none;
 }
 
-.buttoninput {
+.botaoAdicionarTarefa {
     border-radius: 10px;
     border-color: #333;
     background-color: white;
     font-size: 20px;
 }
 
-.buttoninput:hover {
+.botaoAdicionarTarefa:hover {
     background-color: #8f8acc;
     color: white;
 }
 
 /* js */
-.todolist {
+.listaDeTarefas {
     margin-top: 20px;
 }
 
