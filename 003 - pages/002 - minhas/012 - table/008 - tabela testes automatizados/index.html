@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div class="container">
+		<h1>Lista de Pessoas</h1>
+
+		<!-- Fomulario -->
+		<form class="formularioAdicionarNovaPessoa">
+			<div class="grupoFormulario">
+				<div class="input-wrapper">
+					<label for="novoNome">Nome Completo</label>
+					<input type="text" class="novoNomeInput" placeholder="Ex: Joao Pessoa" required />
+				</div>
+				<div class="input-wrapper">
+					<label for="novaIdade">Idade</label>
+					<input type="number" class="novaIdadeInput" placeholder="Ex: 30" min="0" required />
+				</div>
+				<div class="input-wrapper">
+					<label for="novoCargo">Cargo</label>
+					<input type="text" class="novoCargoInput" placeholder="Ex: Desenvolvedor" required />
+				</div>
+			</div>
+			<div class="acoesFormulario">
+				<button type="submit" class="adicionar">Adicionar pessoa</button>
+				<button type="button" class="botaoCancelar">Cancelar</button>
+			</div>
+		</form>
+
+		<!-- Tabela -->
+		<table class="tabelaPessoas">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Idade</th>
+					<th>Cargo</th>
+					<th style="width: 140px">Acoes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Novas pessoas cadastradas serao adicionadas aqui -->
+			</tbody>
+		</table>
+		<div class="mensagemTabelaVazia">Nenhuma pessoa cadastrada aqui</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
