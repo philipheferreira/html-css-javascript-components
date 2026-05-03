@@ -21,11 +21,6 @@ const adicionarTarefa = () => {
     // Cria um span para o texto da tarefa
     const spanTarefa = document.createElement('span');
     spanTarefa.textContent = tarefaTexto;
-
-    // Adiciona evento para marcar como concluída
-	spanTarefa.addEventListener('click', () => {
-	    li.classList.toggle('concluida'); // Adiciona ou remove a classe 'concluida'
-	});
     
     li.appendChild(spanTarefa);
 
