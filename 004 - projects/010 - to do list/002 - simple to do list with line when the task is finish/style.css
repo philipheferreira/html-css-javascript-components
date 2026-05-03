@@ -1,0 +1,68 @@
+
+body {
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputTarefa {
+    width: calc(100% - 80px); /* Calcula a largura para o botão caber ao lado */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.botaoAdicionarTarefa {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botaoAdicionarTarefa:hover {
+    background-color: #218838;
+}
+
+.lista-tarefas {
+    list-style: none; /* Remove os marcadores (bolinhas) da lista */
+    padding: 0;
+    margin-top: 20px;
+}
+
+.lista-tarefas li {
+    background-color: #e9ecef;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.botao-apagar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botao-apagar:hover {
+    background-color: #c82333;
+}
+
+.concluida {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
