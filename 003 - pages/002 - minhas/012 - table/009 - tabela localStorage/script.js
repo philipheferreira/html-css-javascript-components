@@ -9,6 +9,9 @@ let botaoCancelar = document.querySelector('.botaoCancelar');
 // Variável para guardar a referência da linha que estamos editando
 let linhaEditando = null;
 
+// chave para identificar o dado salvo no navegador
+const CHAVE_LOCALSTORAGE = 'db_pessoas_v1';
+
 let dadosIniciais = [
 	{nome: "Ana Silva Galvao", idade: 28, cargo: "Designer UI/UX"},
 	{nome: "Ze Pereira da Silva", idade: 35, cargo: "Gerente de Projetos"},
@@ -16,10 +19,51 @@ let dadosIniciais = [
 ]
 
 window.onload = () => {
-	dadosIniciais.forEach(pessoa => {
-		/* Ficou confuso no inicio mas como */
+	// --- LOGICA DE CARREGAMENTO COM PERSISTENCIA ---
+
+	// pega o que tiver do localStorage e salva na variavel DadosSalvos
+	let dadosSalvos = localStorage.getItem(CHAVE_LOCALSTORAGE);
+	let pessoasParaCarregar;
+
+	if (dadosSalvos) {
+		/* Se existirem dados salvos na localStorage usando a chave especifica
+		os dados serao convertidospara JSON */
+		pessoasParaCarregar = JSON.parse(dadosSalvos)
+		console.log("Dados carregados do LocalStorage"); 
+	} else {
+		/* Se for a primeira vez, usa os dados iniciais em vez
+		dos dados que nao existem no dadosSalvos porque nao tem
+		nada no localStorage usando a chave CHAVE_LOCALSTORAGE*/
+		pessoasParaCarregar = dadosIniciais;
+		console.log("Nenhum dado Encontrado. Usando dados iniciais pre salvos");
+	}
+
+	/* Depois da situacao de validacao logo a cima os dados coletados serao
+	passados para tabela */
+	pessoasParaCarregar.forEach(pessoa => {
 		adicionarNovaPessoaTabela(pessoa.nome, pessoa.idade, pessoa.cargo);
 	})
+}
+
+// --- NOVA FUNÇÃO: Atualiza o LocalStorage baseado na Tabela atual ---
+let atualizarLocalStorage = () => {
+	let pessoas = [];
+
+	// Seleciona todas as linhas da tabela
+    let linhas = document.querySelectorAll('.tabelaPessoas tbody tr');
+
+    // Para cada linha, extrai os dados e cria o objeto
+    linhas.forEach(linha => {
+        let nome = linha.querySelector('.nomePessoaNaTabela').innerText;
+        let idade = linha.querySelector('.idadePessoaNaTabela').innerText;
+        let cargo = linha.querySelector('.cargoPessoaNaTabela').innerText;
+
+        pessoas.push({ nome, idade, cargo });
+    });
+
+    // Converte o Array para Texto (JSON) e salva
+    localStorage.setItem(CHAVE_LOCALSTORAGE, JSON.stringify(pessoas));
+
 }
 
 let criarNovaPessoaTabelaOuEditar = (evento) => {
@@ -42,6 +86,9 @@ let criarNovaPessoaTabelaOuEditar = (evento) => {
 	    // Volta o estado normal (remove destaque, reseta botões)
 	    cancelarEdicao();
 
+	    // ATUALIZA O LOCALSTORAGE APÓS EDITAR
+        atualizarLocalStorage();
+
     } else {
 
 	    // --- MODO CRIACAO ---
@@ -54,6 +101,9 @@ let criarNovaPessoaTabelaOuEditar = (evento) => {
 
 	    // Colocar o foco de volta no primeiro campo para facilitar o próximo cadastro
 	    document.querySelector('.novoNomeInput').focus();
+
+	    // ATUALIZA O LOCALSTORAGE APÓS CRIAR
+        atualizarLocalStorage();
     }
     
 }
@@ -141,6 +191,9 @@ let removerPessoaDaTabela = (botao) => {
 
     // Se a tabela ficar vazia, mostrar a mensagem novamente
 	verificarTabelaSeVaziaOuPreenchida();
+
+	// ATUALIZA O LOCALSTORAGE APÓS DELETAR
+    atualizarLocalStorage();
 }
 
 // funcao verificar se a tabela esta vazia ou preenchida para mostrar mensagem vazia
