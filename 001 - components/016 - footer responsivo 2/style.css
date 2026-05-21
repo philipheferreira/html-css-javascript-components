@@ -1,0 +1,315 @@
+/* Conteúdo principal apenas para empurrar o footer para baixo */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+/* --- ESTILOS DO FOOTER --- */
+        /* =========================================
+           RESET E VARIÁVEIS GLOBAIS
+           ========================================= */
+        :root {
+            /* Cores */
+            --bg-color: #0f172a;       /* Azul escuro profundo */
+            --text-color: #94a3b8;     /* Cinza azulado claro */
+            --heading-color: #f8fafc;  /* Branco quase puro */
+            --accent-color: #38bdf8;   /* Azul ciano vibrante */
+            --border-color: #1e293b;   /* Cor das bordas/divisores */
+            
+            /* Espaçamentos */
+            --container-width: 1200px;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Conteúdo principal apenas para exemplo (para empurrar o footer para baixo) */
+        main {
+            flex: 1;
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        h1 { margin-bottom: 1rem; color: #0f172a; }
+        p { margin-bottom: 1.5rem; }
+
+        /* =========================================
+           ESTILOS DO FOOTER
+           ========================================= */
+        .site-footer {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+            font-size: 0.95rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* Grid do Footer */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr; /* Coluna da marca é maior */
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* --- Seção da Marca --- */
+        .footer-brand h2 {
+            color: var(--heading-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-brand p {
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--heading-color);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* --- Colunas de Links --- */
+        .footer-col h3 {
+            color: var(--heading-color);
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px; /* Pequena animação */
+        }
+
+        /* --- Seção de Newsletter --- */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .newsletter-form p {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-subscribe {
+            padding: 0.75rem 1.25rem;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-subscribe:hover {
+            background-color: #0ea5e9; /* Tom um pouco mais escuro do acento */
+        }
+
+        /* --- Footer Bottom (Copyright) --- */
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .footer-bottom-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE (MEDIA QUERIES)
+           ========================================= */
+        
+        /* Tablet: Ajusta para 2 colunas */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .footer-brand {
+                grid-column: span 2; /* Marca ocupa largura total no tablet */
+            }
+        }
+
+        /* Mobile: Ajusta para 1 coluna e ativa lógica de acordeão via CSS/JS */
+        @media (max-width: 576px) {
+            .footer-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-brand {
+                text-align: center;
+            }
+            
+            .footer-brand p {
+                margin: 0 auto 1.5rem auto;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            /* Estilos para o Acordeão Mobile */
+            .footer-col {
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 0.5rem;
+            }
+
+            .footer-col h3 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                user-select: none;
+            }
+
+            /* Ícone de seta (adicionado via JS) */
+            .footer-col h3::after {
+                content: '+';
+                font-size: 1.5rem;
+                font-weight: 300;
+                transition: transform 0.3s ease;
+            }
+
+            /* Estado ativo do acordeão (classe ativada via JS) */
+            .footer-col.active h3::after {
+                transform: rotate(45deg); /* Vira um X */
+            }
+
+            .footer-col ul {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+                opacity: 0;
+            }
+
+            .footer-col.active ul {
+                max-height: 200px; /* Altura suficiente para os links */
+                opacity: 1;
+                margin-bottom: 1rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
