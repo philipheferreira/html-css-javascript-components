@@ -28,64 +28,42 @@ const tarotData = [
     { id: 21, name: "O Mundo", meaning: "Conclusão, integração e realização.", imagem: "img/21-oMundo.webp" }
 ];
 
-// Referências do DOM
-const elements = {
-    pages: {
-        game: document.getElementById('page-game'),
-        info: document.getElementById('page-info')
-    },
-    navBtns: {
-        game: document.getElementById('btn-game'),
-        info: document.getElementById('btn-info')
-    },
-    gameScreens: {
-        start: document.querySelector('#telaDeInicio'),
-        play: document.querySelector('#telaDeJogo')
-    },
-    cardContainer: document.querySelector('#card-container'),
-    modal: document.querySelector('#result-modal'),
-    modalImg: document.querySelector('#modal-img'),
-    modalTitle: document.querySelector('#tituloModal'),
-    modalDesc: document.querySelector('#descricaoModal'),
-    btnStart: document.querySelector('.botaoIniciarJogoTarot'),
-    btnCloseModal: document.querySelector('.fecharModal'),
-    btnReset: document.querySelector('.botaoResetarJogo'),
-    allCardsGrid: document.getElementById('all-cards-grid')
-};
-
-// --- NAVEGAÇÃO ENTRE PÁGINAS ---
-
-function switchPage(targetPage) {
-    // Remove classe active de todas as páginas e botões
-    elements.pages.game.classList.remove('active');
-    elements.pages.info.classList.remove('active');
-    elements.navBtns.game.classList.remove('active');
-    elements.navBtns.info.classList.remove('active');
-
-    // Ativa a página e o botão correspondentes
-    elements.pages[targetPage].classList.add('active');
-    elements.navBtns[targetPage].classList.add('active');
-
-    // Se estiver saindo da página de jogo, reseta o jogo para o início
-    if(targetPage === 'info') {
-        resetGameToStart();
+// Funções Auxiliares
+function embaralhar(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
+    return array;
+}
+
+// --- INICIALIZAÇÃO SEGURA ---
+document.addEventListener('DOMContentLoaded', () => {
     
-    // Scroll para o topo
-    window.scrollTo(0, 0);
-}
+    // 1. LÓGICA DA PÁGINA INFORMATIVA (Index)
+    // Só roda se o elemento existir na página
+    const infoGrid = document.getElementById('all-cards-grid');
+    if (infoGrid) {
+        populateInfoCards();
+    }
 
-// Reseta o jogo para a tela inicial
-function resetGameToStart() {
-    elements.modal.classList.remove('open');
-    elements.gameScreens.play.classList.remove('active');
-    elements.gameScreens.start.classList.add('active');
-    elements.cardContainer.innerHTML = '';
-}
+    // 2. LÓGICA DO JOGO (Jogo Tarot)
+    // Só roda se os elementos do jogo existirem
+    const btnStart = document.querySelector('.botaoIniciarJogoTarot');
+    const btnCloseModal = document.querySelector('.fecharModal');
+    const btnReset = document.querySelector('.botaoResetarJogo');
 
-// Popula a lista de cartas na página informativa
+    if (btnStart && btnCloseModal && btnReset) {
+        setupGameLogic();
+    }
+});
+
+// Função para popular cards na página de info
 function populateInfoCards() {
-    elements.allCardsGrid.innerHTML = '';
+    const grid = document.getElementById('all-cards-grid');
+    grid.innerHTML = '';
     
     tarotData.forEach(card => {
         const cardDiv = document.createElement('div');
@@ -97,33 +75,43 @@ function populateInfoCards() {
             <p>${card.meaning}</p>
         `;
         
-        elements.allCardsGrid.appendChild(cardDiv);
+        grid.appendChild(cardDiv);
     });
 }
 
-// --- LÓGICA DO JOGO ---
+// Configuração do Jogo
+function setupGameLogic() {
+    // Referências específicas do jogo
+    const gameElements = {
+        startScreen: document.querySelector('#telaDeInicio'),
+        playScreen: document.querySelector('#telaDeJogo'),
+        cardContainer: document.querySelector('#card-container'),
+        modal: document.querySelector('#result-modal'),
+        modalImg: document.querySelector('#modal-img'),
+        modalTitle: document.querySelector('#tituloModal'),
+        modalDesc: document.querySelector('#descricaoModal'),
+        btnStart: document.querySelector('.botaoIniciarJogoTarot'),
+        btnCloseModal: document.querySelector('.fecharModal'),
+        btnReset: document.querySelector('.botaoResetarJogo')
+    };
 
-let embaralhar = (array) => {
-    let currentIndex = array.length, randomIndex;
-    while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-    return array;
+    // Event Listeners
+    gameElements.btnStart.addEventListener("click", () => iniciarJogoTarot(gameElements));
+    gameElements.btnCloseModal.addEventListener('click', () => fecharModal(gameElements));
+    gameElements.btnReset.addEventListener("click", () => resetarJogo(gameElements));
 }
 
-let iniciarJogoTarot = () => {
-    elements.gameScreens.start.classList.remove('active');
-    elements.gameScreens.play.classList.add('active');
-    renderizarCartas();
+function iniciarJogoTarot(elements) {
+    elements.startScreen.classList.remove('active');
+    elements.playScreen.classList.add('active');
+    renderizarCartas(elements);
 }
 
-let renderizarCartas = () => {
+function renderizarCartas(elements) {
     elements.cardContainer.innerHTML = '';
     
     const shuffledDeck = embaralhar([...tarotData]);
-    const selectedCards = shuffledDeck.slice(0, 12); // Seleciona 12 cartas
+    const selectedCards = shuffledDeck.slice(0, 12); 
 
     selectedCards.forEach((card, index) => {
         const cardWrapper = document.createElement('div');
@@ -144,13 +132,13 @@ let renderizarCartas = () => {
             </div>
         `;
 
-        cardWrapper.onclick = () => selecionarCarta(cardWrapper, card, imgUrl);
+        cardWrapper.onclick = () => selecionarCarta(cardWrapper, card, imgUrl, elements);
 
         elements.cardContainer.appendChild(cardWrapper);
     });
 }
 
-let selecionarCarta = (selectedElement, cardData, imgUrl) => {
+function selecionarCarta(selectedElement, cardData, imgUrl, elements) {
     selectedElement.classList.add('flipped');
 
     const allCards = document.querySelectorAll('.card-wrapper');
@@ -161,31 +149,28 @@ let selecionarCarta = (selectedElement, cardData, imgUrl) => {
     });
 
     setTimeout(() => {
-        mostrarResultado(cardData, imgUrl);
+        mostrarResultado(cardData, imgUrl, elements);
     }, 800);
 }
 
-let mostrarResultado = (cardData, imgUrl) => {
+function mostrarResultado(cardData, imgUrl, elements) {
     elements.modalImg.src = imgUrl;
     elements.modalTitle.innerText = cardData.name;
     elements.modalDesc.innerText = cardData.meaning;
     elements.modal.classList.add('open');
 }
 
-let fecharModal = () => {
+function fecharModal(elements) {
     elements.modal.classList.remove('open');
 }
 
-let resetarJogo = () => {
+function resetarJogo(elements) {
     elements.modal.classList.remove('open');
-    renderizarCartas();
+    elements.playScreen.classList.remove('active');
+    elements.startScreen.classList.add('active');
+    elements.cardContainer.innerHTML = '';
+    
+    // Limpa estados visuais das cartas caso ainda existam no DOM
+    const allCards = document.querySelectorAll('.card-wrapper');
+    allCards.forEach(card => card.remove());
 }
-
-// --- EVENTOS E INICIALIZAÇÃO ---
-
-elements.btnStart.addEventListener("click", iniciarJogoTarot);
-elements.btnCloseModal.addEventListener('click', fecharModal);
-elements.btnReset.addEventListener("click", resetarJogo);
-
-// Inicializa a página carregando as cartas na seção informativa
-populateInfoCards();

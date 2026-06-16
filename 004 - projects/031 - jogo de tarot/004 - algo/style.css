@@ -14,6 +14,70 @@
             padding: 0;
         }
 
+        /* --- MENU ESTILOSO (Glassmorphism & Mystical) --- */
+
+        .menu {
+            position: sticky; /* Fixa o menu no topo quando rolar a página */
+            top: 0;
+            z-index: 100;    /* Garante que o menu fique por cima de outros elementos */
+            
+            /* Fundo transparente com desfoque (Efeito Vidro) */
+            background-color: rgba(26, 0, 51, 0.7); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* Para Safari */
+            
+            /* Borda dourada sutil na parte inferior */
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Sombra suave para dar profundidade */
+            
+            padding: 15px 0;
+            display: flex;
+            justify-content: center; /* Centraliza os links */
+            gap: 50px; /* Espaçamento generoso entre os itens */
+            transition: all 0.3s ease;
+        }
+
+        .menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase; /* Deixa tudo em maiúsculo para estilo */
+            letter-spacing: 1.5px; /* Espaçamento entre letras para um ar mais elegante */
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* --- EFEITO HOVER (Ao passar o mouse) --- */
+
+        /* Cria uma linha dourada que cresce de baixo */
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px var(--accent-color); /* Brilho na linha */
+        }
+
+        /* Estado Hover: Texto dourado, brilho e linha aparece */
+        .menu a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.6); /* Brilho no texto */
+        }
+
+        .menu a:hover::after {
+            width: 100%; /* A linha ocupa toda a largura do link */
+        }
+
+
+
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--bg-gradient);
@@ -86,13 +150,9 @@
         }
 
         .page {
-            display: none; /* Esconde todas as páginas por padrão */
             animation: fadeIn 0.5s ease;
         }
 
-        .page.active {
-            display: block; /* Mostra a página ativa */
-        }
 
         /* --- Estilos da Página Informativa --- */
         .info-content {
@@ -367,4 +427,17 @@
             .info-content { padding: 20px; }
             .nav-btn { padding: 10px 20px; font-size: 0.9rem; }
             .modal-card-image { width: 100px; height: 180px; }
+        }
+
+        /* --- RESPONSIVIDADE (Celulares) --- */
+        @media (max-width: 600px) {
+            .menu {
+                gap: 20px; /* Menos espaço no celular */
+                padding: 10px 0;
+            }
+            
+            .menu a {
+                font-size: 0.9rem; /* Texto um pouco menor */
+                letter-spacing: 1px;
+            }
         }
