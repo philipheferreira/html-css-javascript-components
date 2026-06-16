@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Jogo de Tarot Místico</title>
+    
+    <style>
+        /* --- Variáveis e Reset --- */
+        :root {
+            --primary-color: #6a1b9a;
+            --secondary-color: #4a148c;
+            --accent-color: #ffd700;
+            --text-color: #f3e5f5;
+            --card-width: 120px;
+            --card-height: 200px;
+            --bg-gradient: radial-gradient(circle at center, #4a148c 0%, #1a0033 100%);
+            --modal-bg: rgba(26, 0, 51, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none; /* Impede seleção de texto para sensação de app */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Fundo de Estrelas (Canvas) --- */
+        #star-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            animation: fadeIn 1.5s ease-in;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            margin-bottom: 0.5rem;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 2px;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* --- Main Game Area --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* Telas (Start, Game) */
+        .screen {
+            display: none; /* Oculto por padrão */
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .screen.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* --- Botões --- */
+        .btn-magic {
+            background: linear-gradient(45deg, var(--accent-color), #ffca28);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-magic:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+
+        .btn-magic:active {
+            transform: scale(0.95);
+        }
+
+        /* --- Área das Cartas --- */
+        #card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; 
+            gap: 15px;
+            perspective: 1000px;
+            min-height: 300px;
+            width: 100%;
+        }
+
+        /* Estrutura da Carta */
+        .card-wrapper {
+            width: var(--card-width);
+            height: var(--card-height);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, margin 0.3s ease;
+        }
+
+        .card-wrapper:hover {
+            transform: translateY(-15px); 
+            z-index: 10;
+        }
+
+        /* O container interno que faz o flip */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Classe para virar a carta */
+        .card-wrapper.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Estado de escolha: Outras cartas ficam escuras */
+        .card-wrapper.dimmed {
+            opacity: 0.3;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+
+        /* Frente e Verso */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--accent-color);
+            overflow: hidden;
+        }
+
+        /* Verso (Padrão Místico) */
+        .card-back {
+            background-color: #2a0a4a;
+            background-image: 
+                radial-gradient(circle, var(--accent-color) 1.5px, transparent 1.5px),
+                repeating-linear-gradient(45deg, rgba(255,215,0,0.05) 0, rgba(255,215,0,0.05) 1px, transparent 0, transparent 50%);
+            background-size: 20px 20px, 20px 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .card-back::after {
+            content: '✦';
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
+
+        /* Frente (Imagem) */
+        .card-front {
+            background-color: #fff;
+            color: #333;
+            transform: rotateY(180deg);
+            flex-direction: column;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+        }
+
+        .card-front span {
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            color: var(--secondary-color);
+            padding: 0 5px;
+            text-transform: uppercase;
+        }
+
+        /* --- Modal de Resultado --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--modal-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #4a148c, #7b1fa2);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 50px rgba(106, 27, 154, 0.8);
+            transform: scale(0.8) translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-card-image {
+            width: 150px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-title {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-family: serif;
+            font-weight: bold;
+        }
+
+        .modal-meaning {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #fff;
+            min-height: 60px;
+        }
+
+        /* --- Animações --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes dealCard {
+            from { opacity: 0; transform: translateY(-50px) scale(0.5); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* --- Responsividade para Mobile --- */
+        @media (max-width: 600px) {
+            :root {
+                --card-width: 90px;
+                --card-height: 150px;
+            }
+            
+            h1 { font-size: 2rem; }
+            
+            #card-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                padding-bottom: 20px;
+            }
+
+            .card-wrapper:hover {
+                transform: none; /* Melhora UX no touch */
+            }
+            
+            .modal-content {
+                width: 90%;
+                padding: 1.5rem;
+            }
+            
+            .modal-card-image {
+                width: 100px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas para fundo estrelado -->
+    <canvas id="star-canvas"></canvas>
+
+    <header>
+        <h1>Tarot Místico</h1>
+        <p class="subtitle">Concentre-se em sua pergunta e escolha uma carta.</p>
+    </header>
+
+    <main>
+        <!-- Tela Inicial -->
+        <section id="telaDeInicio" class="screen active">
+            <div style="text-align: center; max-width: 600px;">
+                <p style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                    O universo tem uma mensagem para você hoje.<br>
+                    Deixe sua intuição guiar sua mão. O destino aguarda sua escolha.
+                </p>
+                <button class="btn-magic botaoIniciarJogoTarot">Revelar Seu Destino</button>
+            </div>
+        </section>
+
+        <!-- Tela do Jogo (Seleção) -->
+        <section id="telaDeJogo" class="screen">
+            <p style="margin-bottom: 20px; color: var(--accent-color); font-size: 0.9rem; text-shadow: 0 0 5px rgba(255,215,0,0.5);">Sinta a energia e clique na carta que chamar sua atenção...</p>
+            <div id="card-container">
+                <!-- As cartas serão geradas via JS aqui -->
+            </div>
+            <button class="btn-magic botaoResetarJogo" style="margin-top: 40px; font-size: 0.9rem; padding: 10px 20px; background: linear-gradient(45deg, #9c27b0, #6a1b9a); color: #fff;">Embaralhar Novamente</button>
+        </section>
+    </main>
+
+    <!-- Modal de Resultado -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="modal-content">
+            <img src="" alt="Carta Escolhida" id="modal-img" class="modal-card-image">
+            <h2 id="tituloModal" class="modal-title">Nome da Carta</h2>
+            <p id="descricaoModal" class="modal-meaning">Descrição do significado...</p>
+            <button class="btn-magic fecharModal" style="margin-top: 10px;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Lógica do Jogo de Tarô
+         */
+
+        // DADOS DAS CARTAS
+        // NOTA: Como não tenho acesso aos seus arquivos locais, usei Picsum Photos 
+        // com o nome da carta como "seed" para gerar imagens consistentes.
+        // Para usar suas imagens locais, basta voltar o caminho para "img/0-oLouco.webp", etc.
+        const tarotData = [
+            { id: 0, name: "O Louco", meaning: "Novos começos, aventuras e um salto de fé.", imagem: "https://picsum.photos/seed/oLouco/200/300" },
+            { id: 1, name: "O Mago", meaning: "Manifestação, poder criativo e habilidade.", imagem: "https://picsum.photos/seed/oMago/200/300" },
+            { id: 2, name: "A Sacerdotisa", meaning: "Intuição, mistério e sabedoria interior.", imagem: "https://picsum.photos/seed/sacerdotisa/200/300" },
+            { id: 3, name: "A Imperatriz", meaning: "Fertilidade, criatividade e abundância.", imagem: "https://picsum.photos/seed/imperatriz/200/300" },
+            { id: 4, name: "O Imperador", meaning: "Estrutura, autoridade e estabilidade.", imagem: "https://picsum.photos/seed/imperador/200/300" },
+            { id: 5, name: "O Hierofante", meaning: "Tradição, conformidade e moralidade.", imagem: "https://picsum.photos/seed/hierofante/200/300" },
+            { id: 6, name: "Os Enamorados", meaning: "Amor, harmonia e escolhas de valor.", imagem: "https://picsum.photos/seed/enamorados/200/300" },
+            { id: 7, name: "O Carro", meaning: "Controle, vontade e vitória.", imagem: "https://picsum.photos/seed/oCarro/200/300" },
+            { id: 8, name: "A Força", meaning: "Coragem, persuasão e compaixão.", imagem: "https://picsum.photos/seed/aForca/200/300" },
+            { id: 9, name: "O Eremita", meaning: "Busca da alma e introspecção.", imagem: "https://picsum.photos/seed/oEremita/200/300" },
+            { id: 10, name: "Roda da Fortuna", meaning: "Ciclos de vida, destino e viradas.", imagem: "https://picsum.photos/seed/roda/200/300" },
+            { id: 11, name: "A Justiça", meaning: "Justiça, imparcialidade e verdade.", imagem: "https://picsum.photos/seed/justica/200/300" },
+            { id: 12, name: "O Enforcado", meaning: "Pausa, rendição e novas perspectivas.", imagem: "https://picsum.photos/seed/enforcado/200/300" },
+            { id: 13, name: "A Morte", meaning: "Fim de um ciclo e transformação.", imagem: "https://picsum.photos/seed/aMorte/200/300" },
+            { id: 14, name: "A Temperança", meaning: "Equilíbrio, moderação e propósito.", imagem: "https://picsum.photos/seed/temperanca/200/300" },
+            { id: 15, name: "O Diabo", meaning: "Vício, materialismo e apego.", imagem: "https://picsum.photos/seed/oDiabo/200/300" },
+            { id: 16, name: "A Torre", meaning: "Mudança repentina e revelação.", imagem: "https://picsum.photos/seed/aTorre/200/300" },
+            { id: 17, name: "A Estrela", meaning: "Esperança, fé e espiritualidade.", imagem: "https://picsum.photos/seed/aEstrela/200/300" },
+            { id: 18, name: "A Lua", meaning: "Ilusão, medo e o inconsciente.", imagem: "https://picsum.photos/seed/aLua/200/300" },
+            { id: 19, name: "O Sol", meaning: "Positividade, sucesso e vitalidade.", imagem: "https://picsum.photos/seed/oSol/200/300" },
+            { id: 20, name: "O Julgamento", meaning: "Renascimento, chamado interior e perdão.", imagem: "https://picsum.photos/seed/julgamento/200/300" },
+            { id: 21, name: "O Mundo", meaning: "Conclusão, integração e realização.", imagem: "https://picsum.photos/seed/oMundo/200/300" }
+        ];
+
+        // Referências do DOM
+        const elements = {
+            startScreen: document.getElementById('telaDeInicio'),
+            gameScreen: document.getElementById('telaDeJogo'),
+            cardContainer: document.getElementById('card-container'),
+            modal: document.getElementById('result-modal'),
+            modalImg: document.getElementById('modal-img'),
+            modalTitle: document.getElementById('tituloModal'),
+            modalDesc: document.getElementById('descricaoModal'),
+            btnStart: document.querySelector('.botaoIniciarJogoTarot'),
+            btnCloseModal: document.querySelector('.fecharModal'),
+            btnReset: document.querySelector('.botaoResetarJogo')
+        };
+
+        // Função de Embaralhar (Algoritmo Fisher-Yates)
+        let embaralhar = (array) => {
+            let currentIndex = array.length, randomIndex;
+            // Cria uma cópia para não modificar o original permanentemente
+            let newArray = [...array]; 
+            
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+            }
+            return newArray;
+        }
+
+        // Função Principal: Iniciar o Jogo
+        let iniciarJogoTarot = () => {
+            // Troca de telas usando apenas classes (CSS controla o display)
+            elements.startScreen.classList.remove('active');
+            elements.gameScreen.classList.add('active');
+            
+            renderizarCartas();
+        }
+
+        // Função: Criar as cartas na tela
+        let renderizarCartas = () => {
+            elements.cardContainer.innerHTML = '';
+            
+            const shuffledDeck = embaralhar(tarotData);
+            // Seleciona 12 cartas para o jogo
+            const selectedCards = shuffledDeck.slice(0, 12);
+
+            selectedCards.forEach((card, index) => {
+                const cardWrapper = document.createElement('div');
+                cardWrapper.className = 'card-wrapper';
+                
+                // Adiciona atraso na animação de entrada para efeito de "embaralhar"
+                cardWrapper.style.animation = `dealCard 0.5s ease forwards ${index * 0.05}s`;
+                cardWrapper.style.opacity = '0'; // Começa invisível para a animação funcionar
+
+                const imgUrl = card.imagem;
+                
+                cardWrapper.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="${imgUrl}" alt="${card.name}" loading="lazy">
+                            <span>${card.name}</span>
+                        </div>
+                        <div class="card-back"></div>
+                    </div>
+                `;
+
+                cardWrapper.onclick = () => selecionarCarta(cardWrapper, card, imgUrl);
+
+                elements.cardContainer.appendChild(cardWrapper);
+            });
+        }
+
+        // Função: Ao clicar em uma carta
+        let selecionarCarta = (selectedElement, cardData, imgUrl) => {
+            // Evita cliques duplos
+            if(selectedElement.classList.contains('flipped')) return;
+
+            selectedElement.classList.add('flipped');
+
+            // Escurecer as outras cartas
+            const allCards = document.querySelectorAll('.card-wrapper');
+            allCards.forEach(card => {
+                if (card !== selectedElement) {
+                    card.classList.add('dimmed');
+                }
+            });
+
+            // Pequeno delay para o usuário ver a carta virar antes do modal
+            setTimeout(() => {
+                mostrarResultado(cardData, imgUrl);
+            }, 800);
+        }
+
+        // Função: Mostrar o modal com o resultado
+        let mostrarResultado = (cardData, imgUrl) => {
+            elements.modalImg.src = imgUrl;
+            elements.modalTitle.innerText = cardData.name;
+            elements.modalDesc.innerText = cardData.meaning;
+            elements.modal.classList.add('open');
+        }
+
+        // Fechar Modal
+        let fecharModal = () => {
+            elements.modal.classList.remove('open');
+        }
+
+        // Resetar Jogo (Voltar ao estado inicial de seleção)
+        let resetarJogo = () => {
+            // Se o modal estiver aberto, fecha
+            elements.modal.classList.remove('open');
+            
+            // Re-renderiza as cartas
+            // O fade out pode ser adicionado aqui, mas o re-render instantâneo é satisfatório
+            renderizarCartas();
+        }
+
+        // --- Inicialização dos Eventos ---
+        elements.btnStart.addEventListener("click", iniciarJogoTarot);
+        elements.btnCloseModal.addEventListener('click', fecharModal);
+        elements.btnReset.addEventListener("click", resetarJogo);
+
+        // Efeito visual de estrelas no fundo
+        const initStarBackground = () => {
+            const canvas = document.getElementById('star-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height, stars = [];
+
+            const resize = () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                createStars();
+            };
+
+            const createStars = () => {
+                stars = [];
+                const numStars = Math.floor((width * height) / 4000); // Densidade de estrelas
+                for (let i = 0; i < numStars; i++) {
+                    stars.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        radius: Math.random() * 1.5,
+                        alpha: Math.random(),
+                        speed: Math.random() * 0.05 + 0.01
+                    });
+                }
+            };
+
+            const animate = () => {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = "white";
+                
+                stars.forEach(star => {
+                    ctx.globalAlpha = star.alpha;
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Movimento suave
+                    star.alpha += star.speed;
+                    if (star.alpha <= 0 || star.alpha >= 1) {
+                        star.speed = -star.speed;
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            };
+
+            window.addEventListener('resize', resize);
+            resize();
+            animate();
+        };
+
+        // Iniciar o fundo estrelado
+        initStarBackground();
+
+    </script>
+</body>
+</html>
