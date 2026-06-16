@@ -28,6 +28,9 @@ const tarotData = [
     { id: 21, name: "O Mundo", meaning: "Conclusão, integração e realização.", imagem: "img/21-oMundo.webp" }
 ];
 
+let botaoFecharModal = document.querySelector('.fecharModal'); // Supondo que exista uma classe assim no HTML
+let botaoResetarJogo = document.querySelector(".botaoResetarJogo");
+
 // Referências do DOM (Elementos HTML)
 const elements = {
     startScreen: document.querySelector('#telaDeInicio'),
@@ -41,7 +44,7 @@ const elements = {
 };
 
 // Função de Embaralhar (Lógica pura)
-function embaralhar(array) {
+let embaralhar = (array) => {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -52,7 +55,7 @@ function embaralhar(array) {
 }
 
 // Função Principal: Iniciar o Jogo
-function iniciarJogoTarot() {
+let iniciarJogoTarot = () => {
     // Troca de telas
     if(elements.startScreen) elements.startScreen.classList.remove('active'); // Removido o .remove('active') incorreto
     if(elements.startScreen) elements.startScreen.style.display = 'none'; // Ou remova a classe que mostra
@@ -63,7 +66,7 @@ function iniciarJogoTarot() {
 }
 
 // Função: Criar as cartas na tela
-function renderizarCartas() {
+let renderizarCartas = () => {
     elements.cardContainer.innerHTML = '';
     
     const shuffledDeck = embaralhar([...tarotData]);
@@ -97,7 +100,7 @@ function renderizarCartas() {
 }
 
 // Função: Ao clicar em uma carta
-function selecionarCarta(selectedElement, cardData, imgUrl) {
+let selecionarCarta = (selectedElement, cardData, imgUrl) => {
     selectedElement.classList.add('flipped');
 
     // Escurecer as outras cartas
@@ -114,26 +117,25 @@ function selecionarCarta(selectedElement, cardData, imgUrl) {
 }
 
 // Função: Mostrar o modal com o resultado
-function mostrarResultado(cardData, imgUrl) {
+let mostrarResultado = (cardData, imgUrl) => {
     elements.modalImg.src = imgUrl;
     elements.modalTitle.innerText = cardData.name;
     elements.modalDesc.innerText = cardData.meaning;
     elements.modal.classList.add('open');
 }
 
-// Função: Fechar o modal (adicionei isso para completar o ciclo)
-function fecharModal() {
+let fecharModal = () => {
     elements.modal.classList.remove('open');
-    // Opcional: Resetar o jogo ou permitir escolher outra carta
-    // const allCards = document.querySelectorAll('.card-wrapper');
-    // allCards.forEach(c => { c.classList.remove('dimmed', 'flipped'); });
+}
+
+let resetarJogo = () => {
+    elements.modal.classList.remove('open');
+    renderizarCartas();
 }
 
 // Inicialização dos Eventos
 elements.btnStart.addEventListener("click", iniciarJogoTarot);
 
-// Se houver um botão de fechar no modal, adicione o evento:
-const btnCloseModal = document.querySelector('.close-modal'); // Supondo que exista uma classe assim no HTML
-if(btnCloseModal) {
-    btnCloseModal.addEventListener('click', fecharModal);
-}
+botaoFecharModal.addEventListener('click', fecharModal);
+
+botaoResetarJogo.addEventListener("click", resetarJogo);
