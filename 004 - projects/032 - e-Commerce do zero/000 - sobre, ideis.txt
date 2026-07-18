@@ -1,0 +1,107 @@
+1. Dimensão das Funcionalidades (O escopo)
+Antes de codar, liste o que o sistema precisa fazer. Um e-commerce básico possui:
+
+Catálogo: Listar produtos, buscar por nome, filtrar por categoria/preço.
+Produto Único: Ver detalhes, selecionar tamanho/cor, ver estoque.
+Carrinho: Adicionar item, remover item, alterar quantidade, calcular subtotal/frete.
+Usuário: Cadastrar, logar, recuperar senha, manter endereços.
+Checkout: Escolher endereço de entrega, escolher método de pagamento, finalizar compra.
+Pedidos: Ver histórico de pedidos, ver detalhes de um pedido específico.
+
+
+2. Modelagem de Páginas (Rotas)
+Se você for fazer uma Single Page Application (SPA - como React, Vue ou Angular) ou 
+até mesmo com JavaScript puro usando o History API, você precisará das seguintes rotas 
+(páginas):
+
+Rota 			Página 			Descrição
+/			Home			Banner, produtos em destaque, categorias.
+/produtos		Listagem (Catalog)	Grid de produtos com barra de filtros.
+/produtos/:id		Detalhes do Produto	Imagens grandes, descrição, botão de adicionar ao carrinho.
+/carrinho		Carrinho		Lista dos itens escolhidos, resumo de valores, botão de ir para checkout.
+/checkout		Finalização		Formulário de endereço e pagamento.
+/pedido-confirmado/:id	Sucesso			Tela de "Compra realizada com sucesso".
+/login			Login			Formulário de entrada.
+/conta			Minha Conta		Dados do usuário e histórico de pedidos.
+
+3. Funções JavaScript (O Motor)
+Aqui está a "espinha dorsal" do seu código JS. Você deve agrupar suas funções em módulos/pastas lógicas.
+
+A. Módulo de Estado (State Management)
+Você precisa de um lugar central para guardar os dados enquanto o usuário navega.
+
+javascript
+
+const state = {
+  usuarioLogado: null,
+  produtosNoCarrinho: [], // Array de objetos: { id, nome, preco, quantidade, variacao }
+  listaDeDesejos: [],
+  filtrosAtivos: { categoria: '', precoMax: 0 }
+};
+
+B. Módulo de Produtos (Products)
+
+fetchProdutos(parametros) - Busca na API ou array local.
+filtrarPorCategoria(categoria) - Atualiza o state e re-renderiza a tela.
+buscarProdutos(termo) - Filtra por texto digitado.
+calcularFrete(cep) - Simulação de frete (integração com API dos Correios, por exemplo).
+
+C. Módulo de Carrinho (Cart) - O mais complexo no frontend
+adicionarAoCarrinho(produto, quantidade, variacao) -> Verifica estoque antes de adicionar.
+removerDoCarrinho(itemId) -> Atualiza o state.
+atualizarQuantidade(itemId, novaQuantidade) -> Se for 0, pode chamar a função de remover.
+calcularTotalCarrinho() -> Retorna a soma de (preço * quantidade) de todos os itens.
+limparCarrinho() -> Usado após finalizar a compra.
+
+D. Módulo de Usuário (Auth)
+fazerLogin(email, senha) -> Valida e salva token no localStorage.
+fazerLogout() -> Limpa token e redireciona para Home.
+buscarDadosPerfil() -> Puxa endereços cadastrados.
+
+E. Módulo de Checkout (Order)
+validarCarrinho() -> Verifica se há itens e se o estoque ainda é válido.
+processarPagamento(dadosDoCartao) -> Integração com Stripe/PagSeguro (cuidado com segurança aqui).
+criarPedido(dadosDeEntrega, dadosDePagamento) -> Envia tudo para o backend.
+
+
+4. Como linkar tudo (O Fluxo)
+O segredo de um e-commerce em JS é o Data Binding (ligar o Estado à Interface). Quando uma função altera o state, a página deve atualizar automaticamente.
+
+Exemplo prático do fluxo de "Adicionar ao Carrinho":
+
+1.Ação: O usuário clica no botão "Comprar" na página /produtos/12.
+2.Evento: O JS captura o clique (addEventListener('click', ...)).
+3.Validação: A função adicionarAoCarrinho() verifica se a cor/tamanho foi escolhida.
+4.Atualização de Estado: O item entra no array state.produtosNoCarrinho.
+5.Renderização: Uma função genérica como renderizarCarrinhoNoHeader() é disparada. Ela lê o state e muda o ícone do carrinho de "0" para "1".
+6.Feedback: Um "Toast" (aquela notificação de "Item adicionado") aparece na tela.
+7.Persistência: Você salva o state.produtosNoCarrinho no localStorage (usando JSON.stringify), para que se o usuário recarregar a página, os itens continuem lá.
+
+
+5. Dica de Arquitetura: Como estruturar as pastas
+Se você for usar JS moderno (ES Modules), não jogue tudo 
+no index.js. Use algo parecido com isso:
+
+text
+
+/src
+  /components     (Botões, Cards de Produto, Header, Footer)
+  /pages          (Home.js, Carrinho.js, Checkout.js)
+  /services       (Regras de negócio: carrinhoService.js, auth.js)
+  /api            (Funções que fazem fetch/axios para o backend)
+  /utils          (Formatadores de moeda, validadores de CPF/CEP)
+  /styles         (CSS)
+  main.js         (Ponto de entrada, inicializa o roteador)
+
+Resumo para começar hoje:
+Se você quer começar a modelar agora, faça o seguinte:
+
+1.Crie um arquivo dados.js com um array de 5 produtos falsos.
+2.Crie um index.html com uma div <div id="app"></div>.
+3.Crie um app.js que pega esses produtos, dá um forEach neles e cria cards em HTML usando document.createElement.
+4.Crie um botão "Adicionar" nesses cards que chama uma função que simplesmente dá um console.log(product).
+
+
+Depois de funcionar isso, vá subindo o nível: coloque o carrinho em uma 
+variável global, depois no localStorage, depois crie a página de carrinho, 
+e por aí vai. Não tente fazer o Pinterest de uma vez, comece pelo basics!
