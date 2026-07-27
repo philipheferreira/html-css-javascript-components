@@ -1,0 +1,19 @@
+O que foi implementado
+Tela de login que aparece antes do conteudo, com visual glassmorphism integrado ao tema quente do site:
+
+Funcionalidade			Detalhe
+Login				Email + senha, com validacao completa
+Registro			Nome, email, senha, confirmacao, termos de uso
+Recuperacao de senha		Reseta para 123456 (simulado, sem backend)
+Validacao em tempo real		Ao sair do campo (blur) e ao digitar a confirmacao
+Barra de forca da senha		Fraca / Razoavel / Boa / Forte com cores
+Mostrar/ocultar senha		Icone do olho em cada campo de senha
+"Lembrar de mim"		localStorage para manter sessao, sessionStorage se nao marcado
+Sessao persistente		Se marcou "lembrar", recarregar a pagina pula o login
+Usuario admin padrao		admin@saborarte.com / admin123 (criado automaticamente)
+Loading nos botoes		Spinner ao submeter, desabilita o botao
+Mensagens inline		Erros em vermelho abaixo de cada campo, sem alert()
+Mensagem de feedback		Sucesso/erro no formulario com cores distintas
+Transicao suave			Tela de login sai com fade-out, site entra com fade-in
+Logout				Link "Sair" no navbar, limpa sessao e recarrega
+Nome no navbar			Primeiro nome do usuario logado aparece no menu

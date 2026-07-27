@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="footerStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Receitas | Sabor & Arte</title>
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- TELA DE LOGIN / REGISTRO       -->
+    <!-- ============================== -->
+    <div id="authScreen" class="auth-screen">
+        <div class="auth-bg-pattern"></div>
+        <div class="auth-container">
+            <div class="auth-branding">
+                <div class="auth-logo"><i class="fas fa-utensils"></i></div>
+                <h1>Sabor & Arte</h1>
+                <p>Receitas selecionadas com carinho</p>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Entrar</button>
+                <button class="auth-tab" data-tab="register">Criar Conta</button>
+            </div>
+            <form id="loginForm" class="auth-form active" novalidate>
+                <div class="auth-field">
+                    <label for="loginEmail">E-mail</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="seu@email.com" required autocomplete="email">
+                    </div>
+                    <span class="field-error" id="loginEmailError"></span>
+                </div>
+                <div class="auth-field">
+                    <label for="loginPassword">Senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Sua senha" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha" data-target="loginPassword"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="field-error" id="loginPasswordError"></span>
+                </div>
+                <div class="auth-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkmark"></span>
+                        Lembrar de mim
+                    </label>
+                    <a href="#" class="forgot-link" id="forgotLink">Esqueci a senha</a>
+                </div>
+                <button type="submit" class="auth-submit" id="loginSubmit">
+                    <span class="btn-text">Entrar</span>
+                    <span class="btn-loader"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+                <div class="auth-message" id="loginMessage"></div>
+            </form>
+            <form id="registerForm" class="auth-form" novalidate>
+                <div class="auth-field">
+                    <label for="regName">Nome completo</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regName" placeholder="Seu nome" required autocomplete="name" minlength="3">
+                    </div>
+                    <span class="field-error" id="regNameError"></span>
+                </div>
+                <div class="auth-field">
+                    <label for="regEmail">E-mail</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" placeholder="seu@email.com" required autocomplete="email">
+                    </div>
+                    <span class="field-error" id="regEmailError"></span>
+                </div>
+                <div class="auth-field">
+                    <label for="regPassword">Senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" placeholder="Min. 6 caracteres" required autocomplete="new-password" minlength="6">
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha" data-target="regPassword"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="field-error" id="regPasswordError"></span>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+                        <span class="strength-text" id="strengthText"></span>
+                    </div>
+                </div>
+                <div class="auth-field">
+                    <label for="regConfirm">Confirmar senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regConfirm" placeholder="Repita a senha" required autocomplete="new-password">
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha" data-target="regConfirm"><i class="fas fa-eye"></i></button>
+                    </div>
+                    <span class="field-error" id="regConfirmError"></span>
+                </div>
+                <label class="checkbox-wrapper auth-terms">
+                    <input type="checkbox" id="regTerms" required>
+                    <span class="checkmark"></span>
+                    <span>Concordo com os <a href="#" onclick="event.preventDefault()">termos de uso</a></span>
+                </label>
+                <span class="field-error" id="regTermsError" style="margin-top: -8px; margin-bottom: 10px;"></span>
+                <button type="submit" class="auth-submit" id="registerSubmit">
+                    <span class="btn-text">Criar Conta</span>
+                    <span class="btn-loader"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+                <div class="auth-message" id="registerMessage"></div>
+            </form>
+            <form id="forgotForm" class="auth-form" novalidate>
+                <div class="forgot-header">
+                    <button type="button" class="back-to-login" id="backToLogin" aria-label="Voltar ao login"><i class="fas fa-arrow-left"></i></button>
+                    <h3>Recuperar senha</h3>
+                    <p>Digite seu e-mail cadastrado para redefinir a senha.</p>
+                </div>
+                <div class="auth-field">
+                    <label for="forgotEmail">E-mail cadastrado</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="forgotEmail" placeholder="seu@email.com" required autocomplete="email">
+                    </div>
+                    <span class="field-error" id="forgotEmailError"></span>
+                </div>
+                <button type="submit" class="auth-submit" id="forgotSubmit">
+                    <span class="btn-text">Enviar link de recuperacao</span>
+                    <span class="btn-loader"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+                <div class="auth-message" id="forgotMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================== -->
+    <!-- CONTEUDO DO SITE (protegido)   -->
+    <!-- ============================== -->
+    <div id="siteContent" class="site-content" style="display: none;">
+
+        <div class="header">
+          <h1><i class="fas fa-utensils"></i> Sabor & Arte</h1>
+          <p>Receitas selecionadas com carinho por Philiphe Ferreira</p>
+        </div>
+
+        <div class="navbar">
+          <a href="../index.html"><i class="fas fa-home"></i> Pagina Principal</a>
+          <a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a>
+          <a href="#"><i class="fas fa-book-open"></i> Receitas</a>
+          <a href="#" class="right" id="navUserMenu"><i class="fas fa-user-circle"></i> <span id="navUserName">Usuario</span></a>
+          <a href="#" class="right" id="navLogout" style="margin-left: 4px;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </div>
+
+        <div class="filters-bar">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="brasileira">Brasileira</button>
+            <button class="filter-btn" data-filter="italiana">Italiana</button>
+            <button class="filter-btn" data-filter="japonesa">Japonesa</button>
+            <button class="filter-btn" data-filter="sobremesa">Sobremesas</button>
+            <button class="filter-btn" data-filter="rapida">Rapidas</button>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Buscar receita por nome ou ingrediente...">
+            <span id="resultCount" class="result-count"></span>
+        </div>
+
+        <div class="recipes-grid">
+
+            <!-- Card 0: Feijoada -->
+            <article class="recipe-card" data-category="brasileira" data-recipe="0">
+                <div class="card-image-wrapper">
+                    <img src="https://lirp.cdn-website.com/33406c6e/dms3rep/multi/opt/feijoada-1920w.jpg" alt="Prato de feijoada completa">
+                    <span class="recipe-badge brasileira">Brasileira</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 2h 30min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 8 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Feijoada Completa</h3>
+                    <p>O prato mais iconico do Brasil. Feijao preto cozido lentamente com diversas carnes defumadas, servido com arroz branco, couve refogada, farofa, laranja fatiada e caipirinha.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 1: Coxinha -->
+            <article class="recipe-card" data-category="brasileira" data-recipe="1">
+                <div class="card-image-wrapper">
+                    <img src="https://guiadacozinha.com.br/wp-content/uploads/2018/08/coxinhadefrangocremosa.webp" alt="Coxinhas douradas">
+                    <span class="recipe-badge brasileira">Brasileira</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 1h</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 20 unidades</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Coxinha de Frango</h3>
+                    <p>O salgadinho mais amado do Brasil. Massa de batata com recheio generoso de frango desfiado temperado com requeijao, empanada e frita ate ficar dourada e crocante.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: Brigadeiro -->
+            <article class="recipe-card" data-category="brasileira" data-recipe="2">
+                <div class="card-image-wrapper">
+                    <img src="https://www.somosfriends.com/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fcdn.somosfriends.com%2Fmedium_melhor_brigadeiro_gourmet_do_mundo_679ad3976c.jpg&w=750&q=75" alt="Brigadeiros gourmet">
+                    <span class="recipe-badge sobremesa">Sobremesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 30min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 30 unidades</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Brigadeiro Gourmet</h3>
+                    <p>O doce que e a cara do Brasil. Leite condensado, cacau em po de qualidade e manteiga, cozidos no ponto certo e enrolados com chocolate granulado.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3: Carbonara -->
+            <article class="recipe-card" data-category="italiana" data-recipe="3">
+                <div class="card-image-wrapper">
+                    <img src="https://s2-receitas.glbimg.com/n18JLJvQ-hlXaYzgabkZQ1haU54=/0x0:1000x667/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2020/M/0/fJpbMQTfutNTLQs72IjQ/carbonara.jpg" alt="Pasta carbonara cremosa">
+                    <span class="recipe-badge italiana">Italiana</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 25min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 4 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Pasta alla Carbonara</h3>
+                    <p>A verdadeira carbonara romana: spaghetti al dente com guancio crocante, gema de ovo, pecorino romano e pimenta-preta. Sem creme de leite, como manda a tradicao.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4: Lasanha -->
+            <article class="recipe-card" data-category="italiana" data-recipe="4">
+                <div class="card-image-wrapper">
+                    <img src="https://guiadacozinha.com.br/wp-content/uploads/2014/01/lasanha-bolonhesa-na-pressao.jpg" alt="Lasanha de bolonhesa">
+                    <span class="recipe-badge italiana">Italiana</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 1h 30min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 10 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Lasanha a Bolonhesa</h3>
+                    <p>Camadas generosas de massa fresca, ragu de carne bovina cozido lentamente com vinho tinto, molho bechamel aveludado e queijo gratinado.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5: Pizza -->
+            <article class="recipe-card" data-category="italiana" data-recipe="5">
+                <div class="card-image-wrapper">
+                    <img src="https://blog.livup.com.br/wp-content/uploads/2021/06/pizza-napolitana-800x534.jpg" alt="Pizza margherita">
+                    <span class="recipe-badge italiana">Italiana</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 45min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 4 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Pizza Margherita Napoletana</h3>
+                    <p>Massa fermentada por 24 horas, molho de tomate San Marzano, mozzarella di bufala fresca e manjericao. Assada em forno bem quente.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6: Sushi -->
+            <article class="recipe-card" data-category="japonesa" data-recipe="6">
+                <div class="card-image-wrapper">
+                    <img src="https://www.estadao.com.br/resizer/v2/XPB7RWNISNLUFK6ZMK547QQDAM.jpg?quality=80&auth=5722928bf0f33510ae575dc252af2fabb4b688e2ac5ed6a3b40671df3a0359a5&width=1075&height=527&focal=379,229" alt="Sushi e sashimi">
+                    <span class="recipe-badge japonesa">Japonesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 1h</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 4 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Sushi e Sashimi</h3>
+                    <p>A arte da culinaria japonesa em cada pedaco. Arroz de sushi temperado com vinagre, envelopando peixes frescos como salmao, atum e robalo.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 7: Ramen -->
+            <article class="recipe-card" data-category="japonesa" data-recipe="7">
+                <div class="card-image-wrapper">
+                    <img src="https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_728,h_546/k%2FPhoto%2FRecipes%2F2024-03-tonkotsu-ramen%2Ftonkotsu-ramen-195" alt="Tigela de ramen tonkotsu">
+                    <span class="recipe-badge japonesa">Japonesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 4h</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 4 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Ramen Tonkotsu</h3>
+                    <p>Caldo rico e cremoso de ossos de porco cozidos por horas, noodles finos e al dente, chashu, ovo marinado, cebolinha, nori e brotos de bambu.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 8: Temaki -->
+            <article class="recipe-card" data-category="japonesa" data-recipe="8">
+                <div class="card-image-wrapper">
+                    <img src="https://static.itdg.com.br/images/640-400/774375583e3775acf3328a7c7a0a0470/303152-original.jpg" alt="Temaki de salmao">
+                    <span class="recipe-badge japonesa">Japonesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 30min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 4 unidades</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Temaki de Salmao</h3>
+                    <p>O cone de sushi feito na hora: nori crocante envolvendo arroz perfeito, salmao fresco em fatias, cream cheese, pepino e gergelim.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 9: Tiramisu -->
+            <article class="recipe-card" data-category="sobremesa" data-recipe="9">
+                <div class="card-image-wrapper">
+                    <img src="https://f.i.uol.com.br/livraria/capas/images/11074183.jpeg" alt="Tiramisu classico">
+                    <span class="recipe-badge sobremesa">Sobremesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 40min + geladeira</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 8 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Tiramisu Classico</h3>
+                    <p>A sobremesa italiana que conquistou o mundo. Camadas de biscoitos savoiardi molhados em cafe expresso, creme de mascarpone com gemas batidas e cacau po.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 10: Pudim -->
+            <article class="recipe-card" data-category="sobremesa" data-recipe="10">
+                <div class="card-image-wrapper">
+                    <img src="https://s2-receitas.glbimg.com/115DQucrWsNOUxf_ncmMUisprZI=/0x0:1080x819/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2020/w/a/cB6VP5QoOByFKEuCleIQ/jonreceitas-109758346-416338779271002-5424220606850697813-n.jpg" alt="Pudim de leite condensado">
+                    <span class="recipe-badge sobremesa">Sobremesa</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 1h</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 10 porcoes</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Pudim de Leite Condensado</h3>
+                    <p>O rei das sobremesas brasileiras. Calda de caramelo dourada, textura sedosa de ovos batidos com leite condensado e leite integral.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 11: Omelete -->
+            <article class="recipe-card" data-category="rapida" data-recipe="11">
+                <div class="card-image-wrapper">
+                    <img src="https://minhasreceitinhas.com.br/wp-content/uploads/2023/07/omelete-queijo-ervas-2.jpg" alt="Omelete recheada">
+                    <span class="recipe-badge rapida">Rapida</span>
+                    <div class="card-overlay">
+                        <span class="recipe-time"><i class="fas fa-clock"></i> 10min</span>
+                        <span class="recipe-servings"><i class="fas fa-users"></i> 1 porcao</span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>Omelete de Queijo e Ervas</h3>
+                    <p>Perfeita para o cafe da manha ou jantar rapido. Ovos batidos com sal e pimenta, recheada com queijo muccarela derretido, tomate em cubos e ervas frescas.</p>
+                    <div class="card-footer">
+                        <div class="difficulty"><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+                        <button class="fav-btn" aria-label="Favoritar receita"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>Nenhuma receita encontrada</h3>
+            <p>Tente buscar por outro nome ou ingrediente.</p>
+        </div>
+
+        <!-- INICIO DO FOOTER -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="rowFooter">
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Sobre Nos</h6>
+                        <p class="text-justify">Somos apaixonados por culinaria e dedicados a compartilhar as melhores receitas, das mais simples as mais elaboradas. Nosso compromisso e com o sabor e a tradicao.</p>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Categorias</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Receitas Brasileiras</a></li>
+                            <li><a href="#">Receitas Italianas</a></li>
+                            <li><a href="#">Receitas Japonesas</a></li>
+                            <li><a href="#">Sobremesas</a></li>
+                            <li><a href="#">Receitas Rapidas</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Contato</h6>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-map-marker-alt"></i> Rua das receitas, 1000 - SP</li>
+                            <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                            <li><i class="fas fa-envelope"></i> contato@saborarte.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <h6>Newsletter</h6>
+                        <p>Receba receitas novas por e-mail:</p>
+                        <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                            <input type="email" placeholder="Seu e-mail" required>
+                            <button type="submit">Ok</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="container">
+                <div class="rowFooter">
+                    <div class="col-md-8 col-sm-6 col-xs-12">
+                        <p class="copyright-text">Copyright &copy; <span id="year"></span> Todos os direitos reservados por <a href="#">Sabor & Arte</a>.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <ul class="social-icons">
+                            <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a class="dribbble" href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fab fa-tiktok"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ============================== -->
+    <!-- MODAL DE RECEITA               -->
+    <!-- ============================== -->
+    <div class="recipe-modal-overlay" id="recipeModal">
+        <div class="recipe-modal" id="recipeModalContent">
+            <!-- Fecha com botao X -->
+            <button class="modal-close" id="modalClose" aria-label="Fechar modal"><i class="fas fa-times"></i></button>
+
+            <!-- Imagem hero do modal -->
+            <div class="modal-hero">
+                <img id="modalImage" src="" alt="">
+                <div class="modal-hero-overlay">
+                    <span class="recipe-badge" id="modalBadge"></span>
+                </div>
+            </div>
+
+            <!-- Corpo do modal com scroll interno -->
+            <div class="modal-body">
+                <!-- Titulo e descricao -->
+                <div class="modal-header-text">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDesc"></p>
+                </div>
+
+                <!-- Info rapida (tempo, porcoes, dificuldade) -->
+                <div class="modal-info-bar">
+                    <div class="modal-info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Tempo</strong>
+                            <span id="modalTime"></span>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>Porcoes</strong>
+                            <span id="modalServings"></span>
+                        </div>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-signal"></i>
+                        <div>
+                            <strong>Dificuldade</strong>
+                            <span id="modalDifficulty"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abas: Ingredientes / Preparo / Dicas -->
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-mtab="ingredients"><i class="fas fa-list"></i> Ingredientes</button>
+                    <button class="modal-tab" data-mtab="steps"><i class="fas fa-clipboard-list"></i> Modo de Preparo</button>
+                    <button class="modal-tab" data-mtab="tips"><i class="fas fa-lightbulb"></i> Dicas</button>
+                </div>
+
+                <!-- Conteudo das abas -->
+                <div class="modal-tab-content active" id="tabIngredients">
+                    <ul class="ingredients-list" id="modalIngredients"></ul>
+                </div>
+
+                <div class="modal-tab-content" id="tabSteps">
+                    <ol class="steps-list" id="modalSteps"></ol>
+                </div>
+
+                <div class="modal-tab-content" id="tabTips">
+                    <div class="tips-content" id="modalTips"></div>
+                </div>
+
+                <!-- Botao de favoritar no modal -->
+                <div class="modal-footer">
+                    <button class="modal-fav-btn" id="modalFavBtn">
+                        <i class="far fa-heart"></i>
+                        <span>Adicionar aos favoritos</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
