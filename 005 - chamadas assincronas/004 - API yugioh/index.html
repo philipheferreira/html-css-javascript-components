@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Gi-Oh! Card Finder</title>
+    <style>
+        /* --- ESTILOS CSS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #e94560;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Área de Busca */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 12px 20px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #16213e;
+            color: #fff;
+            border: 2px solid #0f3460;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #e94560;
+        }
+
+        button {
+            padding: 12px 24px;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #d13d56;
+        }
+
+        /* Grid das Cartas */
+        #card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        /* Estilo de cada Carta */
+        .card {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 15px;
+            width: 280px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.1em;
+            color: #e94560;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .card-type {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.85em;
+            color: #ddd;
+            text-align: justify;
+            /* Limita o texto em 4 linhas */
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        #loading {
+            text-align: center;
+            font-size: 1.2em;
+            color: #e94560;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Yu-Gi-Oh! API Finder</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Nome da carta... (Ex: Blue-Eyes)">
+        <button onclick="searchCard()">Buscar</button>
+        <button onclick="getRandomCard()">Carta Aleatória</button>
+    </div>
+
+    <div id="loading">Carregando...</div>
+    <div id="card-container"></div>
+
+    <script>
+        /* --- CÓDIGO JAVASCRIPT --- */
+        
+        // Pegando os elementos do HTML
+        const container = document.getElementById('card-container');
+        const loading = document.getElementById('loading');
+        const searchInput = document.getElementById('search-input');
+
+        // Função para mostrar/esconder o loading
+        function toggleLoading(show) {
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        // Função para criar o HTML de uma carta na tela
+        function createCardElement(cardData) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+
+            // A API retorna as imagens dentro de um array chamado card_images
+            const imageUrl = cardData.card_images[0].image_url;
+
+            cardDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${cardData.name}">
+                <h3 class="card-title">${cardData.name}</h3>
+                <p class="card-type">${cardData.type} ${cardData.race ? '| ' + cardData.race : ''}</p>
+                <p class="card-desc">${cardData.desc}</p>
+            `;
+
+            return cardDiv;
+        }
+
+        // Função para buscar uma carta específica
+        async function searchCard() {
+            const query = searchInput.value.trim();
+            if (!query) {
+                alert('Por favor, digite o nome de uma carta.');
+                return;
+            }
+
+            container.innerHTML = '';
+            toggleLoading(true);
+
+            try {
+                // O 'fname' na API faz uma busca fuzzy (aproximada), ótimo para quando o usuário erra a escrita
+                const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(query)}`);
+                
+                if (!response.ok) throw new Error('Erro na rede');
+                
+                const data = await response.json();
+
+                // Se a API não achar nada, ela retorna { error: "..." } em vez de um array
+                if (data.error) {
+                    container.innerHTML = `<p>Nenhuma carta encontrada para "${query}".</p>`;
+                } else {
+                    // Limpa o container e adiciona as cartas encontradas
+                    container.innerHTML = '';
+                    data.data.forEach(card => {
+                        container.appendChild(createCardElement(card));
+                    });
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                container.innerHTML = `<p>Ocorreu um erro ao buscar as cartas.</p>`;
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // Função para buscar uma carta aleatória
+        async function getRandomCard() {
+            container.innerHTML = '';
+            toggleLoading(true);
+
+            try {
+                // Endpoint específico para carta aleatória
+                const response = await fetch('https://db.ygoprodeck.com/api/v7/randomcard.php');
+                
+                if (!response.ok) throw new Error('Erro na rede');
+                
+                const data = await response.json();
+                
+                container.innerHTML = '';
+                container.appendChild(createCardElement(data));
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                container.innerHTML = `<p>Ocorreu um erro ao buscar a carta aleatória.</p>`;
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // Permite apertar a tecla "Enter" para buscar
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCard();
+            }
+        });
+
+        // Carrega uma carta aleatória assim que a página abre
+        getRandomCard();
+
+    </script>
+</body>
+</html>
