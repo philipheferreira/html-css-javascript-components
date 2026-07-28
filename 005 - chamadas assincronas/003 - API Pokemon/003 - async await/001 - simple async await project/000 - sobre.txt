@@ -1,0 +1,35 @@
+
+O async/await não é uma nova forma de fazer requisições. Ele é, na verdade, 
+um "açúcar sintático" (syntactic sugar) para as Promises que vimos no passo 
+anterior. Por baixo dos panos, o JavaScript ainda está usando Promises, mas 
+o async/await muda a sintaxe para que o código assíncrono pareça e se leia 
+como código síncrono (de cima para baixo).
+
+
+O que você deve notar aqui (A "Lâmpada"):
+
+1 - O fim do encadeamento (.then().then()): Compare este código com o da 
+Promises. Não há mais "pirâmides" de .then(). Você atribui o resultado do 
+fetch diretamente a uma variável usando const resposta = await fetch().
+
+2 - A leitura é linear: Se você ler o código de cima para baixo dentro do try, 
+ele faz exatamente o que está escrito na ordem: Busca -> Converte -> Esconde 
+Loading -> Preenche Imagem -> Preenche Nome -> Mostra Card. O fato de a 
+internet demorar fica "invisível" para quem lê o código.
+
+3 - A regra de ouro do await: Você só pode usar a palavra await dentro de 
+uma função que foi declarada com async. É por isso que tivemos que colocar 
+async tanto na função buscarPokemon quanto na função anônima do addEventListener.
+
+4 - O try...catch vira o seu melhor amigo: Quando você usa await, você não 
+tem o .catch() no final da linha para tratar erros. A forma correta e moderna 
+de tratar erros com async/await é envolver o código suspeito em um bloco try 
+{ ... } catch(erro) { ... }.
+
+Resumo da sua jornada completa:
+
+Viemos de um código onde tínhamos que passar funções dentro de funções (Callbacks), 
+passamos por um código onde víamos o sucesso e o erro encadeados no final da 
+chamada (Promises/.then), e chegamos em um código que limpa, linear e fácil 
+de debugar (async/await). Parabéns, você acaba de aprender a evolução completa 
+da assincronicidade do JavaScript!

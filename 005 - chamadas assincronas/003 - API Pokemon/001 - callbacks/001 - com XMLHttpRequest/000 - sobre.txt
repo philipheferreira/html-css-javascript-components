@@ -1,0 +1,28 @@
+Para entender chamadas assíncronas usando callbacks, a melhor abordagem 
+é evitar o método moderno fetch() (que usa Promises por baixo dos panos) 
+e usar o clássico XMLHttpRequest. Ele é perfeito para estudar callbacks, 
+pois você literalmente passa uma função para ele executar quando a resposta 
+estiver pronta.
+
+
+Como estudar esse código para entender Assincronicidade:
+1 - O Fluxo Síncrono (Bloqueante): Quando você clica no botão, o JavaScript 
+lê o valor do input, esconde o card antigo e mostra o texto "Carregando...". 
+Isso acontece instantaneamente.
+2 - O Ponto de Desvio Assíncrono: Quando o código chega em xhr.send(), ele diz 
+para o navegador: "Vá na internet e baixe isso para mim".
+3 - A Não Espera: O JavaScript NÃO ESPERA o download acabar. Ele termina de 
+rodar o script imediatamente. Se não tivéssemos o callback, a tela ficaria 
+travada esperando.
+4 - A Retorno (O Callback): O navegador fica baixando no fundo. Quando ele 
+termina, ele avisa o JavaScript: "Terminei o download!". O evento 
+onreadystatechange dispara.
+5 - A Decisão: Dentro desse evento, nós avaliamos se deu certo ou errado, 
+e invocamos manualmente as funções callbackSucesso ou callbackErro, 
+passando os dados para elas atualizarem a tela.
+Por que não usamos fetch?
+
+O fetch() é a forma moderna de fazer isso, mas ele esconde a complexidade do 
+callback retornando uma Promise. Usar o XMLHttpRequest tira a "mágica" e te 
+força a entender que uma função está sendo guardada para ser executada no 
+futuro, que é exatamente o conceito de Callback Assíncrono.

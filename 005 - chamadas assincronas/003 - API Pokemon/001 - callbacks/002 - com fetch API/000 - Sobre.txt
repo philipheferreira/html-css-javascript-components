@@ -1,0 +1,41 @@
+Aqui há um detalhe conceitual muito importante: O fetch() por baixo dos panos não usa callbacks da mesma forma que o XMLHttpRequest. Ele usa Promises (Promessas).
+
+Para fins de estudo, nós vamos criar uma "Função Invólucro" (Wrapper). Vamos envolver o fetch em uma função nossa que recebe os seus callbacks, e nós mesmos vamos disparar esses callbacks quando a Promise do fetch for resolvida. É a melhor forma de ver a ponte entre o mundo antigo (callbacks) e o moderno (Promises).
+
+
+O que mudou e o que você precisa notar para o estudo:
+
+1 - O código ficou mais limpo: Você não precisou criar o objeto XMLHttpRequest, 
+não precisou checar o readyState (o 4), nem fazer o JSON.parse manualmente. 
+O fetch e o .json() fazem isso nativamente.
+
+2 - A "Ponte" (Onde o Callback é chamado): Note que dentro do segundo 
+.then(function(dadosJson) { ... }), nós chamamos a função quandoTiverSucesso(dadosJson). 
+Nós pegamos o resultado moderno da Promise e injetamos dentro do seu 
+callback antigo.
+
+3 - A pegadinha do fetch (Muito importante): No XMLHttpRequest, se você 
+pedisse um pokemon inexistente, o xhr.status vinha como 404, e você tratava 
+no if. No fetch, se você digitar "ashketchum", ele vai achar que a requisição 
+foi um sucesso de rede (porque o servidor respondeu!). Por isso tivemos que 
+colocar aquele if (!resposta.ok) { throw new Error... }. Se não fizermos isso, o 
+seu callback de erro nunca seria chamado para pokémons inexistentes.
+
+Resumo da Evolução:
+
+Nível 1 (O que fizemos agora): fetch -> Tratamos a Promise -> Chamamos nosso 
+Callback.
+
+Nível 2 (O próximo passo nos seus estudos): Você vai perceber que criar funções 
+de callbackSucesso e callbackErro separadas dá muito trabalho. No futuro, você 
+vai simplesmente colocar a lógica de atualizar a tela diretamente dentro do 
+.then() e do .catch(), eliminando a necessidade de escrever callbacks manualmente. 
+Isso se chama "Promise Chaining" (Encadeamento de Promises).
+
+
+
+
+
+
+
+

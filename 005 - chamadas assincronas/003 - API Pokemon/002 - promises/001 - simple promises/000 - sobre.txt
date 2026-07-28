@@ -1,0 +1,41 @@
+Se no nível anterior nós usamos o fetch, mas o "escondemos" dentro de uma 
+função que ainda usava callbacks, agora nós vamos usar o fetch da forma 
+que ele foi feito para ser usado: lidando diretamente com as Promises 
+(usando .then() e .catch()).
+
+A grande mudança de mentalidade aqui é: não precisamos mais passar funções 
+de callback como parâmetro. Nós simplesmente "encadeamos" o que queremos 
+fazer logo após a Promise ser resolvida.
+
+O que você deve notar de diferente (O "Salto" conceitual):
+
+1 - A função ficou limpa: A função buscarPokemon agora tem apenas 2 linhas 
+lógicas. Ela não sabe o que fazer com o sucesso ou o erro. Ela só vai lá e 
+busca. Ela retorna a Promise.
+
+2 - O fim dos parâmetros confusos: Repare na linha buscarPokemon(nome). 
+Antes era buscarPokemon(nome, callbackSucesso, callbackErro). A assinatura 
+da função ficou muito mais limpa.
+
+3 - O encadeamento (Chain): O segredo do .then() é a palavra return dentro dele.
+	- O primeiro .then() pega a resposta HTTP, verifica se é válida, e usa return resposta.json().
+	- Como ele retornou uma Promise, você pode colocar um .then() logo em seguida para pegar o JSON já convertido.
+
+4 - O escudo contra erros (.catch): O .catch() no final é como uma "rede de 
+segurança". Se o servidor cair, se o usuário digitar um nome errado (que ativa nosso throw new Error), ou se o .json() falhar, o código pula todos os .then() e vai direto para o .catch(). É muito mais robusto que tratar erros manualmente em callbacks.
+Resumo da sua jornada até aqui:
+
+* Passo 1: Você mandou um carro buscar o pokemon e deu um rádio (callback) para 
+ele te ligar quando voltasse.
+
+* Passo 2 (Agora): Você ligou para um aplicativo de entregas (Promise). Você não 
+deu um rádio. Você apenas disse: "Quando o entregador chegar .then(), eu pego o 
+pacote. Se ele se perder .catch(), eu lamento".
+
+O próximo e último passo nos seus estudos (quando se sentir confortável aqui) 
+será aprender o async / await, que é apenas uma forma de escrever esse código de 
+.then() exatamente igual a esse, mas com uma aparência que "parece" síncrona 
+(de cima para baixo).
+
+
+
