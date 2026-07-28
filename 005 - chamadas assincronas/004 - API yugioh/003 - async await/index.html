@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Gi-Oh! Card Finder (Async/Await)</title>
+    <style>
+        /* CSS idêntico */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #1a1a2e; color: #fff; min-height: 100vh; padding: 20px; }
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { color: #e94560; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .search-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        input { padding: 12px 20px; width: 300px; border: none; border-radius: 5px; font-size: 16px; background-color: #16213e; color: #fff; border: 2px solid #0f3460; outline: none; }
+        input:focus { border-color: #e94560; }
+        button { padding: 12px 24px; background-color: #e94560; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; }
+        button:hover { background-color: #d13d56; }
+        #card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .card { background-color: #16213e; border-radius: 10px; padding: 15px; width: 280px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; align-items: center; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3); }
+        .card img { width: 100%; border-radius: 5px; margin-bottom: 15px; }
+        .card-title { font-size: 1.1em; color: #e94560; margin-bottom: 5px; text-align: center; }
+        .card-type { font-size: 0.9em; color: #aaa; margin-bottom: 10px; }
+        .card-desc { font-size: 0.85em; color: #ddd; text-align: justify; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+        #loading { text-align: center; font-size: 1.2em; color: #e94560; display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Yu-Gi-Oh! Async/Await Version</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Nome da carta... (Ex: Blue-Eyes)">
+        <button onclick="searchCard()">Buscar</button>
+        <button onclick="getRandomCard()">Carta Aleatória</button>
+    </div>
+
+    <div id="loading">Carregando...</div>
+    <div id="card-container"></div>
+
+    <script>
+        const container = document.getElementById('card-container');
+        const loading = document.getElementById('loading');
+        const searchInput = document.getElementById('search-input');
+
+        function toggleLoading(show) {
+            loading.style.display = show ? 'block' : 'none';
+        }
+
+        function createCardElement(cardData) {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+            const imageUrl = cardData.card_images[0].image_url;
+            cardDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${cardData.name}">
+                <h3 class="card-title">${cardData.name}</h3>
+                <p class="card-type">${cardData.type} ${cardData.race ? '| ' + cardData.race : ''}</p>
+                <p class="card-desc">${cardData.desc}</p>
+            `;
+            return cardDiv;
+        }
+
+        // ==========================================
+        // LÓGICA COM ASYNC / AWAIT
+        // ==========================================
+
+        // 1. A palavra-chave 'async' na frente da função avisa ao JS: 
+        // "Essa função vai ter pausas (awaits) dentro dela"
+        async function searchCard() {
+            const query = searchInput.value.trim();
+            if (!query) {
+                alert('Por favor, digite o nome de uma carta.');
+                return;
+            }
+
+            container.innerHTML = '';
+            toggleLoading(true);
+
+            const url = `https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(query)}`;
+
+            // 2. O bloco 'try' é onde colocamos o código que pode dar erro
+            try {
+                // 3. A palavra-chave 'await' PAUSA a execução da função até o fetch terminar.
+                // É como se o código fosse síncrono aqui. Ele só passa para a próxima linha 
+                // quando a resposta do servidor chegar.
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error('Erro de rede. Status: ' + response.status);
+                }
+
+                // 4. response.json() também é assíncrono, então usamos outro await
+                const data = await response.json();
+
+                // 5. Verificação do erro específico da API do Yu-Gi-Oh
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // 6. Se chegou aqui, deu tudo certo. Renderizamos na tela.
+                data.data.forEach(card => {
+                    container.appendChild(createCardElement(card));
+                });
+
+            } catch (error) {
+                // 7. Se ALGUM erro acontecer no bloco 'try' (um throw ou um await falhar), 
+                // a execução pula imediatamente para cá.
+                console.error("Falha assíncrona capturada:", error);
+                container.innerHTML = `<p style="color: #e94560;">Falha ao buscar: ${error.message}</p>`;
+                
+            } finally {
+                // 8. O bloco 'finally' roda sempre no final, deu erro ou não.
+                // Substitui a necessidade do .finally() das Promises.
+                toggleLoading(false);
+            }
+        }
+
+        async function getRandomCard() {
+            container.innerHTML = '';
+            toggleLoading(true);
+
+            try {
+                // Tudo acontece de forma linear graças ao 'await'
+                const response = await fetch('https://db.ygoprodeck.com/api/v7/randomcard.php');
+                
+                if (!response.ok) throw new Error('Erro de rede');
+                
+                const data = await response.json();
+                
+                container.appendChild(createCardElement(data));
+
+            } catch (error) {
+                container.innerHTML = `<p style="color: #e94560;">Falha ao buscar: ${error.message}</p>`;
+            } finally {
+                toggleLoading(false);
+            }
+        }
+
+        // Atalho do teclado
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') searchCard();
+        });
+
+        // Inicia a página
+        getRandomCard();
+
+    </script>
+</body>
+</html>

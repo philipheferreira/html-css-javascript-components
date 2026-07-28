@@ -1,0 +1,34 @@
+No JavaScript, a jornada de lidar com tarefas assíncronas (como buscar dados na internet) foi exatamente essa:
+
+1 - Callbacks (O que vimos agora pouco - pode causar o "Callback Hell").
+2 - Promises com .then() (O que vamos fazer agora - muito mais organizado).
+3 - Async/Await (A primeira versão que fizemos - açúcar sintático em cima das Promises).
+
+Usar Promises puras (encadeamento com .then()) é fantástico para visualizar 
+o fluxo dos dados, pois você lê o código como uma "esteira de produção": faça 
+isso -> depois faça aquilo -> se der erro, vá para lá -> no final, faça isso.
+
+Aqui está o código refatorado usando o método .then(), .catch() e .finally().
+
+
+O que estudar neste código:
+1. A Esteira de Produção (.then()): O legal das Promises é que você não aninha 
+mais as funções. Você retorna o valor no final de um .then() e ele cai como 
+parâmetro no .then() logo abaixo. Isso evita a "Pirâmide da Destruição" dos 
+callbacks.
+2. O método .finally(): Esse é um dos maiores ganhos de usar Promises em 
+relação a callbacks. Como você não tem um callback específico para "fim da 
+execução", no modelo de callbacks você tinha que colocar o toggleLoading(false) 
+tanto na função de sucesso quanto na de erro. Com o .finally(), você coloca 
+ele uma vez só no fim da cadeia.
+
+3. O throw dentro do .then(): Repare que no searchCard, se a API disser que 
+não achou a carta (data.error), eu uso o throw new Error(data.error). Isso é 
+uma técnica muito usada: forçar a Promise a "falhar" no meio do caminho para 
+que o fluxo caia no .catch(), centralizando o tratamento de erros na tela em 
+apenas um lugar.
+
+4. Promises encadeadas: Note que fetch() retorna uma Promise, e response.json() 
+também retorna uma Promise. O .then() seguinte só é executado quando a Promise 
+do .json() também for resolvida. O JavaScript gerencia isso automaticamente para 
+você.

@@ -1,0 +1,34 @@
+Você acabou de fazer o caminho completo e oficial de evolução do JavaScript Assíncrono:
+
+1 - Callbacks (A base, mas pode virar um caos visual).
+
+2 - Promises (.then()) (Organiza o caos, mas ainda tem muitos blocos encadeados).
+
+3 - Async / Await (O paraíso: lê-se como código normal, de cima para baixo).
+
+O async/await não é uma nova tecnologia, mas sim um "açúcar sintático" (syntactic sugar) criado por cima das Promises. Por baixo dos panos, o JavaScript ainda está usando Promises, mas a forma de escrever fica muito mais limpa e fácil de ler.
+
+Aqui está o código final usando async / await
+
+
+O que você deve notar nesta versão (O "Ahá!" do estudo):
+1 - Fim das funções aninhadas: Veja como na versão de Promises tínhamos 
+fetch().then(function() { return... }).then(function(data) { ... }). Aqui, 
+acabou. O código agora é linear e plano. Você declara a variável const 
+response = await..., e na linha de baixo você já usa o response. Ele não 
+precisa mais ser passado como argumento para a próxima função.
+
+2 - try...catch...finally ao resgate: Quando tiramos os .then(), perdemos 
+o lugar natural onde colocávamos o .catch(). O JavaScript resolveu isso 
+permitindo o uso de try...catch (que antes era usado apenas para erros 
+síncronos) dentro de funções async.
+
+3 - O await só funciona dentro de async: Essa é a regra de ouro. Se você 
+tirar a palavra async da frente de function searchCard(), o browser vai dar 
+um erro de sintaxe ao ler a palavra await.
+
+Parabéns por fazer esse exercício de comparar os três modelos. É a melhor 
+maneira de não apenas usar o async/await, mas realmente entender o que o 
+JavaScript está fazendo nos bastidores!
+
+

@@ -1,0 +1,37 @@
+Quando usamos callbacks, a lógica muda: em vez de "esperar" (await) a resposta, 
+nós dizemos ao JavaScript: "Vá buscar esses dados, e quando você terminar, 
+execute esta função (callback) com o que você encontrou".
+
+Criei uma função gerenciadora (buscarNaAPI) que recebe a URL e dois callbacks: 
+um para o sucesso (callbackSucesso) e um para o erro (callbackErro). Esse padrão 
+(erro, dados) é muito clássico no JavaScript (especialmente no Node.js).
+
+O que mudou e por que é útil visualizar assim?
+
+1 - Separação de Responsabilidades: Note que a função buscarNaAPI não sabe o que 
+fazer com os dados. Ela só sabe como buscar. Quem dita as regras são os callbacks. 
+Isso deixa o código mais modular.
+
+2 - O Padrão (erro, sucesso): Veja como a chamada da função fica muito legível:
+
+buscarNaAPI(url, 
+    function(erro) { ... },   // Se falhar
+    function(dados) { ... }   // Se der certo
+);
+
+Esse é o padrão clássico (muito usado no Node.js). Você lê de cima para baixo: 
+"Busque na API essa URL. Se der erro, faça isso; se der sucesso, faça aquilo".
+
+3 - Controle de Fluxo: Diferente do async/await que parece código síncrono 
+(linha por linha de baixo para cima), o callback deixa muito explícito que 
+aquela parte do código vai rodar "depois", no futuro, quando a resposta chegar.
+
+
+Se você empilhar muitas funções que dependem umas das outras usando callbacks 
+(ex: buscar carta -> buscar preço da carta -> buscar imagem de fundo do tipo da 
+carta), você vai notar que o código vai ficando cada vez mais indentado para a 
+direita. Isso se chama Callback Hell (ou Pirâmide da Destruição). Foi justamente
+ para resolver esse problema visual que o Promise (com .then()) e posteriormente 
+o async/await foram criados! Mas entender o callback é a base fundamental de tudo
+ isso no JavaScript.
+
