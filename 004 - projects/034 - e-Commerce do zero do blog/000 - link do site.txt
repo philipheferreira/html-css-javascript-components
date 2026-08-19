@@ -1,1 +1,14 @@
 https://medium.com/@relaxintocode/creating-an-e-commerce-application-with-javascript-601a9c94068d
+
+Esse projeto tera as seguintes funcionalidades:
+
+* is produtos de um servico e mostrar os resultados na pagina
+
+* Filtrar todos os produtos na pagina por categoria e mostrar por categoria
+
+* Ter a habilidade de adicionar o produto pelo carrinho de compras
+
+* Aumentar ou diminuir a quantidade no carrinho de compras
+
+* Ter um pseudo botao para checar o preco total e quando clicado, esvazia o carrinho
+mostrando uma mensagem

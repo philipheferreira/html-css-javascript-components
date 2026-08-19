@@ -1,0 +1,11 @@
+Nesse projeto foi criada uma pagina basica de index. No index foi adicionado o
+link para acessar o google fontes e o awsome icons para uso no projeto.
+
+Em seguida no projeto sera adicionado 
+
+	* uma barra de pesquisa
+
+	*  um elemento seletor que ira filtrar todos os produtos por categoria
+
+	* Um icone de carrinho que quando clicado ira abrir o carrinho
+

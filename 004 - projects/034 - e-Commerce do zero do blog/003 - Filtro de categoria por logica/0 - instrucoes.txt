@@ -1,0 +1,19 @@
+Criar uma busca de filtro de categoria por funcao
+
+The steps we take for the filterCategories function are as follows:
+
+1-Find the select element (querySelector)
+2-Add change event listener on it
+3-In callback function, get the event
+4-Based on event, create switch statement and save to variable content
+5-Filter through content array
+6-Attach filtered products inside the list in the HTML
+
+
+Next up is to be able to search a product. The searchProduct function will behave similarly to the filterCategories but have slight changes. Our goal is to:
+
+Add an event listener on the search input (key up)
+clear pre existing products from the products list
+get value from search input
+iterate over products and filter by search value
+display results inside list (inner HTML)
