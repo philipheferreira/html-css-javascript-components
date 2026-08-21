@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", initialise);
 let allProducts;
+// adicionar produtos ao carrinho
+let cart = []; // <= added code
 
 function initialise() {
   fetchProducts();
@@ -16,7 +18,7 @@ async function fetchProducts() {
     const data = await resp.json();
     // allProducts variable saved as data response
     allProducts = data;
-    console.log(allProducts);
+    displayProducts(allProducts); // <= this is the altered code
   } catch (error) {
     console.error(error);
   }
@@ -50,20 +52,6 @@ function displayProducts(products) {
     })
     .join("");
 }
-
-async function fetchProducts() {
-  try {
-    // fetch products from fake store api
-    const resp = await fetch("https://fakestoreapi.com/products");
-    const data = await resp.json();
-    // allProducts variable saved as data response
-    allProducts = data;
-    displayProducts(allProducts); // <= this is the altered code
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 
 function filterCategories() {
   // 1 - select the select element
@@ -153,8 +141,7 @@ function searchProduct() {
     let content = allProducts.filter((product) => {
       return product.title.toLowerCase().includes(searchTerm);
     });
-    content
-      .map((product) => {
+    list.innerHTML = content.map((product) => {
         const { image, price, category, title, id } = product;
         list.innerHTML += `
     <li class="card">
@@ -209,11 +196,6 @@ function closeModal() {
   body.classList.remove("modal-open");
 }
 
-// adicionar produtos ao carrinho
-
-
-let allProducts;
-let cart = []; // <= added code
 
 // function adds product to cart
 function addToCart(id) {

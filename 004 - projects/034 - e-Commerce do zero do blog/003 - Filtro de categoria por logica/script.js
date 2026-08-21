@@ -14,7 +14,7 @@ async function fetchProducts() {
     const data = await resp.json();
     // allProducts variable saved as data response
     allProducts = data;
-    console.log(allProducts);
+    displayProducts(allProducts); // <= this is the altered code
   } catch (error) {
     console.error(error);
   }
@@ -48,20 +48,6 @@ function displayProducts(products) {
     })
     .join("");
 }
-
-async function fetchProducts() {
-  try {
-    // fetch products from fake store api
-    const resp = await fetch("https://fakestoreapi.com/products");
-    const data = await resp.json();
-    // allProducts variable saved as data response
-    allProducts = data;
-    displayProducts(allProducts); // <= this is the altered code
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 
 function filterCategories() {
   // 1 - select the select element
@@ -110,8 +96,7 @@ function filterCategories() {
         content = allProducts;
     }
     // content then iterated over and displayed inside list
-    content
-      .map((product) => {
+    list.innerHTML = content.map((product) => {
         const { image, category, price, title, id } = product;
         list.innerHTML += `
     <li class="card">
@@ -151,8 +136,7 @@ function searchProduct() {
     let content = allProducts.filter((product) => {
       return product.title.toLowerCase().includes(searchTerm);
     });
-    content
-      .map((product) => {
+    list.innerHTML =  content.map((product) => {
         const { image, price, category, title, id } = product;
         list.innerHTML += `
     <li class="card">
