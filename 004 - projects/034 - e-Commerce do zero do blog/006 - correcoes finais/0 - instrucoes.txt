@@ -1,1 +1,29 @@
-Adicionada funcao de abrir e fechar carrinho
+Você está tentando fazer duas coisas ao mesmo tempo de forma incorreta. 
+Vou explicar o que está acontecendo no código do seu filterCategories 
+(o mesmo vale para o searchProduct):
+
+// O QUE VOCÊ FEZ:
+list.innerHTML = content.map((product) => { 
+    const { image, category, price, title, id } = product;
+    list.innerHTML += `<li>...</li>`; // Problema aqui
+}).join("");
+
+Por que isso dá erro?
+
+O .map() no JavaScript exige que você use a palavra return dentro dele. Como você não usou, o .map() retorna uma lista de undefined (indefinido).
+No final, o .join("") junta tudo e vira uma string de texto: "undefinedundefinedundefined".
+Aí chega a primeira linha: list.innerHTML = "undefinedundefined...". Ele apaga sua lista e escreve a palavra undefined na tela.
+O list.innerHTML += que você colocou dentro acaba sendo inútil, pois é sobrescrito logo em seguida.
+Como é a forma certa?
+Você usa o list.innerHTML = por fora, o .map() por fora, mas dentro do map você usa apenas o return e esquece o list.innerHTML +=.
+
+Aqui está como devem ficar essas partes que você focou (e note que eu também corrigi o displayProducts e o shoppingCart que tinham o mesmíssimo problema).
+
+
+
+
+
+
+
+
+
