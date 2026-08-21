@@ -224,7 +224,8 @@ function shoppingCart() {
   let cartHTML = "";
 
   // map through cart, display cart contents
-  let cartHTML = cart.map((product) => { // focar aqui
+  cart
+    .map((product) => {
       const { title, price, quantity, id } = product;
       cartHTML += `
    <li id="item-container">
