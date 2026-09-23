@@ -1,0 +1,4 @@
+window.onload (forma clássica)
+Executa quando toda a página foi carregada, incluindo imagens, CSS 
+e outros recursos.
+

@@ -1,0 +1,2 @@
+Módulos ES6 (type="module")
+Módulos já são executados de forma "deferida" automaticamente:

@@ -1,0 +1,3 @@
+DOMContentLoaded (mais moderno e rápido)
+Executa assim que o HTML é interpretado, sem esperar imagens e CSS carregarem. 
+É geralmente a melhor opção.

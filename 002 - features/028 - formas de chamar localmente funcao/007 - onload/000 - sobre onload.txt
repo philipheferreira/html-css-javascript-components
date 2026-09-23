@@ -1,0 +1,2 @@
+onload direto no HTML (forma antiga)
+Funciona, mas não é recomendado atualmente (mistura HTML com JavaScript)

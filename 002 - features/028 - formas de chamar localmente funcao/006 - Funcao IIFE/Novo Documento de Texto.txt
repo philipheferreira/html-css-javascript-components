@@ -1,0 +1,3 @@
+Função IIFE (execução imediata)
+A função se executa sozinha no momento em que o script é lido
+⚠️ Atenção: só funciona se o script estiver depois dos elementos HTML que ele usa.

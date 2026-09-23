@@ -1,0 +1,2 @@
+Colocar o script no final do <body>
+Como o HTML acima do script já foi processado, você pode chamar a função diretamente
