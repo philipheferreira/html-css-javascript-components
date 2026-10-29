@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto | Minimal Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__container">
+      <button class="header__menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a href="index.html" class="header__logo">MINIMAL</a>
+      <nav class="header__nav" id="main-nav">
+        <a href="index.html" class="header__nav-link">Loja</a>
+        <a href="#" class="header__nav-link">Coleções</a>
+        <a href="#" class="header__nav-link">Sobre</a>
+        <a href="#" class="header__nav-link">Contato</a>
+      </nav>
+      <div class="header__actions">
+        <a href="carrinho.html" class="header__cart" aria-label="Carrinho">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 3h2l2.4 12h11.6l2.4-9h-16"/>
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+          </svg>
+          <span class="header__cart-count" id="cart-count" style="display:none;">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="breadcrumb__container">
+      <a href="index.html" class="breadcrumb__link">Início</a>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">Produto</span>
+    </div>
+  </div>
+
+  <!-- Detalhes do Produto -->
+  <main class="main-content">
+    <div class="product-detail" id="product-detail">
+      <!-- Renderizado dinamicamente via JS -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__col">
+        <h4 class="footer__title">MINIMAL</h4>
+        <p class="footer__text">Moda essencial, atemporal e sustentável.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__subtitle">Loja</h4>
+        <ul class="footer__list">
+          <li><a href="#">Novidades</a></li>
+          <li><a href="#">Mais vendidos</a></li>
+          <li><a href="#">Promoções</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__subtitle">Ajuda</h4>
+        <ul class="footer__list">
+          <li><a href="#">Entregas</a></li>
+          <li><a href="#">Trocas</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__subtitle">Contato</h4>
+        <p class="footer__text">contato@minimalstore.com<br>+55 11 9999-9999</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 Minimal Store. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
