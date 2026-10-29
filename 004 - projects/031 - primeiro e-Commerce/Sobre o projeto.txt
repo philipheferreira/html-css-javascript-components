@@ -1,0 +1,57 @@
+
+1. Estrutura de Pastas
+
+ecommerce/
+├── index.html          (página inicial - vitrine)
+├── produto.html        (página de detalhes do produto)
+├── carrinho.html       (carrinho de compras)
+├── checkout.html       (finalização do pedido)
+├── css/
+│   ├── style.css       (estilos globais)
+│   ├── header.css      (cabeçalho e navegação)
+│   └── produto.css     (estilos específicos)
+├── js/
+│   ├── produtos.js     (dados dos produtos)
+│   ├── carrinho.js     (lógica do carrinho)
+│   ├── ui.js           (renderização dinâmica)
+│   └── main.js         (inicialização)
+└── assets/
+    └── imagens/        (fotos dos produtos)
+
+2. Fluxo de Funcionamento
+
+[Usuário entra] → [Vitrine de produtos]
+        ↓
+[Clica num produto] → [Página de detalhes]
+        ↓
+[Adicionar ao carrinho] → [localStorage salva o item]
+        ↓
+[Ver carrinho] → [Atualizar quantidades / remover]
+        ↓
+[Finalizar compra] → [Formulário de checkout]
+        ↓
+[Confirmação do pedido] → [Limpar carrinho]
+
+3. Funcionalidades Principais
+
+Catálogo de produtos renderizado dinamicamente via JS
+Filtros e busca (categoria, preço, nome)
+Carrinho persistente usando localStorage
+Cálculo automático de subtotal, frete e total
+Modal de produto ou página de detalhes
+Checkout simulado com validação de formulário
+
+4. Tecnologias e Conceitos
+
+| Camada | Tecnologia | Função |
+|--------|-----------|--------|
+| Estrutura | HTML5 semântico | Páginas e componentes |
+| Estilo | CSS3 (Flexbox/Grid) | Layout responsivo, variáveis CSS |
+| Lógica | JavaScript (ES6+) | Manipulação DOM, eventos, storage |
+| Persistência | localStorage | Salvar carrinho entre sessões |
+
+
+
+
+
+
